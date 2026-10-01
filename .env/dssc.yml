@@ -1,0 +1,24 @@
+name: dssc-4090
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+  - bioconda
+dependencies:
+  - python=3.8
+  # RTX 4090-capable PyTorch/CUDA stack
+  - pytorch=2.1.2
+  - pytorch-cuda=11.8
+  # Conservative DSSC / Scanpy scientific stack
+  - numpy=1.19.5
+  - scipy
+  - pandas=1.1.5
+  - scikit-learn=0.24.2
+  - h5py=2.10.0
+  - scanpy=1.6.0
+  - anndata=0.7.8
+  - munkres=1.1.4
+  - pip
+# Install DGL separately after creating this environment:
+# python -m pip install "dgl==1.1.3+cu118" -f https://data.dgl.ai/wheels/cu118/repo.html --no-deps

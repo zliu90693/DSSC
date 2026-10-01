@@ -3,23 +3,12 @@ A model-based constrained deep learning clustering approach for spatial-resolved
 ![Model structure](https://github.com/xianglin226/DSSC/blob/master/src/fig1_structure.png?raw=true)  
 
 # Dependencies in Python  
-Python 3.8.1
+```bash
+conda env create -f .env/dssc_4090.yml
+```
+Note that due to differences in GPU and CUDA core versions, the dependency versions used here differ from those in the original repository. Please refer to `.test/test_env.ipynb` for details on environment setup and troubleshooting.
 
-Pytorch 1.6.0
-
-Scanpy 1.6.0
-
-SKlearn 0.22.1
-
-Numpy 1.18.1
-
-h5py 2.9.0
-
-munkres 1.1.4  
-
-dgl 0.8.0
-
-All experiments of DSSC in this study are conducted on Nvidia Tesla P100 (16G) GPU.
+All experiments of DSSC in this study are conducted on Nvidia 4090 (24GB) GPU.
 
 #The input data should be in h5 format with:  
 (1) "X" - count matrix  
