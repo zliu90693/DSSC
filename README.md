@@ -6,7 +6,7 @@ A model-based constrained deep learning clustering approach for spatial-resolved
 ```bash
 conda env create -f .env/dssc_4090.yml
 ```
-**Note that due to differences in GPU and CUDA core versions, the dependency versions used here differ from those in the original repository. Please refer to `.test/test_env.ipynb` for details on environment setup and troubleshooting.**
+Note that due to differences in GPU and CUDA core versions, the dependency versions used here differ from those in [the original repository](https://github.com/xianglin226/DSSC). Please refer to `.test/01_test_env.ipynb` for details on environment setup and troubleshooting.
 
 All experiments of DSSC in this study are conducted on Nvidia 4090 (24GB) GPU.
 
@@ -28,8 +28,20 @@ rhdf5 2.38.1
 ggplot2 3.3.6  
 
 # Run DSSC 
-1) Build constraints (See make_links_from_Markers.R)  
+1) Build constraints (See make_links_from_Markers.R)
+
+```bash
+
+```
+
 2) Run DSSC (See run_DSSC.sh, then run.sh)  
+
+```bash
+cd src
+chmod +x run.sh
+export HDF5_USE_FILE_LOCKING=FALSE # If the project is located on a network drive or shared drive that does not support POSIX locks, explicitly set the environment variable.
+./run.sh
+```
 
 # Cite this work  
 Lin, X., Gao, L., Whitener, N., Ahmed, A., & Wei, Z. (2022). A model-based constrained deep learning clustering approach for spatially resolved single-cell data. Genome Research, 32(10), 1906-1917.

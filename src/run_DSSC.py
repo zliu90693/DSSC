@@ -53,7 +53,11 @@ if __name__ == "__main__":
     data_mat = h5py.File(args.data_file)
     x = np.array(data_mat['X'])
     pos = np.array(data_mat['Pos'])
-    pos = pos.T
+    if pos.shape[1] != 2: 
+        pos = pos.T
+    # 原 repo 中，这里无条件执行 pos = pos.T，这个转置对 151507 是对的（它的 Pos 是 (2, 4226)），但对 osmFISH 是错的
+    # osmFISH 的 Pos 本来就是 (4839, 2)，转置后变成 (2, 4839)，再用 f（索引最大到 4838）去取 axis 0（只有 2 行）就爆了 index 2 out of bounds
+    # 这是 osmFISH 数据跑不通的直接原因
     y = np.array(data_mat['Y']) #if availble
     data_mat.close()
     

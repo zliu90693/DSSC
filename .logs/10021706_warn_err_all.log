@@ -1,0 +1,205 @@
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/setuptools_scm/_integration/setuptools.py:31: RuntimeWarning: 
+ERROR: setuptools==59.8.0 is used in combination with setuptools_scm>=8.x
+
+Your build configuration is incomplete and previously worked by accident!
+setuptools_scm requires setuptools>=61
+
+Suggested workaround if applicable:
+ - migrating from the deprecated setup_requires mechanism to pep517/518
+   and using a pyproject.toml to declare build dependencies
+   which are reliably pre-installed before running the build tools
+
+  warnings.warn(
+run_DSSC.py:53: H5pyDeprecationWarning: The default file mode will change to 'r' (read-only) in h5py 3.0. To suppress this warning, pass the mode you need to h5py.File(), or set the global default h5.get_config().default_file_mode, or set the environment variable H5PY_DEFAULT_READONLY=1. Available modes are: 'r', 'r+', 'w', 'w-'/'x', 'a'. See the docs for details.
+  data_mat = h5py.File(args.data_file)
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/anndata/_core/anndata.py:120: ImplicitModificationWarning: Transforming to str index.
+  warnings.warn("Transforming to str index.", ImplicitModificationWarning)
+Trying to set attribute `.obs` of view, copying.
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/scanpy/preprocessing/_highly_variable_genes.py:504: FutureWarning: Slicing a positional slice with .loc is not supported, and will raise TypeError in a future version.  Use .loc with labels or .iloc with positions instead.
+  df.loc[:n_top_genes, 'highly_variable'] = True
+/hdd2/liuzy/Projects/IntensiveStudy4Lin/DSSC/src/utils.py:94: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  l_mode = stats.mode(labels).mode[0]
+/hdd2/liuzy/Projects/IntensiveStudy4Lin/DSSC/src/utils.py:94: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  l_mode = stats.mode(labels).mode[0]
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/setuptools_scm/_integration/setuptools.py:31: RuntimeWarning: 
+ERROR: setuptools==59.8.0 is used in combination with setuptools_scm>=8.x
+
+Your build configuration is incomplete and previously worked by accident!
+setuptools_scm requires setuptools>=61
+
+Suggested workaround if applicable:
+ - migrating from the deprecated setup_requires mechanism to pep517/518
+   and using a pyproject.toml to declare build dependencies
+   which are reliably pre-installed before running the build tools
+
+  warnings.warn(
+run_DSSC.py:53: H5pyDeprecationWarning: The default file mode will change to 'r' (read-only) in h5py 3.0. To suppress this warning, pass the mode you need to h5py.File(), or set the global default h5.get_config().default_file_mode, or set the environment variable H5PY_DEFAULT_READONLY=1. Available modes are: 'r', 'r+', 'w', 'w-'/'x', 'a'. See the docs for details.
+  data_mat = h5py.File(args.data_file)
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/anndata/_core/anndata.py:120: ImplicitModificationWarning: Transforming to str index.
+  warnings.warn("Transforming to str index.", ImplicitModificationWarning)
+Trying to set attribute `.obs` of view, copying.
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/scanpy/preprocessing/_highly_variable_genes.py:504: FutureWarning: Slicing a positional slice with .loc is not supported, and will raise TypeError in a future version.  Use .loc with labels or .iloc with positions instead.
+  df.loc[:n_top_genes, 'highly_variable'] = True
+/hdd2/liuzy/Projects/IntensiveStudy4Lin/DSSC/src/utils.py:94: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  l_mode = stats.mode(labels).mode[0]
+/hdd2/liuzy/Projects/IntensiveStudy4Lin/DSSC/src/utils.py:94: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  l_mode = stats.mode(labels).mode[0]
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/setuptools_scm/_integration/setuptools.py:31: RuntimeWarning: 
+ERROR: setuptools==59.8.0 is used in combination with setuptools_scm>=8.x
+
+Your build configuration is incomplete and previously worked by accident!
+setuptools_scm requires setuptools>=61
+
+Suggested workaround if applicable:
+ - migrating from the deprecated setup_requires mechanism to pep517/518
+   and using a pyproject.toml to declare build dependencies
+   which are reliably pre-installed before running the build tools
+
+  warnings.warn(
+run_DSSC.py:53: H5pyDeprecationWarning: The default file mode will change to 'r' (read-only) in h5py 3.0. To suppress this warning, pass the mode you need to h5py.File(), or set the global default h5.get_config().default_file_mode, or set the environment variable H5PY_DEFAULT_READONLY=1. Available modes are: 'r', 'r+', 'w', 'w-'/'x', 'a'. See the docs for details.
+  data_mat = h5py.File(args.data_file)
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/anndata/_core/anndata.py:120: ImplicitModificationWarning: Transforming to str index.
+  warnings.warn("Transforming to str index.", ImplicitModificationWarning)
+Trying to set attribute `.obs` of view, copying.
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/scanpy/preprocessing/_highly_variable_genes.py:504: FutureWarning: Slicing a positional slice with .loc is not supported, and will raise TypeError in a future version.  Use .loc with labels or .iloc with positions instead.
+  df.loc[:n_top_genes, 'highly_variable'] = True
+/hdd2/liuzy/Projects/IntensiveStudy4Lin/DSSC/src/utils.py:94: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  l_mode = stats.mode(labels).mode[0]
+/hdd2/liuzy/Projects/IntensiveStudy4Lin/DSSC/src/utils.py:94: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  l_mode = stats.mode(labels).mode[0]
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/setuptools_scm/_integration/setuptools.py:31: RuntimeWarning: 
+ERROR: setuptools==59.8.0 is used in combination with setuptools_scm>=8.x
+
+Your build configuration is incomplete and previously worked by accident!
+setuptools_scm requires setuptools>=61
+
+Suggested workaround if applicable:
+ - migrating from the deprecated setup_requires mechanism to pep517/518
+   and using a pyproject.toml to declare build dependencies
+   which are reliably pre-installed before running the build tools
+
+  warnings.warn(
+run_DSSC.py:53: H5pyDeprecationWarning: The default file mode will change to 'r' (read-only) in h5py 3.0. To suppress this warning, pass the mode you need to h5py.File(), or set the global default h5.get_config().default_file_mode, or set the environment variable H5PY_DEFAULT_READONLY=1. Available modes are: 'r', 'r+', 'w', 'w-'/'x', 'a'. See the docs for details.
+  data_mat = h5py.File(args.data_file)
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/anndata/_core/anndata.py:120: ImplicitModificationWarning: Transforming to str index.
+  warnings.warn("Transforming to str index.", ImplicitModificationWarning)
+Trying to set attribute `.obs` of view, copying.
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/scanpy/preprocessing/_highly_variable_genes.py:504: FutureWarning: Slicing a positional slice with .loc is not supported, and will raise TypeError in a future version.  Use .loc with labels or .iloc with positions instead.
+  df.loc[:n_top_genes, 'highly_variable'] = True
+/hdd2/liuzy/Projects/IntensiveStudy4Lin/DSSC/src/utils.py:94: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  l_mode = stats.mode(labels).mode[0]
+/hdd2/liuzy/Projects/IntensiveStudy4Lin/DSSC/src/utils.py:94: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  l_mode = stats.mode(labels).mode[0]
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/setuptools_scm/_integration/setuptools.py:31: RuntimeWarning: 
+ERROR: setuptools==59.8.0 is used in combination with setuptools_scm>=8.x
+
+Your build configuration is incomplete and previously worked by accident!
+setuptools_scm requires setuptools>=61
+
+Suggested workaround if applicable:
+ - migrating from the deprecated setup_requires mechanism to pep517/518
+   and using a pyproject.toml to declare build dependencies
+   which are reliably pre-installed before running the build tools
+
+  warnings.warn(
+run_DSSC.py:53: H5pyDeprecationWarning: The default file mode will change to 'r' (read-only) in h5py 3.0. To suppress this warning, pass the mode you need to h5py.File(), or set the global default h5.get_config().default_file_mode, or set the environment variable H5PY_DEFAULT_READONLY=1. Available modes are: 'r', 'r+', 'w', 'w-'/'x', 'a'. See the docs for details.
+  data_mat = h5py.File(args.data_file)
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/anndata/_core/anndata.py:120: ImplicitModificationWarning: Transforming to str index.
+  warnings.warn("Transforming to str index.", ImplicitModificationWarning)
+Trying to set attribute `.obs` of view, copying.
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/scanpy/preprocessing/_highly_variable_genes.py:504: FutureWarning: Slicing a positional slice with .loc is not supported, and will raise TypeError in a future version.  Use .loc with labels or .iloc with positions instead.
+  df.loc[:n_top_genes, 'highly_variable'] = True
+/hdd2/liuzy/Projects/IntensiveStudy4Lin/DSSC/src/utils.py:94: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  l_mode = stats.mode(labels).mode[0]
+/hdd2/liuzy/Projects/IntensiveStudy4Lin/DSSC/src/utils.py:94: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  l_mode = stats.mode(labels).mode[0]
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/setuptools_scm/_integration/setuptools.py:31: RuntimeWarning: 
+ERROR: setuptools==59.8.0 is used in combination with setuptools_scm>=8.x
+
+Your build configuration is incomplete and previously worked by accident!
+setuptools_scm requires setuptools>=61
+
+Suggested workaround if applicable:
+ - migrating from the deprecated setup_requires mechanism to pep517/518
+   and using a pyproject.toml to declare build dependencies
+   which are reliably pre-installed before running the build tools
+
+  warnings.warn(
+run_DSSC.py:53: H5pyDeprecationWarning: The default file mode will change to 'r' (read-only) in h5py 3.0. To suppress this warning, pass the mode you need to h5py.File(), or set the global default h5.get_config().default_file_mode, or set the environment variable H5PY_DEFAULT_READONLY=1. Available modes are: 'r', 'r+', 'w', 'w-'/'x', 'a'. See the docs for details.
+  data_mat = h5py.File(args.data_file)
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/anndata/_core/anndata.py:120: ImplicitModificationWarning: Transforming to str index.
+  warnings.warn("Transforming to str index.", ImplicitModificationWarning)
+Trying to set attribute `.obs` of view, copying.
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/scanpy/preprocessing/_highly_variable_genes.py:504: FutureWarning: Slicing a positional slice with .loc is not supported, and will raise TypeError in a future version.  Use .loc with labels or .iloc with positions instead.
+  df.loc[:n_top_genes, 'highly_variable'] = True
+/hdd2/liuzy/Projects/IntensiveStudy4Lin/DSSC/src/utils.py:94: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  l_mode = stats.mode(labels).mode[0]
+/hdd2/liuzy/Projects/IntensiveStudy4Lin/DSSC/src/utils.py:94: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  l_mode = stats.mode(labels).mode[0]
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/setuptools_scm/_integration/setuptools.py:31: RuntimeWarning: 
+ERROR: setuptools==59.8.0 is used in combination with setuptools_scm>=8.x
+
+Your build configuration is incomplete and previously worked by accident!
+setuptools_scm requires setuptools>=61
+
+Suggested workaround if applicable:
+ - migrating from the deprecated setup_requires mechanism to pep517/518
+   and using a pyproject.toml to declare build dependencies
+   which are reliably pre-installed before running the build tools
+
+  warnings.warn(
+run_DSSC.py:53: H5pyDeprecationWarning: The default file mode will change to 'r' (read-only) in h5py 3.0. To suppress this warning, pass the mode you need to h5py.File(), or set the global default h5.get_config().default_file_mode, or set the environment variable H5PY_DEFAULT_READONLY=1. Available modes are: 'r', 'r+', 'w', 'w-'/'x', 'a'. See the docs for details.
+  data_mat = h5py.File(args.data_file)
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/anndata/_core/anndata.py:120: ImplicitModificationWarning: Transforming to str index.
+  warnings.warn("Transforming to str index.", ImplicitModificationWarning)
+Trying to set attribute `.obs` of view, copying.
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/scanpy/preprocessing/_highly_variable_genes.py:504: FutureWarning: Slicing a positional slice with .loc is not supported, and will raise TypeError in a future version.  Use .loc with labels or .iloc with positions instead.
+  df.loc[:n_top_genes, 'highly_variable'] = True
+/hdd2/liuzy/Projects/IntensiveStudy4Lin/DSSC/src/utils.py:94: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  l_mode = stats.mode(labels).mode[0]
+/hdd2/liuzy/Projects/IntensiveStudy4Lin/DSSC/src/utils.py:94: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  l_mode = stats.mode(labels).mode[0]
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/setuptools_scm/_integration/setuptools.py:31: RuntimeWarning: 
+ERROR: setuptools==59.8.0 is used in combination with setuptools_scm>=8.x
+
+Your build configuration is incomplete and previously worked by accident!
+setuptools_scm requires setuptools>=61
+
+Suggested workaround if applicable:
+ - migrating from the deprecated setup_requires mechanism to pep517/518
+   and using a pyproject.toml to declare build dependencies
+   which are reliably pre-installed before running the build tools
+
+  warnings.warn(
+run_DSSC.py:53: H5pyDeprecationWarning: The default file mode will change to 'r' (read-only) in h5py 3.0. To suppress this warning, pass the mode you need to h5py.File(), or set the global default h5.get_config().default_file_mode, or set the environment variable H5PY_DEFAULT_READONLY=1. Available modes are: 'r', 'r+', 'w', 'w-'/'x', 'a'. See the docs for details.
+  data_mat = h5py.File(args.data_file)
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/anndata/_core/anndata.py:120: ImplicitModificationWarning: Transforming to str index.
+  warnings.warn("Transforming to str index.", ImplicitModificationWarning)
+Trying to set attribute `.obs` of view, copying.
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/scanpy/preprocessing/_highly_variable_genes.py:504: FutureWarning: Slicing a positional slice with .loc is not supported, and will raise TypeError in a future version.  Use .loc with labels or .iloc with positions instead.
+  df.loc[:n_top_genes, 'highly_variable'] = True
+/hdd2/liuzy/Projects/IntensiveStudy4Lin/DSSC/src/utils.py:94: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  l_mode = stats.mode(labels).mode[0]
+/hdd2/liuzy/Projects/IntensiveStudy4Lin/DSSC/src/utils.py:94: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  l_mode = stats.mode(labels).mode[0]
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/setuptools_scm/_integration/setuptools.py:31: RuntimeWarning: 
+ERROR: setuptools==59.8.0 is used in combination with setuptools_scm>=8.x
+
+Your build configuration is incomplete and previously worked by accident!
+setuptools_scm requires setuptools>=61
+
+Suggested workaround if applicable:
+ - migrating from the deprecated setup_requires mechanism to pep517/518
+   and using a pyproject.toml to declare build dependencies
+   which are reliably pre-installed before running the build tools
+
+  warnings.warn(
+run_DSSC.py:53: H5pyDeprecationWarning: The default file mode will change to 'r' (read-only) in h5py 3.0. To suppress this warning, pass the mode you need to h5py.File(), or set the global default h5.get_config().default_file_mode, or set the environment variable H5PY_DEFAULT_READONLY=1. Available modes are: 'r', 'r+', 'w', 'w-'/'x', 'a'. See the docs for details.
+  data_mat = h5py.File(args.data_file)
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/anndata/_core/anndata.py:120: ImplicitModificationWarning: Transforming to str index.
+  warnings.warn("Transforming to str index.", ImplicitModificationWarning)
+Trying to set attribute `.obs` of view, copying.
+/home/liuzy/Software/miniconda3/envs/dssc-4090/lib/python3.8/site-packages/scanpy/preprocessing/_highly_variable_genes.py:504: FutureWarning: Slicing a positional slice with .loc is not supported, and will raise TypeError in a future version.  Use .loc with labels or .iloc with positions instead.
+  df.loc[:n_top_genes, 'highly_variable'] = True
+/hdd2/liuzy/Projects/IntensiveStudy4Lin/DSSC/src/utils.py:94: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  l_mode = stats.mode(labels).mode[0]

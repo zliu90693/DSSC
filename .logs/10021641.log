@@ -1,0 +1,1982 @@
+Namespace(FS_file='realdata/sample_151507_featureSelection_Index2000.csv', cl_file='../example_constraints/sample_151507_clFromMarks_test.txt', clustering_iters=400, concat=True, data_file='../data/sample_151507_anno.h5', decodeLayer=[128], device='cuda', encodeHead=3, encodeLayer=[128], final_labels='pred.csv', final_latent_file='latent.csv', gamma=0.01, knn=20, lr=0.001, ml_file='../example_constraints/sample_151507_mlFromMarks_test.txt', n_cl=4000, n_clusters=-1, n_ml=4000, run='1', save_dir='out_151507', select_genes=2000, sigma=0.1, train_iter=200, verbose=True, weight_cl=1.0, weight_ml=0.5, z_dim=32)
+***Data prepocessing***
+Size of after filtering (4221, 2000)
+Size of after filtering (4221, 2000)
+***Building graph***
+***Building constraints***
+Read ML file
+Read CL file
+DSSC(
+  (encoder): GATEncoder(
+    (layers): ModuleList(
+      (0): GATConv(
+        (fc): Linear(in_features=2000, out_features=384, bias=False)
+        (feat_drop): Dropout(p=0.0, inplace=False)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (leaky_relu): LeakyReLU(negative_slope=0.2)
+      )
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ELU(alpha=1.0)
+    )
+    (enc_mu): GATConv(
+      (fc): Linear(in_features=128, out_features=96, bias=False)
+      (feat_drop): Dropout(p=0, inplace=False)
+      (attn_drop): Dropout(p=0, inplace=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+  )
+  (decoder): Sequential(
+    (0): Linear(in_features=32, out_features=128, bias=True)
+    (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ELU(alpha=1.0)
+  )
+  (_dec_mean): Sequential(
+    (0): Linear(in_features=128, out_features=2000, bias=True)
+    (1): MeanAct()
+  )
+  (_dec_disp): Sequential(
+    (0): Linear(in_features=128, out_features=2000, bias=True)
+    (1): DispAct()
+  )
+  (_dec_pi): Sequential(
+    (0): Linear(in_features=128, out_features=2000, bias=True)
+    (1): Sigmoid()
+  )
+  (nb_loss): NBLoss()
+  (zinb_loss): ZINBLoss()
+)
+Training
+Iteration:1, ZINB loss:0.00024304
+Iteration:2, ZINB loss:0.00024199
+Iteration:3, ZINB loss:0.00024095
+Iteration:4, ZINB loss:0.00023938
+Iteration:5, ZINB loss:0.00023712
+Iteration:6, ZINB loss:0.00023442
+Iteration:7, ZINB loss:0.00023148
+Iteration:8, ZINB loss:0.00022788
+Iteration:9, ZINB loss:0.00022337
+Iteration:10, ZINB loss:0.00021887
+Iteration:11, ZINB loss:0.00021301
+Iteration:12, ZINB loss:0.00020781
+Iteration:13, ZINB loss:0.00020295
+Iteration:14, ZINB loss:0.00019839
+Iteration:15, ZINB loss:0.00019568
+Iteration:16, ZINB loss:0.00019281
+Iteration:17, ZINB loss:0.00018969
+Iteration:18, ZINB loss:0.00018645
+Iteration:19, ZINB loss:0.00018382
+Iteration:20, ZINB loss:0.00018156
+Iteration:21, ZINB loss:0.00018079
+Iteration:22, ZINB loss:0.00017817
+Iteration:23, ZINB loss:0.00017575
+Iteration:24, ZINB loss:0.00017280
+Iteration:25, ZINB loss:0.00017185
+Iteration:26, ZINB loss:0.00017031
+Iteration:27, ZINB loss:0.00016777
+Iteration:28, ZINB loss:0.00016467
+Iteration:29, ZINB loss:0.00016151
+Iteration:30, ZINB loss:0.00015814
+Iteration:31, ZINB loss:0.00015575
+Iteration:32, ZINB loss:0.00015362
+Iteration:33, ZINB loss:0.00015130
+Iteration:34, ZINB loss:0.00014883
+Iteration:35, ZINB loss:0.00014671
+Iteration:36, ZINB loss:0.00014561
+Iteration:37, ZINB loss:0.00014165
+Iteration:38, ZINB loss:0.00013602
+Iteration:39, ZINB loss:0.00013277
+Iteration:40, ZINB loss:0.00013137
+Iteration:41, ZINB loss:0.00013203
+Iteration:42, ZINB loss:0.00013072
+Iteration:43, ZINB loss:0.00012730
+Iteration:44, ZINB loss:0.00012121
+Iteration:45, ZINB loss:0.00011749
+Iteration:46, ZINB loss:0.00011517
+Iteration:47, ZINB loss:0.00011184
+Iteration:48, ZINB loss:0.00010904
+Iteration:49, ZINB loss:0.00010857
+Iteration:50, ZINB loss:0.00010797
+Iteration:51, ZINB loss:0.00010640
+Iteration:52, ZINB loss:0.00010510
+Iteration:53, ZINB loss:0.00010173
+Iteration:54, ZINB loss:0.00010058
+Iteration:55, ZINB loss:0.00009937
+Iteration:56, ZINB loss:0.00009776
+Iteration:57, ZINB loss:0.00009696
+Iteration:58, ZINB loss:0.00009582
+Iteration:59, ZINB loss:0.00009468
+Iteration:60, ZINB loss:0.00009356
+Iteration:61, ZINB loss:0.00009310
+Iteration:62, ZINB loss:0.00009147
+Iteration:63, ZINB loss:0.00009064
+Iteration:64, ZINB loss:0.00008814
+Iteration:65, ZINB loss:0.00008733
+Iteration:66, ZINB loss:0.00008615
+Iteration:67, ZINB loss:0.00008595
+Iteration:68, ZINB loss:0.00008542
+Iteration:69, ZINB loss:0.00008466
+Iteration:70, ZINB loss:0.00008391
+Iteration:71, ZINB loss:0.00008412
+Iteration:72, ZINB loss:0.00008415
+Iteration:73, ZINB loss:0.00008383
+Iteration:74, ZINB loss:0.00008243
+Iteration:75, ZINB loss:0.00008101
+Iteration:76, ZINB loss:0.00008010
+Iteration:77, ZINB loss:0.00007957
+Iteration:78, ZINB loss:0.00007987
+Iteration:79, ZINB loss:0.00007868
+Iteration:80, ZINB loss:0.00007915
+Iteration:81, ZINB loss:0.00007863
+Iteration:82, ZINB loss:0.00007896
+Iteration:83, ZINB loss:0.00007891
+Iteration:84, ZINB loss:0.00007733
+Iteration:85, ZINB loss:0.00007598
+Iteration:86, ZINB loss:0.00007516
+Iteration:87, ZINB loss:0.00007547
+Iteration:88, ZINB loss:0.00007524
+Iteration:89, ZINB loss:0.00007502
+Iteration:90, ZINB loss:0.00007445
+Iteration:91, ZINB loss:0.00007462
+Iteration:92, ZINB loss:0.00007439
+Iteration:93, ZINB loss:0.00007392
+Iteration:94, ZINB loss:0.00007341
+Iteration:95, ZINB loss:0.00007286
+Iteration:96, ZINB loss:0.00007198
+Iteration:97, ZINB loss:0.00007151
+Iteration:98, ZINB loss:0.00007150
+Iteration:99, ZINB loss:0.00007096
+Iteration:100, ZINB loss:0.00007155
+Iteration:101, ZINB loss:0.00007125
+Iteration:102, ZINB loss:0.00007092
+Iteration:103, ZINB loss:0.00007095
+Iteration:104, ZINB loss:0.00007091
+Iteration:105, ZINB loss:0.00007112
+Iteration:106, ZINB loss:0.00007107
+Iteration:107, ZINB loss:0.00007062
+Iteration:108, ZINB loss:0.00006984
+Iteration:109, ZINB loss:0.00006929
+Iteration:110, ZINB loss:0.00006873
+Iteration:111, ZINB loss:0.00006835
+Iteration:112, ZINB loss:0.00006818
+Iteration:113, ZINB loss:0.00006791
+Iteration:114, ZINB loss:0.00006792
+Iteration:115, ZINB loss:0.00006783
+Iteration:116, ZINB loss:0.00006759
+Iteration:117, ZINB loss:0.00006792
+Iteration:118, ZINB loss:0.00006771
+Iteration:119, ZINB loss:0.00006742
+Iteration:120, ZINB loss:0.00006734
+Iteration:121, ZINB loss:0.00006689
+Iteration:122, ZINB loss:0.00006688
+Iteration:123, ZINB loss:0.00006708
+Iteration:124, ZINB loss:0.00006638
+Iteration:125, ZINB loss:0.00006644
+Iteration:126, ZINB loss:0.00006580
+Iteration:127, ZINB loss:0.00006568
+Iteration:128, ZINB loss:0.00006547
+Iteration:129, ZINB loss:0.00006560
+Iteration:130, ZINB loss:0.00006529
+Iteration:131, ZINB loss:0.00006512
+Iteration:132, ZINB loss:0.00006463
+Iteration:133, ZINB loss:0.00006466
+Iteration:134, ZINB loss:0.00006431
+Iteration:135, ZINB loss:0.00006419
+Iteration:136, ZINB loss:0.00006401
+Iteration:137, ZINB loss:0.00006397
+Iteration:138, ZINB loss:0.00006400
+Iteration:139, ZINB loss:0.00006358
+Iteration:140, ZINB loss:0.00006332
+Iteration:141, ZINB loss:0.00006315
+Iteration:142, ZINB loss:0.00006316
+Iteration:143, ZINB loss:0.00006325
+Iteration:144, ZINB loss:0.00006340
+Iteration:145, ZINB loss:0.00006267
+Iteration:146, ZINB loss:0.00006204
+Iteration:147, ZINB loss:0.00006168
+Iteration:148, ZINB loss:0.00006164
+Iteration:149, ZINB loss:0.00006146
+Iteration:150, ZINB loss:0.00006135
+Iteration:151, ZINB loss:0.00006093
+Iteration:152, ZINB loss:0.00006050
+Iteration:153, ZINB loss:0.00006040
+Iteration:154, ZINB loss:0.00006054
+Iteration:155, ZINB loss:0.00006069
+Iteration:156, ZINB loss:0.00006086
+Iteration:157, ZINB loss:0.00006031
+Iteration:158, ZINB loss:0.00005989
+Iteration:159, ZINB loss:0.00005962
+Iteration:160, ZINB loss:0.00005964
+Iteration:161, ZINB loss:0.00005963
+Iteration:162, ZINB loss:0.00005907
+Iteration:163, ZINB loss:0.00005860
+Iteration:164, ZINB loss:0.00005820
+Iteration:165, ZINB loss:0.00005823
+Iteration:166, ZINB loss:0.00005817
+Iteration:167, ZINB loss:0.00005816
+Iteration:168, ZINB loss:0.00005793
+Iteration:169, ZINB loss:0.00005786
+Iteration:170, ZINB loss:0.00005781
+Iteration:171, ZINB loss:0.00005783
+Iteration:172, ZINB loss:0.00005779
+Iteration:173, ZINB loss:0.00005752
+Iteration:174, ZINB loss:0.00005693
+Iteration:175, ZINB loss:0.00005694
+Iteration:176, ZINB loss:0.00005688
+Iteration:177, ZINB loss:0.00005698
+Iteration:178, ZINB loss:0.00005685
+Iteration:179, ZINB loss:0.00005666
+Iteration:180, ZINB loss:0.00005652
+Iteration:181, ZINB loss:0.00005637
+Iteration:182, ZINB loss:0.00005639
+Iteration:183, ZINB loss:0.00005658
+Iteration:184, ZINB loss:0.00005639
+Iteration:185, ZINB loss:0.00005610
+Iteration:186, ZINB loss:0.00005575
+Iteration:187, ZINB loss:0.00005553
+Iteration:188, ZINB loss:0.00005545
+Iteration:189, ZINB loss:0.00005541
+Iteration:190, ZINB loss:0.00005553
+Iteration:191, ZINB loss:0.00005600
+Iteration:192, ZINB loss:0.00005548
+Iteration:193, ZINB loss:0.00005497
+Iteration:194, ZINB loss:0.00005473
+Iteration:195, ZINB loss:0.00005481
+Iteration:196, ZINB loss:0.00005449
+Iteration:197, ZINB loss:0.00005422
+Iteration:198, ZINB loss:0.00005413
+Iteration:199, ZINB loss:0.00005445
+Iteration:200, ZINB loss:0.00005421
+Pret-raining time: 16 seconds.
+Initializing cluster centers with kmeans
+Initializing kmeans: ACC= 0.6593, NMI= 0.6109, ARI= 0.4910
+Initializing kmeans KNN ACC= 0.9645
+Constraints summary: ML=4000
+Constraints summary: CL=4000
+DEC Clustering   1: ACC= 0.6593, NMI= 0.6109, ARI= 0.4910
+Clustering Iteration:1, Total loss:0.00031190, ZINB loss:0.00005456, Cluster loss:0.00009022, ML loss:0.00016712
+DEC Clustering   2: ACC= 0.6759, NMI= 0.6215, ARI= 0.5311
+Clustering Iteration:2, Total loss:0.00013680, ZINB loss:0.00005318, Cluster loss:0.00007760, CL loss:0.00000602
+DEC Clustering   3: ACC= 0.6792, NMI= 0.6286, ARI= 0.5494
+Clustering Iteration:3, Total loss:0.00026095, ZINB loss:0.00005388, Cluster loss:0.00006258, ML loss:0.00014449
+DEC Clustering   4: ACC= 0.6759, NMI= 0.6283, ARI= 0.5346
+Clustering Iteration:4, Total loss:0.00011996, ZINB loss:0.00005238, Cluster loss:0.00006372, CL loss:0.00000386
+DEC Clustering   5: ACC= 0.6778, NMI= 0.6289, ARI= 0.5405
+Clustering Iteration:5, Total loss:0.00021700, ZINB loss:0.00005234, Cluster loss:0.00006746, ML loss:0.00009720
+DEC Clustering   6: ACC= 0.6735, NMI= 0.6288, ARI= 0.5349
+Clustering Iteration:6, Total loss:0.00012511, ZINB loss:0.00005190, Cluster loss:0.00006937, CL loss:0.00000384
+DEC Clustering   7: ACC= 0.6633, NMI= 0.6254, ARI= 0.5112
+Clustering Iteration:7, Total loss:0.00019362, ZINB loss:0.00005162, Cluster loss:0.00006926, ML loss:0.00007274
+DEC Clustering   8: ACC= 0.6579, NMI= 0.6253, ARI= 0.5044
+Clustering Iteration:8, Total loss:0.00012193, ZINB loss:0.00005156, Cluster loss:0.00006744, CL loss:0.00000292
+DEC Clustering   9: ACC= 0.6593, NMI= 0.6267, ARI= 0.5052
+Clustering Iteration:9, Total loss:0.00018562, ZINB loss:0.00005133, Cluster loss:0.00006467, ML loss:0.00006962
+DEC Clustering   10: ACC= 0.6700, NMI= 0.6325, ARI= 0.5167
+Clustering Iteration:10, Total loss:0.00011670, ZINB loss:0.00005112, Cluster loss:0.00006321, CL loss:0.00000237
+DEC Clustering   11: ACC= 0.6854, NMI= 0.6396, ARI= 0.5359
+Clustering Iteration:11, Total loss:0.00017699, ZINB loss:0.00005100, Cluster loss:0.00006243, ML loss:0.00006356
+DEC Clustering   12: ACC= 0.6859, NMI= 0.6398, ARI= 0.5256
+Clustering Iteration:12, Total loss:0.00011644, ZINB loss:0.00005077, Cluster loss:0.00006304, CL loss:0.00000263
+DEC Clustering   13: ACC= 0.6806, NMI= 0.6338, ARI= 0.5119
+Clustering Iteration:13, Total loss:0.00015560, ZINB loss:0.00005081, Cluster loss:0.00006310, ML loss:0.00004168
+DEC Clustering   14: ACC= 0.6799, NMI= 0.6338, ARI= 0.5090
+Clustering Iteration:14, Total loss:0.00011501, ZINB loss:0.00005060, Cluster loss:0.00006266, CL loss:0.00000175
+DEC Clustering   15: ACC= 0.6814, NMI= 0.6338, ARI= 0.5091
+Clustering Iteration:15, Total loss:0.00014883, ZINB loss:0.00005035, Cluster loss:0.00006211, ML loss:0.00003638
+DEC Clustering   16: ACC= 0.6949, NMI= 0.6394, ARI= 0.5238
+Clustering Iteration:16, Total loss:0.00011294, ZINB loss:0.00005027, Cluster loss:0.00006120, CL loss:0.00000147
+DEC Clustering   17: ACC= 0.7095, NMI= 0.6461, ARI= 0.5375
+Clustering Iteration:17, Total loss:0.00013687, ZINB loss:0.00005020, Cluster loss:0.00005994, ML loss:0.00002674
+DEC Clustering   18: ACC= 0.7136, NMI= 0.6499, ARI= 0.5409
+Clustering Iteration:18, Total loss:0.00011083, ZINB loss:0.00004991, Cluster loss:0.00005954, CL loss:0.00000137
+DEC Clustering   19: ACC= 0.7091, NMI= 0.6489, ARI= 0.5327
+Clustering Iteration:19, Total loss:0.00013128, ZINB loss:0.00004981, Cluster loss:0.00005936, ML loss:0.00002212
+DEC Clustering   20: ACC= 0.7084, NMI= 0.6478, ARI= 0.5302
+Clustering Iteration:20, Total loss:0.00010975, ZINB loss:0.00004964, Cluster loss:0.00005908, CL loss:0.00000103
+DEC Clustering   21: ACC= 0.7098, NMI= 0.6495, ARI= 0.5321
+Clustering Iteration:21, Total loss:0.00013021, ZINB loss:0.00004955, Cluster loss:0.00005865, ML loss:0.00002201
+DEC Clustering   22: ACC= 0.7084, NMI= 0.6483, ARI= 0.5296
+Clustering Iteration:22, Total loss:0.00010847, ZINB loss:0.00004939, Cluster loss:0.00005818, CL loss:0.00000091
+DEC Clustering   23: ACC= 0.7091, NMI= 0.6489, ARI= 0.5281
+Clustering Iteration:23, Total loss:0.00012801, ZINB loss:0.00004929, Cluster loss:0.00005784, ML loss:0.00002088
+DEC Clustering   24: ACC= 0.7105, NMI= 0.6492, ARI= 0.5319
+Clustering Iteration:24, Total loss:0.00010804, ZINB loss:0.00004912, Cluster loss:0.00005797, CL loss:0.00000094
+DEC Clustering   25: ACC= 0.7183, NMI= 0.6540, ARI= 0.5475
+Clustering Iteration:25, Total loss:0.00013053, ZINB loss:0.00004913, Cluster loss:0.00005841, ML loss:0.00002300
+DEC Clustering   26: ACC= 0.7188, NMI= 0.6551, ARI= 0.5485
+Clustering Iteration:26, Total loss:0.00010838, ZINB loss:0.00004889, Cluster loss:0.00005880, CL loss:0.00000069
+DEC Clustering   27: ACC= 0.7124, NMI= 0.6512, ARI= 0.5375
+Clustering Iteration:27, Total loss:0.00012706, ZINB loss:0.00004883, Cluster loss:0.00005910, ML loss:0.00001913
+DEC Clustering   28: ACC= 0.7150, NMI= 0.6528, ARI= 0.5410
+Clustering Iteration:28, Total loss:0.00010797, ZINB loss:0.00004861, Cluster loss:0.00005868, CL loss:0.00000069
+DEC Clustering   29: ACC= 0.7188, NMI= 0.6552, ARI= 0.5471
+Clustering Iteration:29, Total loss:0.00012406, ZINB loss:0.00004851, Cluster loss:0.00005813, ML loss:0.00001742
+DEC Clustering   30: ACC= 0.7204, NMI= 0.6558, ARI= 0.5483
+Clustering Iteration:30, Total loss:0.00010678, ZINB loss:0.00004829, Cluster loss:0.00005792, CL loss:0.00000057
+DEC Clustering   31: ACC= 0.7171, NMI= 0.6528, ARI= 0.5418
+Clustering Iteration:31, Total loss:0.00012131, ZINB loss:0.00004814, Cluster loss:0.00005822, ML loss:0.00001495
+DEC Clustering   32: ACC= 0.7178, NMI= 0.6528, ARI= 0.5435
+Clustering Iteration:32, Total loss:0.00010613, ZINB loss:0.00004807, Cluster loss:0.00005753, CL loss:0.00000053
+DEC Clustering   33: ACC= 0.7221, NMI= 0.6551, ARI= 0.5510
+Clustering Iteration:33, Total loss:0.00011715, ZINB loss:0.00004784, Cluster loss:0.00005675, ML loss:0.00001255
+DEC Clustering   34: ACC= 0.7219, NMI= 0.6552, ARI= 0.5504
+delta_label  0.0009476427386875149 < tol  0.001
+Reach tolerance threshold. Stopping training.
+Time used is:23.114195108413696
+Final Clustering: ACC= 0.7219, NMI= 0.6552, ARI= 0.5504, kNN_ACC= 0.9656, I_score= 0.8382, Loss = 0.00011715, Epoch = 34
+Namespace(FS_file='realdata/sample_151507_featureSelection_Index2000.csv', cl_file='../example_constraints/sample_151507_clFromMarks_test.txt', clustering_iters=400, concat=True, data_file='../data/sample_151507_anno.h5', decodeLayer=[128], device='cuda', encodeHead=3, encodeLayer=[128], final_labels='pred.csv', final_latent_file='latent.csv', gamma=0.01, knn=20, lr=0.001, ml_file='../example_constraints/sample_151507_mlFromMarks_test.txt', n_cl=4000, n_clusters=-1, n_ml=4000, run='2', save_dir='out_151507', select_genes=2000, sigma=0.1, train_iter=200, verbose=True, weight_cl=1.0, weight_ml=0.5, z_dim=32)
+***Data prepocessing***
+Size of after filtering (4221, 2000)
+Size of after filtering (4221, 2000)
+***Building graph***
+***Building constraints***
+Read ML file
+Read CL file
+DSSC(
+  (encoder): GATEncoder(
+    (layers): ModuleList(
+      (0): GATConv(
+        (fc): Linear(in_features=2000, out_features=384, bias=False)
+        (feat_drop): Dropout(p=0.0, inplace=False)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (leaky_relu): LeakyReLU(negative_slope=0.2)
+      )
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ELU(alpha=1.0)
+    )
+    (enc_mu): GATConv(
+      (fc): Linear(in_features=128, out_features=96, bias=False)
+      (feat_drop): Dropout(p=0, inplace=False)
+      (attn_drop): Dropout(p=0, inplace=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+  )
+  (decoder): Sequential(
+    (0): Linear(in_features=32, out_features=128, bias=True)
+    (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ELU(alpha=1.0)
+  )
+  (_dec_mean): Sequential(
+    (0): Linear(in_features=128, out_features=2000, bias=True)
+    (1): MeanAct()
+  )
+  (_dec_disp): Sequential(
+    (0): Linear(in_features=128, out_features=2000, bias=True)
+    (1): DispAct()
+  )
+  (_dec_pi): Sequential(
+    (0): Linear(in_features=128, out_features=2000, bias=True)
+    (1): Sigmoid()
+  )
+  (nb_loss): NBLoss()
+  (zinb_loss): ZINBLoss()
+)
+Training
+Iteration:1, ZINB loss:0.00024347
+Iteration:2, ZINB loss:0.00024217
+Iteration:3, ZINB loss:0.00024160
+Iteration:4, ZINB loss:0.00024098
+Iteration:5, ZINB loss:0.00023975
+Iteration:6, ZINB loss:0.00023783
+Iteration:7, ZINB loss:0.00023547
+Iteration:8, ZINB loss:0.00023186
+Iteration:9, ZINB loss:0.00022816
+Iteration:10, ZINB loss:0.00022343
+Iteration:11, ZINB loss:0.00021800
+Iteration:12, ZINB loss:0.00021224
+Iteration:13, ZINB loss:0.00020784
+Iteration:14, ZINB loss:0.00020425
+Iteration:15, ZINB loss:0.00020137
+Iteration:16, ZINB loss:0.00019852
+Iteration:17, ZINB loss:0.00019590
+Iteration:18, ZINB loss:0.00019382
+Iteration:19, ZINB loss:0.00019215
+Iteration:20, ZINB loss:0.00019129
+Iteration:21, ZINB loss:0.00019063
+Iteration:22, ZINB loss:0.00018987
+Iteration:23, ZINB loss:0.00018912
+Iteration:24, ZINB loss:0.00018738
+Iteration:25, ZINB loss:0.00018669
+Iteration:26, ZINB loss:0.00018583
+Iteration:27, ZINB loss:0.00018425
+Iteration:28, ZINB loss:0.00018063
+Iteration:29, ZINB loss:0.00017688
+Iteration:30, ZINB loss:0.00017133
+Iteration:31, ZINB loss:0.00016809
+Iteration:32, ZINB loss:0.00016369
+Iteration:33, ZINB loss:0.00015936
+Iteration:34, ZINB loss:0.00015601
+Iteration:35, ZINB loss:0.00015430
+Iteration:36, ZINB loss:0.00015073
+Iteration:37, ZINB loss:0.00014680
+Iteration:38, ZINB loss:0.00014467
+Iteration:39, ZINB loss:0.00014294
+Iteration:40, ZINB loss:0.00014157
+Iteration:41, ZINB loss:0.00013931
+Iteration:42, ZINB loss:0.00013541
+Iteration:43, ZINB loss:0.00013083
+Iteration:44, ZINB loss:0.00012649
+Iteration:45, ZINB loss:0.00012416
+Iteration:46, ZINB loss:0.00012086
+Iteration:47, ZINB loss:0.00011654
+Iteration:48, ZINB loss:0.00011399
+Iteration:49, ZINB loss:0.00011357
+Iteration:50, ZINB loss:0.00011449
+Iteration:51, ZINB loss:0.00011182
+Iteration:52, ZINB loss:0.00010959
+Iteration:53, ZINB loss:0.00010862
+Iteration:54, ZINB loss:0.00010919
+Iteration:55, ZINB loss:0.00010732
+Iteration:56, ZINB loss:0.00010593
+Iteration:57, ZINB loss:0.00010274
+Iteration:58, ZINB loss:0.00010051
+Iteration:59, ZINB loss:0.00009771
+Iteration:60, ZINB loss:0.00009594
+Iteration:61, ZINB loss:0.00009509
+Iteration:62, ZINB loss:0.00009556
+Iteration:63, ZINB loss:0.00009529
+Iteration:64, ZINB loss:0.00009423
+Iteration:65, ZINB loss:0.00009290
+Iteration:66, ZINB loss:0.00009319
+Iteration:67, ZINB loss:0.00009331
+Iteration:68, ZINB loss:0.00009189
+Iteration:69, ZINB loss:0.00009094
+Iteration:70, ZINB loss:0.00008923
+Iteration:71, ZINB loss:0.00008882
+Iteration:72, ZINB loss:0.00008820
+Iteration:73, ZINB loss:0.00008786
+Iteration:74, ZINB loss:0.00008615
+Iteration:75, ZINB loss:0.00008507
+Iteration:76, ZINB loss:0.00008492
+Iteration:77, ZINB loss:0.00008451
+Iteration:78, ZINB loss:0.00008333
+Iteration:79, ZINB loss:0.00008245
+Iteration:80, ZINB loss:0.00008200
+Iteration:81, ZINB loss:0.00008244
+Iteration:82, ZINB loss:0.00008230
+Iteration:83, ZINB loss:0.00008161
+Iteration:84, ZINB loss:0.00008052
+Iteration:85, ZINB loss:0.00008075
+Iteration:86, ZINB loss:0.00008068
+Iteration:87, ZINB loss:0.00008047
+Iteration:88, ZINB loss:0.00008111
+Iteration:89, ZINB loss:0.00008148
+Iteration:90, ZINB loss:0.00008033
+Iteration:91, ZINB loss:0.00007953
+Iteration:92, ZINB loss:0.00007817
+Iteration:93, ZINB loss:0.00007815
+Iteration:94, ZINB loss:0.00007755
+Iteration:95, ZINB loss:0.00007705
+Iteration:96, ZINB loss:0.00007666
+Iteration:97, ZINB loss:0.00007628
+Iteration:98, ZINB loss:0.00007615
+Iteration:99, ZINB loss:0.00007658
+Iteration:100, ZINB loss:0.00007611
+Iteration:101, ZINB loss:0.00007583
+Iteration:102, ZINB loss:0.00007492
+Iteration:103, ZINB loss:0.00007483
+Iteration:104, ZINB loss:0.00007461
+Iteration:105, ZINB loss:0.00007396
+Iteration:106, ZINB loss:0.00007324
+Iteration:107, ZINB loss:0.00007257
+Iteration:108, ZINB loss:0.00007255
+Iteration:109, ZINB loss:0.00007213
+Iteration:110, ZINB loss:0.00007249
+Iteration:111, ZINB loss:0.00007246
+Iteration:112, ZINB loss:0.00007239
+Iteration:113, ZINB loss:0.00007169
+Iteration:114, ZINB loss:0.00007153
+Iteration:115, ZINB loss:0.00007121
+Iteration:116, ZINB loss:0.00007173
+Iteration:117, ZINB loss:0.00007187
+Iteration:118, ZINB loss:0.00007107
+Iteration:119, ZINB loss:0.00007019
+Iteration:120, ZINB loss:0.00006994
+Iteration:121, ZINB loss:0.00007000
+Iteration:122, ZINB loss:0.00006966
+Iteration:123, ZINB loss:0.00006941
+Iteration:124, ZINB loss:0.00006886
+Iteration:125, ZINB loss:0.00006901
+Iteration:126, ZINB loss:0.00006841
+Iteration:127, ZINB loss:0.00006803
+Iteration:128, ZINB loss:0.00006802
+Iteration:129, ZINB loss:0.00006787
+Iteration:130, ZINB loss:0.00006777
+Iteration:131, ZINB loss:0.00006758
+Iteration:132, ZINB loss:0.00006722
+Iteration:133, ZINB loss:0.00006721
+Iteration:134, ZINB loss:0.00006706
+Iteration:135, ZINB loss:0.00006746
+Iteration:136, ZINB loss:0.00006762
+Iteration:137, ZINB loss:0.00006721
+Iteration:138, ZINB loss:0.00006679
+Iteration:139, ZINB loss:0.00006619
+Iteration:140, ZINB loss:0.00006587
+Iteration:141, ZINB loss:0.00006583
+Iteration:142, ZINB loss:0.00006572
+Iteration:143, ZINB loss:0.00006540
+Iteration:144, ZINB loss:0.00006528
+Iteration:145, ZINB loss:0.00006517
+Iteration:146, ZINB loss:0.00006522
+Iteration:147, ZINB loss:0.00006520
+Iteration:148, ZINB loss:0.00006493
+Iteration:149, ZINB loss:0.00006470
+Iteration:150, ZINB loss:0.00006504
+Iteration:151, ZINB loss:0.00006520
+Iteration:152, ZINB loss:0.00006497
+Iteration:153, ZINB loss:0.00006397
+Iteration:154, ZINB loss:0.00006362
+Iteration:155, ZINB loss:0.00006322
+Iteration:156, ZINB loss:0.00006312
+Iteration:157, ZINB loss:0.00006316
+Iteration:158, ZINB loss:0.00006301
+Iteration:159, ZINB loss:0.00006327
+Iteration:160, ZINB loss:0.00006322
+Iteration:161, ZINB loss:0.00006300
+Iteration:162, ZINB loss:0.00006273
+Iteration:163, ZINB loss:0.00006264
+Iteration:164, ZINB loss:0.00006219
+Iteration:165, ZINB loss:0.00006131
+Iteration:166, ZINB loss:0.00006112
+Iteration:167, ZINB loss:0.00006096
+Iteration:168, ZINB loss:0.00006111
+Iteration:169, ZINB loss:0.00006131
+Iteration:170, ZINB loss:0.00006120
+Iteration:171, ZINB loss:0.00006068
+Iteration:172, ZINB loss:0.00006023
+Iteration:173, ZINB loss:0.00006007
+Iteration:174, ZINB loss:0.00006051
+Iteration:175, ZINB loss:0.00006007
+Iteration:176, ZINB loss:0.00005951
+Iteration:177, ZINB loss:0.00005934
+Iteration:178, ZINB loss:0.00005978
+Iteration:179, ZINB loss:0.00005979
+Iteration:180, ZINB loss:0.00005983
+Iteration:181, ZINB loss:0.00005921
+Iteration:182, ZINB loss:0.00005938
+Iteration:183, ZINB loss:0.00005931
+Iteration:184, ZINB loss:0.00005966
+Iteration:185, ZINB loss:0.00005966
+Iteration:186, ZINB loss:0.00005958
+Iteration:187, ZINB loss:0.00005919
+Iteration:188, ZINB loss:0.00005836
+Iteration:189, ZINB loss:0.00005853
+Iteration:190, ZINB loss:0.00005809
+Iteration:191, ZINB loss:0.00005773
+Iteration:192, ZINB loss:0.00005763
+Iteration:193, ZINB loss:0.00005772
+Iteration:194, ZINB loss:0.00005733
+Iteration:195, ZINB loss:0.00005709
+Iteration:196, ZINB loss:0.00005734
+Iteration:197, ZINB loss:0.00005715
+Iteration:198, ZINB loss:0.00005696
+Iteration:199, ZINB loss:0.00005693
+Iteration:200, ZINB loss:0.00005681
+Pret-raining time: 17 seconds.
+Initializing cluster centers with kmeans
+Initializing kmeans: ACC= 0.6432, NMI= 0.5660, ARI= 0.4799
+Initializing kmeans KNN ACC= 0.9647
+Constraints summary: ML=4000
+Constraints summary: CL=4000
+DEC Clustering   1: ACC= 0.6432, NMI= 0.5660, ARI= 0.4799
+Clustering Iteration:1, Total loss:0.00032213, ZINB loss:0.00005590, Cluster loss:0.00010007, ML loss:0.00016616
+DEC Clustering   2: ACC= 0.6371, NMI= 0.5646, ARI= 0.4718
+Clustering Iteration:2, Total loss:0.00014978, ZINB loss:0.00005338, Cluster loss:0.00008104, CL loss:0.00001536
+DEC Clustering   3: ACC= 0.6100, NMI= 0.5533, ARI= 0.4345
+Clustering Iteration:3, Total loss:0.00032754, ZINB loss:0.00005391, Cluster loss:0.00007324, ML loss:0.00020039
+DEC Clustering   4: ACC= 0.6363, NMI= 0.5627, ARI= 0.4678
+Clustering Iteration:4, Total loss:0.00013058, ZINB loss:0.00005297, Cluster loss:0.00006518, CL loss:0.00001242
+DEC Clustering   5: ACC= 0.6439, NMI= 0.5628, ARI= 0.4853
+Clustering Iteration:5, Total loss:0.00026362, ZINB loss:0.00005350, Cluster loss:0.00006924, ML loss:0.00014088
+DEC Clustering   6: ACC= 0.6434, NMI= 0.5630, ARI= 0.4878
+Clustering Iteration:6, Total loss:0.00014075, ZINB loss:0.00005266, Cluster loss:0.00007756, CL loss:0.00001053
+DEC Clustering   7: ACC= 0.6420, NMI= 0.5621, ARI= 0.4848
+Clustering Iteration:7, Total loss:0.00025560, ZINB loss:0.00005224, Cluster loss:0.00008343, ML loss:0.00011993
+DEC Clustering   8: ACC= 0.6392, NMI= 0.5609, ARI= 0.4827
+Clustering Iteration:8, Total loss:0.00014594, ZINB loss:0.00005210, Cluster loss:0.00008348, CL loss:0.00001036
+DEC Clustering   9: ACC= 0.6359, NMI= 0.5604, ARI= 0.4794
+Clustering Iteration:9, Total loss:0.00022718, ZINB loss:0.00005203, Cluster loss:0.00007885, ML loss:0.00009631
+DEC Clustering   10: ACC= 0.6354, NMI= 0.5623, ARI= 0.4815
+Clustering Iteration:10, Total loss:0.00013308, ZINB loss:0.00005188, Cluster loss:0.00007313, CL loss:0.00000807
+DEC Clustering   11: ACC= 0.6385, NMI= 0.5648, ARI= 0.4845
+Clustering Iteration:11, Total loss:0.00020181, ZINB loss:0.00005183, Cluster loss:0.00006800, ML loss:0.00008198
+DEC Clustering   12: ACC= 0.6368, NMI= 0.5668, ARI= 0.4821
+Clustering Iteration:12, Total loss:0.00012655, ZINB loss:0.00005158, Cluster loss:0.00006776, CL loss:0.00000721
+DEC Clustering   13: ACC= 0.6330, NMI= 0.5681, ARI= 0.4779
+Clustering Iteration:13, Total loss:0.00020131, ZINB loss:0.00005148, Cluster loss:0.00006912, ML loss:0.00008071
+DEC Clustering   14: ACC= 0.6304, NMI= 0.5684, ARI= 0.4764
+Clustering Iteration:14, Total loss:0.00012761, ZINB loss:0.00005119, Cluster loss:0.00007024, CL loss:0.00000618
+DEC Clustering   15: ACC= 0.6266, NMI= 0.5674, ARI= 0.4760
+Clustering Iteration:15, Total loss:0.00020810, ZINB loss:0.00005133, Cluster loss:0.00007163, ML loss:0.00008514
+DEC Clustering   16: ACC= 0.6271, NMI= 0.5663, ARI= 0.4768
+Clustering Iteration:16, Total loss:0.00012709, ZINB loss:0.00005103, Cluster loss:0.00007047, CL loss:0.00000559
+DEC Clustering   17: ACC= 0.6297, NMI= 0.5665, ARI= 0.4787
+Clustering Iteration:17, Total loss:0.00019074, ZINB loss:0.00005091, Cluster loss:0.00006876, ML loss:0.00007107
+DEC Clustering   18: ACC= 0.6323, NMI= 0.5683, ARI= 0.4820
+Clustering Iteration:18, Total loss:0.00012146, ZINB loss:0.00005075, Cluster loss:0.00006614, CL loss:0.00000457
+DEC Clustering   19: ACC= 0.6326, NMI= 0.5685, ARI= 0.4829
+Clustering Iteration:19, Total loss:0.00017171, ZINB loss:0.00005057, Cluster loss:0.00006372, ML loss:0.00005742
+DEC Clustering   20: ACC= 0.6328, NMI= 0.5699, ARI= 0.4850
+Clustering Iteration:20, Total loss:0.00011784, ZINB loss:0.00005052, Cluster loss:0.00006301, CL loss:0.00000431
+DEC Clustering   21: ACC= 0.6328, NMI= 0.5713, ARI= 0.4872
+Clustering Iteration:21, Total loss:0.00016964, ZINB loss:0.00005034, Cluster loss:0.00006318, ML loss:0.00005612
+DEC Clustering   22: ACC= 0.6311, NMI= 0.5706, ARI= 0.4849
+Clustering Iteration:22, Total loss:0.00011801, ZINB loss:0.00005019, Cluster loss:0.00006393, CL loss:0.00000390
+DEC Clustering   23: ACC= 0.6314, NMI= 0.5705, ARI= 0.4844
+Clustering Iteration:23, Total loss:0.00017224, ZINB loss:0.00005003, Cluster loss:0.00006473, ML loss:0.00005749
+DEC Clustering   24: ACC= 0.6311, NMI= 0.5721, ARI= 0.4867
+Clustering Iteration:24, Total loss:0.00011839, ZINB loss:0.00005000, Cluster loss:0.00006460, CL loss:0.00000379
+DEC Clustering   25: ACC= 0.6290, NMI= 0.5703, ARI= 0.4846
+Clustering Iteration:25, Total loss:0.00017176, ZINB loss:0.00004984, Cluster loss:0.00006431, ML loss:0.00005761
+DEC Clustering   26: ACC= 0.6276, NMI= 0.5706, ARI= 0.4846
+Clustering Iteration:26, Total loss:0.00011862, ZINB loss:0.00004978, Cluster loss:0.00006496, CL loss:0.00000387
+DEC Clustering   27: ACC= 0.6318, NMI= 0.5729, ARI= 0.4888
+Clustering Iteration:27, Total loss:0.00017848, ZINB loss:0.00004980, Cluster loss:0.00006523, ML loss:0.00006346
+DEC Clustering   28: ACC= 0.6330, NMI= 0.5747, ARI= 0.4918
+Clustering Iteration:28, Total loss:0.00011592, ZINB loss:0.00004945, Cluster loss:0.00006278, CL loss:0.00000368
+DEC Clustering   29: ACC= 0.6309, NMI= 0.5738, ARI= 0.4916
+Clustering Iteration:29, Total loss:0.00017311, ZINB loss:0.00004955, Cluster loss:0.00006049, ML loss:0.00006308
+DEC Clustering   30: ACC= 0.6292, NMI= 0.5743, ARI= 0.4922
+Clustering Iteration:30, Total loss:0.00011549, ZINB loss:0.00004919, Cluster loss:0.00006274, CL loss:0.00000356
+DEC Clustering   31: ACC= 0.6361, NMI= 0.5804, ARI= 0.5004
+Clustering Iteration:31, Total loss:0.00016802, ZINB loss:0.00004918, Cluster loss:0.00006534, ML loss:0.00005350
+DEC Clustering   32: ACC= 0.6423, NMI= 0.5835, ARI= 0.5064
+Clustering Iteration:32, Total loss:0.00011542, ZINB loss:0.00004893, Cluster loss:0.00006306, CL loss:0.00000344
+DEC Clustering   33: ACC= 0.6420, NMI= 0.5832, ARI= 0.5043
+Clustering Iteration:33, Total loss:0.00015270, ZINB loss:0.00004893, Cluster loss:0.00006018, ML loss:0.00004359
+DEC Clustering   34: ACC= 0.6399, NMI= 0.5849, ARI= 0.5053
+Clustering Iteration:34, Total loss:0.00011172, ZINB loss:0.00004867, Cluster loss:0.00006021, CL loss:0.00000284
+DEC Clustering   35: ACC= 0.6432, NMI= 0.5904, ARI= 0.5099
+Clustering Iteration:35, Total loss:0.00014096, ZINB loss:0.00004864, Cluster loss:0.00006115, ML loss:0.00003117
+DEC Clustering   36: ACC= 0.6482, NMI= 0.5958, ARI= 0.5158
+Clustering Iteration:36, Total loss:0.00011125, ZINB loss:0.00004838, Cluster loss:0.00006022, CL loss:0.00000265
+DEC Clustering   37: ACC= 0.6513, NMI= 0.6001, ARI= 0.5201
+Clustering Iteration:37, Total loss:0.00013316, ZINB loss:0.00004833, Cluster loss:0.00005945, ML loss:0.00002538
+DEC Clustering   38: ACC= 0.6527, NMI= 0.6063, ARI= 0.5220
+Clustering Iteration:38, Total loss:0.00010903, ZINB loss:0.00004810, Cluster loss:0.00005856, CL loss:0.00000238
+DEC Clustering   39: ACC= 0.6581, NMI= 0.6156, ARI= 0.5262
+Clustering Iteration:39, Total loss:0.00012797, ZINB loss:0.00004798, Cluster loss:0.00005819, ML loss:0.00002180
+DEC Clustering   40: ACC= 0.6655, NMI= 0.6266, ARI= 0.5315
+Clustering Iteration:40, Total loss:0.00010842, ZINB loss:0.00004793, Cluster loss:0.00005829, CL loss:0.00000220
+DEC Clustering   41: ACC= 0.6662, NMI= 0.6295, ARI= 0.5336
+Clustering Iteration:41, Total loss:0.00012887, ZINB loss:0.00004776, Cluster loss:0.00005854, ML loss:0.00002258
+DEC Clustering   42: ACC= 0.6686, NMI= 0.6310, ARI= 0.5363
+Clustering Iteration:42, Total loss:0.00010705, ZINB loss:0.00004760, Cluster loss:0.00005753, CL loss:0.00000191
+DEC Clustering   43: ACC= 0.6679, NMI= 0.6303, ARI= 0.5348
+Clustering Iteration:43, Total loss:0.00012735, ZINB loss:0.00004741, Cluster loss:0.00005716, ML loss:0.00002278
+DEC Clustering   44: ACC= 0.6693, NMI= 0.6315, ARI= 0.5372
+Clustering Iteration:44, Total loss:0.00010590, ZINB loss:0.00004724, Cluster loss:0.00005673, CL loss:0.00000194
+DEC Clustering   45: ACC= 0.6724, NMI= 0.6329, ARI= 0.5418
+Clustering Iteration:45, Total loss:0.00012689, ZINB loss:0.00004722, Cluster loss:0.00005603, ML loss:0.00002364
+DEC Clustering   46: ACC= 0.6712, NMI= 0.6326, ARI= 0.5406
+Clustering Iteration:46, Total loss:0.00010485, ZINB loss:0.00004704, Cluster loss:0.00005611, CL loss:0.00000170
+DEC Clustering   47: ACC= 0.6705, NMI= 0.6327, ARI= 0.5402
+Clustering Iteration:47, Total loss:0.00012633, ZINB loss:0.00004691, Cluster loss:0.00005608, ML loss:0.00002335
+DEC Clustering   48: ACC= 0.6700, NMI= 0.6326, ARI= 0.5396
+Clustering Iteration:48, Total loss:0.00010437, ZINB loss:0.00004671, Cluster loss:0.00005603, CL loss:0.00000162
+DEC Clustering   49: ACC= 0.6719, NMI= 0.6347, ARI= 0.5427
+Clustering Iteration:49, Total loss:0.00012454, ZINB loss:0.00004656, Cluster loss:0.00005558, ML loss:0.00002240
+DEC Clustering   50: ACC= 0.6728, NMI= 0.6362, ARI= 0.5438
+Clustering Iteration:50, Total loss:0.00010342, ZINB loss:0.00004644, Cluster loss:0.00005551, CL loss:0.00000146
+DEC Clustering   51: ACC= 0.6721, NMI= 0.6370, ARI= 0.5437
+Clustering Iteration:51, Total loss:0.00012104, ZINB loss:0.00004638, Cluster loss:0.00005645, ML loss:0.00001821
+DEC Clustering   52: ACC= 0.6707, NMI= 0.6368, ARI= 0.5424
+Clustering Iteration:52, Total loss:0.00010383, ZINB loss:0.00004613, Cluster loss:0.00005628, CL loss:0.00000142
+DEC Clustering   53: ACC= 0.6674, NMI= 0.6353, ARI= 0.5378
+Clustering Iteration:53, Total loss:0.00011935, ZINB loss:0.00004610, Cluster loss:0.00005558, ML loss:0.00001767
+DEC Clustering   54: ACC= 0.6681, NMI= 0.6373, ARI= 0.5391
+Clustering Iteration:54, Total loss:0.00010263, ZINB loss:0.00004592, Cluster loss:0.00005540, CL loss:0.00000131
+DEC Clustering   55: ACC= 0.6724, NMI= 0.6401, ARI= 0.5457
+Clustering Iteration:55, Total loss:0.00011950, ZINB loss:0.00004579, Cluster loss:0.00005601, ML loss:0.00001769
+DEC Clustering   56: ACC= 0.6728, NMI= 0.6405, ARI= 0.5465
+Clustering Iteration:56, Total loss:0.00010238, ZINB loss:0.00004568, Cluster loss:0.00005545, CL loss:0.00000125
+DEC Clustering   57: ACC= 0.6702, NMI= 0.6402, ARI= 0.5444
+Clustering Iteration:57, Total loss:0.00011914, ZINB loss:0.00004558, Cluster loss:0.00005462, ML loss:0.00001894
+DEC Clustering   58: ACC= 0.6709, NMI= 0.6414, ARI= 0.5456
+Clustering Iteration:58, Total loss:0.00010137, ZINB loss:0.00004540, Cluster loss:0.00005473, CL loss:0.00000124
+DEC Clustering   59: ACC= 0.6740, NMI= 0.6439, ARI= 0.5494
+Clustering Iteration:59, Total loss:0.00012107, ZINB loss:0.00004531, Cluster loss:0.00005536, ML loss:0.00002040
+DEC Clustering   60: ACC= 0.6731, NMI= 0.6435, ARI= 0.5490
+delta_label  0.0009476427386875149 < tol  0.001
+Reach tolerance threshold. Stopping training.
+Time used is:27.219462633132935
+Final Clustering: ACC= 0.6731, NMI= 0.6435, ARI= 0.5490, kNN_ACC= 0.9543, I_score= 0.8545, Loss = 0.00012107, Epoch = 60
+Namespace(FS_file='realdata/sample_151507_featureSelection_Index2000.csv', cl_file='../example_constraints/sample_151507_clFromMarks_test.txt', clustering_iters=400, concat=True, data_file='../data/sample_151507_anno.h5', decodeLayer=[128], device='cuda', encodeHead=3, encodeLayer=[128], final_labels='pred.csv', final_latent_file='latent.csv', gamma=0.01, knn=20, lr=0.001, ml_file='../example_constraints/sample_151507_mlFromMarks_test.txt', n_cl=4000, n_clusters=-1, n_ml=4000, run='3', save_dir='out_151507', select_genes=2000, sigma=0.1, train_iter=200, verbose=True, weight_cl=1.0, weight_ml=0.5, z_dim=32)
+***Data prepocessing***
+Size of after filtering (4221, 2000)
+Size of after filtering (4221, 2000)
+***Building graph***
+***Building constraints***
+Read ML file
+Read CL file
+DSSC(
+  (encoder): GATEncoder(
+    (layers): ModuleList(
+      (0): GATConv(
+        (fc): Linear(in_features=2000, out_features=384, bias=False)
+        (feat_drop): Dropout(p=0.0, inplace=False)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (leaky_relu): LeakyReLU(negative_slope=0.2)
+      )
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ELU(alpha=1.0)
+    )
+    (enc_mu): GATConv(
+      (fc): Linear(in_features=128, out_features=96, bias=False)
+      (feat_drop): Dropout(p=0, inplace=False)
+      (attn_drop): Dropout(p=0, inplace=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+  )
+  (decoder): Sequential(
+    (0): Linear(in_features=32, out_features=128, bias=True)
+    (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ELU(alpha=1.0)
+  )
+  (_dec_mean): Sequential(
+    (0): Linear(in_features=128, out_features=2000, bias=True)
+    (1): MeanAct()
+  )
+  (_dec_disp): Sequential(
+    (0): Linear(in_features=128, out_features=2000, bias=True)
+    (1): DispAct()
+  )
+  (_dec_pi): Sequential(
+    (0): Linear(in_features=128, out_features=2000, bias=True)
+    (1): Sigmoid()
+  )
+  (nb_loss): NBLoss()
+  (zinb_loss): ZINBLoss()
+)
+Training
+Iteration:1, ZINB loss:0.00024519
+Iteration:2, ZINB loss:0.00024454
+Iteration:3, ZINB loss:0.00024376
+Iteration:4, ZINB loss:0.00024268
+Iteration:5, ZINB loss:0.00024099
+Iteration:6, ZINB loss:0.00023822
+Iteration:7, ZINB loss:0.00023488
+Iteration:8, ZINB loss:0.00022949
+Iteration:9, ZINB loss:0.00022341
+Iteration:10, ZINB loss:0.00021664
+Iteration:11, ZINB loss:0.00020982
+Iteration:12, ZINB loss:0.00020324
+Iteration:13, ZINB loss:0.00019753
+Iteration:14, ZINB loss:0.00019243
+Iteration:15, ZINB loss:0.00018931
+Iteration:16, ZINB loss:0.00018655
+Iteration:17, ZINB loss:0.00018420
+Iteration:18, ZINB loss:0.00018271
+Iteration:19, ZINB loss:0.00018078
+Iteration:20, ZINB loss:0.00017983
+Iteration:21, ZINB loss:0.00017811
+Iteration:22, ZINB loss:0.00017617
+Iteration:23, ZINB loss:0.00017464
+Iteration:24, ZINB loss:0.00017351
+Iteration:25, ZINB loss:0.00017176
+Iteration:26, ZINB loss:0.00016981
+Iteration:27, ZINB loss:0.00016643
+Iteration:28, ZINB loss:0.00016390
+Iteration:29, ZINB loss:0.00016104
+Iteration:30, ZINB loss:0.00015763
+Iteration:31, ZINB loss:0.00015295
+Iteration:32, ZINB loss:0.00014898
+Iteration:33, ZINB loss:0.00014555
+Iteration:34, ZINB loss:0.00014182
+Iteration:35, ZINB loss:0.00013999
+Iteration:36, ZINB loss:0.00013678
+Iteration:37, ZINB loss:0.00013504
+Iteration:38, ZINB loss:0.00013405
+Iteration:39, ZINB loss:0.00013165
+Iteration:40, ZINB loss:0.00013037
+Iteration:41, ZINB loss:0.00013152
+Iteration:42, ZINB loss:0.00013111
+Iteration:43, ZINB loss:0.00012757
+Iteration:44, ZINB loss:0.00012312
+Iteration:45, ZINB loss:0.00012036
+Iteration:46, ZINB loss:0.00011984
+Iteration:47, ZINB loss:0.00011873
+Iteration:48, ZINB loss:0.00011665
+Iteration:49, ZINB loss:0.00011272
+Iteration:50, ZINB loss:0.00011021
+Iteration:51, ZINB loss:0.00010828
+Iteration:52, ZINB loss:0.00010579
+Iteration:53, ZINB loss:0.00010439
+Iteration:54, ZINB loss:0.00010217
+Iteration:55, ZINB loss:0.00010111
+Iteration:56, ZINB loss:0.00009957
+Iteration:57, ZINB loss:0.00009865
+Iteration:58, ZINB loss:0.00009764
+Iteration:59, ZINB loss:0.00009816
+Iteration:60, ZINB loss:0.00009898
+Iteration:61, ZINB loss:0.00009731
+Iteration:62, ZINB loss:0.00009514
+Iteration:63, ZINB loss:0.00009423
+Iteration:64, ZINB loss:0.00009251
+Iteration:65, ZINB loss:0.00009176
+Iteration:66, ZINB loss:0.00008904
+Iteration:67, ZINB loss:0.00008773
+Iteration:68, ZINB loss:0.00008592
+Iteration:69, ZINB loss:0.00008602
+Iteration:70, ZINB loss:0.00008651
+Iteration:71, ZINB loss:0.00008641
+Iteration:72, ZINB loss:0.00008603
+Iteration:73, ZINB loss:0.00008441
+Iteration:74, ZINB loss:0.00008350
+Iteration:75, ZINB loss:0.00008304
+Iteration:76, ZINB loss:0.00008286
+Iteration:77, ZINB loss:0.00008303
+Iteration:78, ZINB loss:0.00008223
+Iteration:79, ZINB loss:0.00008123
+Iteration:80, ZINB loss:0.00007976
+Iteration:81, ZINB loss:0.00007932
+Iteration:82, ZINB loss:0.00007936
+Iteration:83, ZINB loss:0.00007863
+Iteration:84, ZINB loss:0.00007839
+Iteration:85, ZINB loss:0.00007664
+Iteration:86, ZINB loss:0.00007667
+Iteration:87, ZINB loss:0.00007663
+Iteration:88, ZINB loss:0.00007638
+Iteration:89, ZINB loss:0.00007655
+Iteration:90, ZINB loss:0.00007654
+Iteration:91, ZINB loss:0.00007588
+Iteration:92, ZINB loss:0.00007573
+Iteration:93, ZINB loss:0.00007510
+Iteration:94, ZINB loss:0.00007463
+Iteration:95, ZINB loss:0.00007443
+Iteration:96, ZINB loss:0.00007414
+Iteration:97, ZINB loss:0.00007402
+Iteration:98, ZINB loss:0.00007322
+Iteration:99, ZINB loss:0.00007300
+Iteration:100, ZINB loss:0.00007265
+Iteration:101, ZINB loss:0.00007238
+Iteration:102, ZINB loss:0.00007266
+Iteration:103, ZINB loss:0.00007298
+Iteration:104, ZINB loss:0.00007286
+Iteration:105, ZINB loss:0.00007299
+Iteration:106, ZINB loss:0.00007201
+Iteration:107, ZINB loss:0.00007180
+Iteration:108, ZINB loss:0.00007144
+Iteration:109, ZINB loss:0.00007100
+Iteration:110, ZINB loss:0.00007000
+Iteration:111, ZINB loss:0.00007006
+Iteration:112, ZINB loss:0.00006932
+Iteration:113, ZINB loss:0.00006913
+Iteration:114, ZINB loss:0.00006938
+Iteration:115, ZINB loss:0.00006974
+Iteration:116, ZINB loss:0.00006984
+Iteration:117, ZINB loss:0.00006982
+Iteration:118, ZINB loss:0.00006964
+Iteration:119, ZINB loss:0.00006932
+Iteration:120, ZINB loss:0.00006860
+Iteration:121, ZINB loss:0.00006855
+Iteration:122, ZINB loss:0.00006841
+Iteration:123, ZINB loss:0.00006839
+Iteration:124, ZINB loss:0.00006789
+Iteration:125, ZINB loss:0.00006749
+Iteration:126, ZINB loss:0.00006742
+Iteration:127, ZINB loss:0.00006726
+Iteration:128, ZINB loss:0.00006726
+Iteration:129, ZINB loss:0.00006679
+Iteration:130, ZINB loss:0.00006651
+Iteration:131, ZINB loss:0.00006628
+Iteration:132, ZINB loss:0.00006632
+Iteration:133, ZINB loss:0.00006625
+Iteration:134, ZINB loss:0.00006589
+Iteration:135, ZINB loss:0.00006562
+Iteration:136, ZINB loss:0.00006570
+Iteration:137, ZINB loss:0.00006585
+Iteration:138, ZINB loss:0.00006596
+Iteration:139, ZINB loss:0.00006535
+Iteration:140, ZINB loss:0.00006497
+Iteration:141, ZINB loss:0.00006426
+Iteration:142, ZINB loss:0.00006417
+Iteration:143, ZINB loss:0.00006390
+Iteration:144, ZINB loss:0.00006357
+Iteration:145, ZINB loss:0.00006317
+Iteration:146, ZINB loss:0.00006293
+Iteration:147, ZINB loss:0.00006302
+Iteration:148, ZINB loss:0.00006318
+Iteration:149, ZINB loss:0.00006323
+Iteration:150, ZINB loss:0.00006354
+Iteration:151, ZINB loss:0.00006346
+Iteration:152, ZINB loss:0.00006308
+Iteration:153, ZINB loss:0.00006227
+Iteration:154, ZINB loss:0.00006214
+Iteration:155, ZINB loss:0.00006212
+Iteration:156, ZINB loss:0.00006217
+Iteration:157, ZINB loss:0.00006187
+Iteration:158, ZINB loss:0.00006167
+Iteration:159, ZINB loss:0.00006128
+Iteration:160, ZINB loss:0.00006132
+Iteration:161, ZINB loss:0.00006123
+Iteration:162, ZINB loss:0.00006107
+Iteration:163, ZINB loss:0.00006067
+Iteration:164, ZINB loss:0.00006051
+Iteration:165, ZINB loss:0.00006003
+Iteration:166, ZINB loss:0.00005957
+Iteration:167, ZINB loss:0.00005940
+Iteration:168, ZINB loss:0.00005926
+Iteration:169, ZINB loss:0.00005878
+Iteration:170, ZINB loss:0.00005879
+Iteration:171, ZINB loss:0.00005880
+Iteration:172, ZINB loss:0.00005882
+Iteration:173, ZINB loss:0.00005900
+Iteration:174, ZINB loss:0.00005878
+Iteration:175, ZINB loss:0.00005891
+Iteration:176, ZINB loss:0.00005885
+Iteration:177, ZINB loss:0.00005854
+Iteration:178, ZINB loss:0.00005783
+Iteration:179, ZINB loss:0.00005732
+Iteration:180, ZINB loss:0.00005695
+Iteration:181, ZINB loss:0.00005695
+Iteration:182, ZINB loss:0.00005701
+Iteration:183, ZINB loss:0.00005702
+Iteration:184, ZINB loss:0.00005717
+Iteration:185, ZINB loss:0.00005754
+Iteration:186, ZINB loss:0.00005756
+Iteration:187, ZINB loss:0.00005680
+Iteration:188, ZINB loss:0.00005593
+Iteration:189, ZINB loss:0.00005571
+Iteration:190, ZINB loss:0.00005553
+Iteration:191, ZINB loss:0.00005552
+Iteration:192, ZINB loss:0.00005527
+Iteration:193, ZINB loss:0.00005517
+Iteration:194, ZINB loss:0.00005542
+Iteration:195, ZINB loss:0.00005541
+Iteration:196, ZINB loss:0.00005541
+Iteration:197, ZINB loss:0.00005493
+Iteration:198, ZINB loss:0.00005440
+Iteration:199, ZINB loss:0.00005399
+Iteration:200, ZINB loss:0.00005381
+Pret-raining time: 16 seconds.
+Initializing cluster centers with kmeans
+Initializing kmeans: ACC= 0.7093, NMI= 0.5981, ARI= 0.5651
+Initializing kmeans KNN ACC= 0.9429
+Constraints summary: ML=4000
+Constraints summary: CL=4000
+DEC Clustering   1: ACC= 0.7093, NMI= 0.5981, ARI= 0.5651
+Clustering Iteration:1, Total loss:0.00027021, ZINB loss:0.00005441, Cluster loss:0.00006196, ML loss:0.00015385
+DEC Clustering   2: ACC= 0.7036, NMI= 0.5957, ARI= 0.5604
+Clustering Iteration:2, Total loss:0.00010931, ZINB loss:0.00005241, Cluster loss:0.00005008, CL loss:0.00000682
+DEC Clustering   3: ACC= 0.6963, NMI= 0.5913, ARI= 0.5495
+Clustering Iteration:3, Total loss:0.00021209, ZINB loss:0.00005286, Cluster loss:0.00004314, ML loss:0.00011609
+DEC Clustering   4: ACC= 0.7046, NMI= 0.5958, ARI= 0.5579
+Clustering Iteration:4, Total loss:0.00010096, ZINB loss:0.00005186, Cluster loss:0.00004489, CL loss:0.00000421
+DEC Clustering   5: ACC= 0.7183, NMI= 0.6041, ARI= 0.5769
+Clustering Iteration:5, Total loss:0.00017561, ZINB loss:0.00005161, Cluster loss:0.00004470, ML loss:0.00007930
+DEC Clustering   6: ACC= 0.7228, NMI= 0.6104, ARI= 0.5858
+Clustering Iteration:6, Total loss:0.00009946, ZINB loss:0.00005151, Cluster loss:0.00004443, CL loss:0.00000351
+DEC Clustering   7: ACC= 0.7226, NMI= 0.6176, ARI= 0.5926
+Clustering Iteration:7, Total loss:0.00016958, ZINB loss:0.00005099, Cluster loss:0.00004510, ML loss:0.00007350
+DEC Clustering   8: ACC= 0.7228, NMI= 0.6213, ARI= 0.5954
+Clustering Iteration:8, Total loss:0.00009894, ZINB loss:0.00005075, Cluster loss:0.00004507, CL loss:0.00000311
+DEC Clustering   9: ACC= 0.7223, NMI= 0.6259, ARI= 0.5978
+Clustering Iteration:9, Total loss:0.00015077, ZINB loss:0.00005071, Cluster loss:0.00004410, ML loss:0.00005596
+DEC Clustering   10: ACC= 0.7231, NMI= 0.6279, ARI= 0.5981
+Clustering Iteration:10, Total loss:0.00009574, ZINB loss:0.00005019, Cluster loss:0.00004337, CL loss:0.00000218
+DEC Clustering   11: ACC= 0.7254, NMI= 0.6315, ARI= 0.5997
+Clustering Iteration:11, Total loss:0.00013682, ZINB loss:0.00005015, Cluster loss:0.00004334, ML loss:0.00004333
+DEC Clustering   12: ACC= 0.7268, NMI= 0.6348, ARI= 0.6020
+Clustering Iteration:12, Total loss:0.00009752, ZINB loss:0.00004990, Cluster loss:0.00004587, CL loss:0.00000176
+DEC Clustering   13: ACC= 0.7290, NMI= 0.6387, ARI= 0.6036
+Clustering Iteration:13, Total loss:0.00013550, ZINB loss:0.00004963, Cluster loss:0.00004863, ML loss:0.00003724
+DEC Clustering   14: ACC= 0.7313, NMI= 0.6432, ARI= 0.6094
+Clustering Iteration:14, Total loss:0.00010175, ZINB loss:0.00004942, Cluster loss:0.00005097, CL loss:0.00000136
+DEC Clustering   15: ACC= 0.7349, NMI= 0.6447, ARI= 0.6150
+Clustering Iteration:15, Total loss:0.00012437, ZINB loss:0.00004918, Cluster loss:0.00005050, ML loss:0.00002470
+DEC Clustering   16: ACC= 0.7382, NMI= 0.6460, ARI= 0.6184
+Clustering Iteration:16, Total loss:0.00009898, ZINB loss:0.00004913, Cluster loss:0.00004883, CL loss:0.00000103
+DEC Clustering   17: ACC= 0.7401, NMI= 0.6492, ARI= 0.6222
+Clustering Iteration:17, Total loss:0.00011644, ZINB loss:0.00004887, Cluster loss:0.00004848, ML loss:0.00001910
+DEC Clustering   18: ACC= 0.7403, NMI= 0.6512, ARI= 0.6221
+Clustering Iteration:18, Total loss:0.00009807, ZINB loss:0.00004868, Cluster loss:0.00004857, CL loss:0.00000082
+DEC Clustering   19: ACC= 0.7392, NMI= 0.6512, ARI= 0.6209
+Clustering Iteration:19, Total loss:0.00011282, ZINB loss:0.00004852, Cluster loss:0.00004879, ML loss:0.00001551
+DEC Clustering   20: ACC= 0.7373, NMI= 0.6500, ARI= 0.6190
+Clustering Iteration:20, Total loss:0.00009834, ZINB loss:0.00004828, Cluster loss:0.00004942, CL loss:0.00000064
+DEC Clustering   21: ACC= 0.7382, NMI= 0.6521, ARI= 0.6207
+Clustering Iteration:21, Total loss:0.00011151, ZINB loss:0.00004828, Cluster loss:0.00005017, ML loss:0.00001306
+DEC Clustering   22: ACC= 0.7354, NMI= 0.6512, ARI= 0.6186
+Clustering Iteration:22, Total loss:0.00009861, ZINB loss:0.00004806, Cluster loss:0.00005000, CL loss:0.00000055
+DEC Clustering   23: ACC= 0.7328, NMI= 0.6516, ARI= 0.6175
+Clustering Iteration:23, Total loss:0.00010872, ZINB loss:0.00004792, Cluster loss:0.00004918, ML loss:0.00001162
+DEC Clustering   24: ACC= 0.7342, NMI= 0.6498, ARI= 0.6202
+Clustering Iteration:24, Total loss:0.00009551, ZINB loss:0.00004779, Cluster loss:0.00004723, CL loss:0.00000048
+DEC Clustering   25: ACC= 0.7358, NMI= 0.6501, ARI= 0.6226
+Clustering Iteration:25, Total loss:0.00010441, ZINB loss:0.00004763, Cluster loss:0.00004608, ML loss:0.00001070
+DEC Clustering   26: ACC= 0.7351, NMI= 0.6500, ARI= 0.6221
+Clustering Iteration:26, Total loss:0.00009403, ZINB loss:0.00004742, Cluster loss:0.00004623, CL loss:0.00000039
+DEC Clustering   27: ACC= 0.7328, NMI= 0.6493, ARI= 0.6195
+Clustering Iteration:27, Total loss:0.00010288, ZINB loss:0.00004737, Cluster loss:0.00004613, ML loss:0.00000937
+DEC Clustering   28: ACC= 0.7321, NMI= 0.6483, ARI= 0.6191
+Clustering Iteration:28, Total loss:0.00009365, ZINB loss:0.00004703, Cluster loss:0.00004626, CL loss:0.00000036
+DEC Clustering   29: ACC= 0.7349, NMI= 0.6508, ARI= 0.6228
+Clustering Iteration:29, Total loss:0.00010429, ZINB loss:0.00004724, Cluster loss:0.00004706, ML loss:0.00000999
+DEC Clustering   30: ACC= 0.7344, NMI= 0.6517, ARI= 0.6233
+Clustering Iteration:30, Total loss:0.00009383, ZINB loss:0.00004703, Cluster loss:0.00004645, CL loss:0.00000035
+DEC Clustering   31: ACC= 0.7306, NMI= 0.6506, ARI= 0.6181
+Clustering Iteration:31, Total loss:0.00010315, ZINB loss:0.00004690, Cluster loss:0.00004442, ML loss:0.00001183
+DEC Clustering   32: ACC= 0.7306, NMI= 0.6497, ARI= 0.6183
+Clustering Iteration:32, Total loss:0.00009207, ZINB loss:0.00004659, Cluster loss:0.00004516, CL loss:0.00000032
+DEC Clustering   33: ACC= 0.7337, NMI= 0.6511, ARI= 0.6216
+Clustering Iteration:33, Total loss:0.00010585, ZINB loss:0.00004681, Cluster loss:0.00004640, ML loss:0.00001264
+DEC Clustering   34: ACC= 0.7328, NMI= 0.6500, ARI= 0.6217
+Clustering Iteration:34, Total loss:0.00009231, ZINB loss:0.00004633, Cluster loss:0.00004567, CL loss:0.00000031
+DEC Clustering   35: ACC= 0.7292, NMI= 0.6482, ARI= 0.6186
+Clustering Iteration:35, Total loss:0.00010021, ZINB loss:0.00004656, Cluster loss:0.00004303, ML loss:0.00001062
+DEC Clustering   36: ACC= 0.7299, NMI= 0.6485, ARI= 0.6194
+Clustering Iteration:36, Total loss:0.00008901, ZINB loss:0.00004612, Cluster loss:0.00004263, CL loss:0.00000026
+DEC Clustering   37: ACC= 0.7349, NMI= 0.6524, ARI= 0.6246
+Clustering Iteration:37, Total loss:0.00009790, ZINB loss:0.00004618, Cluster loss:0.00004351, ML loss:0.00000821
+DEC Clustering   38: ACC= 0.7328, NMI= 0.6523, ARI= 0.6230
+Clustering Iteration:38, Total loss:0.00008952, ZINB loss:0.00004569, Cluster loss:0.00004358, CL loss:0.00000025
+DEC Clustering   39: ACC= 0.7304, NMI= 0.6513, ARI= 0.6201
+Clustering Iteration:39, Total loss:0.00009607, ZINB loss:0.00004587, Cluster loss:0.00004313, ML loss:0.00000707
+DEC Clustering   40: ACC= 0.7294, NMI= 0.6498, ARI= 0.6189
+Clustering Iteration:40, Total loss:0.00008951, ZINB loss:0.00004543, Cluster loss:0.00004383, CL loss:0.00000025
+DEC Clustering   41: ACC= 0.7302, NMI= 0.6493, ARI= 0.6187
+Clustering Iteration:41, Total loss:0.00009627, ZINB loss:0.00004557, Cluster loss:0.00004380, ML loss:0.00000690
+DEC Clustering   42: ACC= 0.7306, NMI= 0.6497, ARI= 0.6199
+Clustering Iteration:42, Total loss:0.00008887, ZINB loss:0.00004528, Cluster loss:0.00004338, CL loss:0.00000021
+DEC Clustering   43: ACC= 0.7299, NMI= 0.6508, ARI= 0.6210
+Clustering Iteration:43, Total loss:0.00009439, ZINB loss:0.00004514, Cluster loss:0.00004270, ML loss:0.00000655
+DEC Clustering   44: ACC= 0.7280, NMI= 0.6511, ARI= 0.6180
+Clustering Iteration:44, Total loss:0.00008991, ZINB loss:0.00004499, Cluster loss:0.00004471, CL loss:0.00000022
+DEC Clustering   45: ACC= 0.7297, NMI= 0.6506, ARI= 0.6174
+Clustering Iteration:45, Total loss:0.00009579, ZINB loss:0.00004493, Cluster loss:0.00004494, ML loss:0.00000592
+DEC Clustering   46: ACC= 0.7311, NMI= 0.6516, ARI= 0.6206
+Clustering Iteration:46, Total loss:0.00008828, ZINB loss:0.00004483, Cluster loss:0.00004324, CL loss:0.00000021
+DEC Clustering   47: ACC= 0.7299, NMI= 0.6526, ARI= 0.6212
+Clustering Iteration:47, Total loss:0.00009282, ZINB loss:0.00004480, Cluster loss:0.00004255, ML loss:0.00000547
+DEC Clustering   48: ACC= 0.7280, NMI= 0.6513, ARI= 0.6184
+Clustering Iteration:48, Total loss:0.00008896, ZINB loss:0.00004464, Cluster loss:0.00004412, CL loss:0.00000021
+DEC Clustering   49: ACC= 0.7273, NMI= 0.6493, ARI= 0.6155
+Clustering Iteration:49, Total loss:0.00009549, ZINB loss:0.00004459, Cluster loss:0.00004537, ML loss:0.00000553
+DEC Clustering   50: ACC= 0.7283, NMI= 0.6512, ARI= 0.6188
+Clustering Iteration:50, Total loss:0.00008850, ZINB loss:0.00004448, Cluster loss:0.00004382, CL loss:0.00000020
+DEC Clustering   51: ACC= 0.7280, NMI= 0.6513, ARI= 0.6188
+Clustering Iteration:51, Total loss:0.00009226, ZINB loss:0.00004423, Cluster loss:0.00004206, ML loss:0.00000597
+DEC Clustering   52: ACC= 0.7276, NMI= 0.6510, ARI= 0.6174
+Clustering Iteration:52, Total loss:0.00008928, ZINB loss:0.00004440, Cluster loss:0.00004466, CL loss:0.00000022
+DEC Clustering   53: ACC= 0.7266, NMI= 0.6502, ARI= 0.6158
+Clustering Iteration:53, Total loss:0.00009770, ZINB loss:0.00004423, Cluster loss:0.00004625, ML loss:0.00000723
+DEC Clustering   54: ACC= 0.7268, NMI= 0.6502, ARI= 0.6177
+Clustering Iteration:54, Total loss:0.00008819, ZINB loss:0.00004420, Cluster loss:0.00004379, CL loss:0.00000020
+DEC Clustering   55: ACC= 0.7266, NMI= 0.6512, ARI= 0.6173
+Clustering Iteration:55, Total loss:0.00009332, ZINB loss:0.00004404, Cluster loss:0.00004025, ML loss:0.00000904
+DEC Clustering   56: ACC= 0.7245, NMI= 0.6495, ARI= 0.6146
+Clustering Iteration:56, Total loss:0.00008868, ZINB loss:0.00004400, Cluster loss:0.00004447, CL loss:0.00000021
+DEC Clustering   57: ACC= 0.7238, NMI= 0.6503, ARI= 0.6149
+Clustering Iteration:57, Total loss:0.00010268, ZINB loss:0.00004397, Cluster loss:0.00004707, ML loss:0.00001164
+DEC Clustering   58: ACC= 0.7264, NMI= 0.6507, ARI= 0.6184
+Clustering Iteration:58, Total loss:0.00008741, ZINB loss:0.00004394, Cluster loss:0.00004327, CL loss:0.00000021
+DEC Clustering   59: ACC= 0.7271, NMI= 0.6514, ARI= 0.6195
+Clustering Iteration:59, Total loss:0.00009208, ZINB loss:0.00004406, Cluster loss:0.00003947, ML loss:0.00000855
+DEC Clustering   60: ACC= 0.7219, NMI= 0.6497, ARI= 0.6144
+Clustering Iteration:60, Total loss:0.00008584, ZINB loss:0.00004360, Cluster loss:0.00004204, CL loss:0.00000020
+DEC Clustering   61: ACC= 0.7242, NMI= 0.6499, ARI= 0.6152
+Clustering Iteration:61, Total loss:0.00009580, ZINB loss:0.00004400, Cluster loss:0.00004426, ML loss:0.00000754
+DEC Clustering   62: ACC= 0.7242, NMI= 0.6499, ARI= 0.6161
+Clustering Iteration:62, Total loss:0.00008613, ZINB loss:0.00004333, Cluster loss:0.00004260, CL loss:0.00000020
+DEC Clustering   63: ACC= 0.7245, NMI= 0.6509, ARI= 0.6174
+Clustering Iteration:63, Total loss:0.00009051, ZINB loss:0.00004366, Cluster loss:0.00003948, ML loss:0.00000737
+DEC Clustering   64: ACC= 0.7216, NMI= 0.6507, ARI= 0.6144
+Clustering Iteration:64, Total loss:0.00008580, ZINB loss:0.00004324, Cluster loss:0.00004236, CL loss:0.00000019
+DEC Clustering   65: ACC= 0.7207, NMI= 0.6492, ARI= 0.6119
+Clustering Iteration:65, Total loss:0.00009605, ZINB loss:0.00004372, Cluster loss:0.00004495, ML loss:0.00000738
+DEC Clustering   66: ACC= 0.7216, NMI= 0.6485, ARI= 0.6133
+Clustering Iteration:66, Total loss:0.00008558, ZINB loss:0.00004305, Cluster loss:0.00004235, CL loss:0.00000019
+DEC Clustering   67: ACC= 0.7226, NMI= 0.6493, ARI= 0.6151
+Clustering Iteration:67, Total loss:0.00008966, ZINB loss:0.00004346, Cluster loss:0.00003909, ML loss:0.00000710
+DEC Clustering   68: ACC= 0.7202, NMI= 0.6493, ARI= 0.6120
+Clustering Iteration:68, Total loss:0.00008447, ZINB loss:0.00004302, Cluster loss:0.00004126, CL loss:0.00000019
+DEC Clustering   69: ACC= 0.7200, NMI= 0.6505, ARI= 0.6134
+Clustering Iteration:69, Total loss:0.00009405, ZINB loss:0.00004336, Cluster loss:0.00004346, ML loss:0.00000723
+DEC Clustering   70: ACC= 0.7216, NMI= 0.6512, ARI= 0.6149
+Clustering Iteration:70, Total loss:0.00008435, ZINB loss:0.00004284, Cluster loss:0.00004132, CL loss:0.00000019
+DEC Clustering   71: ACC= 0.7235, NMI= 0.6508, ARI= 0.6171
+Clustering Iteration:71, Total loss:0.00008871, ZINB loss:0.00004323, Cluster loss:0.00003835, ML loss:0.00000713
+DEC Clustering   72: ACC= 0.7202, NMI= 0.6499, ARI= 0.6130
+Clustering Iteration:72, Total loss:0.00008376, ZINB loss:0.00004272, Cluster loss:0.00004085, CL loss:0.00000019
+DEC Clustering   73: ACC= 0.7183, NMI= 0.6501, ARI= 0.6124
+Clustering Iteration:73, Total loss:0.00009346, ZINB loss:0.00004299, Cluster loss:0.00004331, ML loss:0.00000716
+DEC Clustering   74: ACC= 0.7214, NMI= 0.6497, ARI= 0.6152
+Clustering Iteration:74, Total loss:0.00008340, ZINB loss:0.00004255, Cluster loss:0.00004068, CL loss:0.00000017
+DEC Clustering   75: ACC= 0.7216, NMI= 0.6489, ARI= 0.6149
+Clustering Iteration:75, Total loss:0.00008752, ZINB loss:0.00004273, Cluster loss:0.00003837, ML loss:0.00000642
+DEC Clustering   76: ACC= 0.7195, NMI= 0.6491, ARI= 0.6124
+Clustering Iteration:76, Total loss:0.00008327, ZINB loss:0.00004253, Cluster loss:0.00004056, CL loss:0.00000018
+DEC Clustering   77: ACC= 0.7188, NMI= 0.6496, ARI= 0.6119
+Clustering Iteration:77, Total loss:0.00009109, ZINB loss:0.00004258, Cluster loss:0.00004214, ML loss:0.00000638
+DEC Clustering   78: ACC= 0.7195, NMI= 0.6505, ARI= 0.6137
+Clustering Iteration:78, Total loss:0.00008252, ZINB loss:0.00004232, Cluster loss:0.00004002, CL loss:0.00000018
+DEC Clustering   79: ACC= 0.7223, NMI= 0.6505, ARI= 0.6162
+Clustering Iteration:79, Total loss:0.00008639, ZINB loss:0.00004271, Cluster loss:0.00003781, ML loss:0.00000587
+DEC Clustering   80: ACC= 0.7171, NMI= 0.6481, ARI= 0.6110
+Clustering Iteration:80, Total loss:0.00008289, ZINB loss:0.00004239, Cluster loss:0.00004032, CL loss:0.00000018
+DEC Clustering   81: ACC= 0.7162, NMI= 0.6489, ARI= 0.6099
+Clustering Iteration:81, Total loss:0.00009072, ZINB loss:0.00004263, Cluster loss:0.00004227, ML loss:0.00000582
+DEC Clustering   82: ACC= 0.7188, NMI= 0.6492, ARI= 0.6129
+Clustering Iteration:82, Total loss:0.00008241, ZINB loss:0.00004235, Cluster loss:0.00003986, CL loss:0.00000020
+DEC Clustering   83: ACC= 0.7214, NMI= 0.6497, ARI= 0.6160
+Clustering Iteration:83, Total loss:0.00008705, ZINB loss:0.00004231, Cluster loss:0.00003848, ML loss:0.00000626
+DEC Clustering   84: ACC= 0.7193, NMI= 0.6498, ARI= 0.6133
+Clustering Iteration:84, Total loss:0.00008243, ZINB loss:0.00004226, Cluster loss:0.00003996, CL loss:0.00000020
+DEC Clustering   85: ACC= 0.7148, NMI= 0.6486, ARI= 0.6088
+Clustering Iteration:85, Total loss:0.00008998, ZINB loss:0.00004235, Cluster loss:0.00004102, ML loss:0.00000661
+DEC Clustering   86: ACC= 0.7193, NMI= 0.6513, ARI= 0.6145
+Clustering Iteration:86, Total loss:0.00008176, ZINB loss:0.00004238, Cluster loss:0.00003919, CL loss:0.00000019
+DEC Clustering   87: ACC= 0.7207, NMI= 0.6506, ARI= 0.6164
+Clustering Iteration:87, Total loss:0.00008743, ZINB loss:0.00004209, Cluster loss:0.00003879, ML loss:0.00000655
+DEC Clustering   88: ACC= 0.7188, NMI= 0.6511, ARI= 0.6138
+Clustering Iteration:88, Total loss:0.00008209, ZINB loss:0.00004229, Cluster loss:0.00003958, CL loss:0.00000021
+DEC Clustering   89: ACC= 0.7159, NMI= 0.6506, ARI= 0.6114
+Clustering Iteration:89, Total loss:0.00008911, ZINB loss:0.00004220, Cluster loss:0.00003961, ML loss:0.00000730
+DEC Clustering   90: ACC= 0.7169, NMI= 0.6507, ARI= 0.6127
+Clustering Iteration:90, Total loss:0.00008121, ZINB loss:0.00004208, Cluster loss:0.00003893, CL loss:0.00000020
+DEC Clustering   91: ACC= 0.7197, NMI= 0.6522, ARI= 0.6167
+Clustering Iteration:91, Total loss:0.00008984, ZINB loss:0.00004247, Cluster loss:0.00003882, ML loss:0.00000854
+DEC Clustering   92: ACC= 0.7169, NMI= 0.6507, ARI= 0.6136
+Clustering Iteration:92, Total loss:0.00008200, ZINB loss:0.00004212, Cluster loss:0.00003964, CL loss:0.00000024
+DEC Clustering   93: ACC= 0.7145, NMI= 0.6519, ARI= 0.6112
+Clustering Iteration:93, Total loss:0.00009251, ZINB loss:0.00004262, Cluster loss:0.00003892, ML loss:0.00001097
+DEC Clustering   94: ACC= 0.7169, NMI= 0.6513, ARI= 0.6136
+Clustering Iteration:94, Total loss:0.00008059, ZINB loss:0.00004204, Cluster loss:0.00003835, CL loss:0.00000020
+DEC Clustering   95: ACC= 0.7233, NMI= 0.6549, ARI= 0.6221
+Clustering Iteration:95, Total loss:0.00009336, ZINB loss:0.00004271, Cluster loss:0.00003822, ML loss:0.00001243
+DEC Clustering   96: ACC= 0.7231, NMI= 0.6544, ARI= 0.6212
+Clustering Iteration:96, Total loss:0.00007924, ZINB loss:0.00004197, Cluster loss:0.00003708, CL loss:0.00000019
+DEC Clustering   97: ACC= 0.7186, NMI= 0.6539, ARI= 0.6158
+Clustering Iteration:97, Total loss:0.00008856, ZINB loss:0.00004280, Cluster loss:0.00003502, ML loss:0.00001074
+DEC Clustering   98: ACC= 0.7202, NMI= 0.6536, ARI= 0.6176
+Clustering Iteration:98, Total loss:0.00007732, ZINB loss:0.00004171, Cluster loss:0.00003543, CL loss:0.00000018
+DEC Clustering   99: ACC= 0.7238, NMI= 0.6544, ARI= 0.6218
+Clustering Iteration:99, Total loss:0.00009016, ZINB loss:0.00004227, Cluster loss:0.00003688, ML loss:0.00001101
+DEC Clustering   100: ACC= 0.7257, NMI= 0.6554, ARI= 0.6242
+Clustering Iteration:100, Total loss:0.00007794, ZINB loss:0.00004171, Cluster loss:0.00003606, CL loss:0.00000017
+DEC Clustering   101: ACC= 0.7202, NMI= 0.6532, ARI= 0.6179
+Clustering Iteration:101, Total loss:0.00008478, ZINB loss:0.00004218, Cluster loss:0.00003452, ML loss:0.00000809
+DEC Clustering   102: ACC= 0.7183, NMI= 0.6525, ARI= 0.6157
+Clustering Iteration:102, Total loss:0.00007731, ZINB loss:0.00004160, Cluster loss:0.00003555, CL loss:0.00000017
+DEC Clustering   103: ACC= 0.7247, NMI= 0.6566, ARI= 0.6227
+Clustering Iteration:103, Total loss:0.00008527, ZINB loss:0.00004188, Cluster loss:0.00003638, ML loss:0.00000701
+DEC Clustering   104: ACC= 0.7240, NMI= 0.6567, ARI= 0.6230
+Clustering Iteration:104, Total loss:0.00007755, ZINB loss:0.00004159, Cluster loss:0.00003579, CL loss:0.00000017
+DEC Clustering   105: ACC= 0.7195, NMI= 0.6532, ARI= 0.6174
+Clustering Iteration:105, Total loss:0.00008266, ZINB loss:0.00004172, Cluster loss:0.00003490, ML loss:0.00000605
+DEC Clustering   106: ACC= 0.7186, NMI= 0.6532, ARI= 0.6162
+Clustering Iteration:106, Total loss:0.00007815, ZINB loss:0.00004157, Cluster loss:0.00003640, CL loss:0.00000017
+DEC Clustering   107: ACC= 0.7204, NMI= 0.6550, ARI= 0.6180
+Clustering Iteration:107, Total loss:0.00008548, ZINB loss:0.00004174, Cluster loss:0.00003756, ML loss:0.00000618
+DEC Clustering   108: ACC= 0.7212, NMI= 0.6546, ARI= 0.6194
+Clustering Iteration:108, Total loss:0.00007768, ZINB loss:0.00004160, Cluster loss:0.00003591, CL loss:0.00000017
+DEC Clustering   109: ACC= 0.7183, NMI= 0.6534, ARI= 0.6167
+Clustering Iteration:109, Total loss:0.00008154, ZINB loss:0.00004165, Cluster loss:0.00003433, ML loss:0.00000555
+DEC Clustering   110: ACC= 0.7178, NMI= 0.6531, ARI= 0.6159
+Clustering Iteration:110, Total loss:0.00007714, ZINB loss:0.00004151, Cluster loss:0.00003546, CL loss:0.00000016
+DEC Clustering   111: ACC= 0.7197, NMI= 0.6545, ARI= 0.6171
+Clustering Iteration:111, Total loss:0.00008390, ZINB loss:0.00004159, Cluster loss:0.00003678, ML loss:0.00000554
+DEC Clustering   112: ACC= 0.7204, NMI= 0.6547, ARI= 0.6187
+Clustering Iteration:112, Total loss:0.00007681, ZINB loss:0.00004149, Cluster loss:0.00003517, CL loss:0.00000016
+DEC Clustering   113: ACC= 0.7202, NMI= 0.6542, ARI= 0.6182
+Clustering Iteration:113, Total loss:0.00008048, ZINB loss:0.00004152, Cluster loss:0.00003351, ML loss:0.00000545
+DEC Clustering   114: ACC= 0.7188, NMI= 0.6540, ARI= 0.6175
+Clustering Iteration:114, Total loss:0.00007663, ZINB loss:0.00004130, Cluster loss:0.00003517, CL loss:0.00000016
+DEC Clustering   115: ACC= 0.7190, NMI= 0.6538, ARI= 0.6160
+Clustering Iteration:115, Total loss:0.00008451, ZINB loss:0.00004165, Cluster loss:0.00003734, ML loss:0.00000552
+DEC Clustering   116: ACC= 0.7195, NMI= 0.6534, ARI= 0.6172
+Clustering Iteration:116, Total loss:0.00007704, ZINB loss:0.00004135, Cluster loss:0.00003554, CL loss:0.00000016
+DEC Clustering   117: ACC= 0.7200, NMI= 0.6544, ARI= 0.6184
+Clustering Iteration:117, Total loss:0.00008009, ZINB loss:0.00004149, Cluster loss:0.00003331, ML loss:0.00000529
+DEC Clustering   118: ACC= 0.7174, NMI= 0.6541, ARI= 0.6156
+Clustering Iteration:118, Total loss:0.00007724, ZINB loss:0.00004141, Cluster loss:0.00003567, CL loss:0.00000016
+DEC Clustering   119: ACC= 0.7155, NMI= 0.6524, ARI= 0.6111
+Clustering Iteration:119, Total loss:0.00008513, ZINB loss:0.00004151, Cluster loss:0.00003772, ML loss:0.00000590
+DEC Clustering   120: ACC= 0.7190, NMI= 0.6544, ARI= 0.6163
+Clustering Iteration:120, Total loss:0.00007725, ZINB loss:0.00004134, Cluster loss:0.00003575, CL loss:0.00000015
+DEC Clustering   121: ACC= 0.7195, NMI= 0.6542, ARI= 0.6166
+Clustering Iteration:121, Total loss:0.00008039, ZINB loss:0.00004147, Cluster loss:0.00003306, ML loss:0.00000586
+DEC Clustering   122: ACC= 0.7190, NMI= 0.6539, ARI= 0.6157
+Clustering Iteration:122, Total loss:0.00007613, ZINB loss:0.00004140, Cluster loss:0.00003457, CL loss:0.00000016
+DEC Clustering   123: ACC= 0.7176, NMI= 0.6524, ARI= 0.6133
+Clustering Iteration:123, Total loss:0.00008382, ZINB loss:0.00004135, Cluster loss:0.00003681, ML loss:0.00000566
+DEC Clustering   124: ACC= 0.7195, NMI= 0.6544, ARI= 0.6167
+Clustering Iteration:124, Total loss:0.00007685, ZINB loss:0.00004127, Cluster loss:0.00003542, CL loss:0.00000016
+DEC Clustering   125: ACC= 0.7204, NMI= 0.6540, ARI= 0.6168
+Clustering Iteration:125, Total loss:0.00007994, ZINB loss:0.00004129, Cluster loss:0.00003328, ML loss:0.00000536
+DEC Clustering   126: ACC= 0.7176, NMI= 0.6540, ARI= 0.6143
+Clustering Iteration:126, Total loss:0.00007611, ZINB loss:0.00004125, Cluster loss:0.00003470, CL loss:0.00000016
+DEC Clustering   127: ACC= 0.7167, NMI= 0.6529, ARI= 0.6128
+Clustering Iteration:127, Total loss:0.00008331, ZINB loss:0.00004132, Cluster loss:0.00003658, ML loss:0.00000541
+DEC Clustering   128: ACC= 0.7176, NMI= 0.6529, ARI= 0.6134
+Clustering Iteration:128, Total loss:0.00007660, ZINB loss:0.00004121, Cluster loss:0.00003524, CL loss:0.00000015
+DEC Clustering   129: ACC= 0.7188, NMI= 0.6547, ARI= 0.6149
+Clustering Iteration:129, Total loss:0.00008032, ZINB loss:0.00004157, Cluster loss:0.00003327, ML loss:0.00000547
+DEC Clustering   130: ACC= 0.7169, NMI= 0.6531, ARI= 0.6128
+Clustering Iteration:130, Total loss:0.00007597, ZINB loss:0.00004125, Cluster loss:0.00003456, CL loss:0.00000016
+DEC Clustering   131: ACC= 0.7157, NMI= 0.6521, ARI= 0.6116
+Clustering Iteration:131, Total loss:0.00008330, ZINB loss:0.00004142, Cluster loss:0.00003615, ML loss:0.00000573
+DEC Clustering   132: ACC= 0.7169, NMI= 0.6530, ARI= 0.6134
+Clustering Iteration:132, Total loss:0.00007608, ZINB loss:0.00004120, Cluster loss:0.00003472, CL loss:0.00000016
+DEC Clustering   133: ACC= 0.7171, NMI= 0.6526, ARI= 0.6125
+Clustering Iteration:133, Total loss:0.00008003, ZINB loss:0.00004145, Cluster loss:0.00003278, ML loss:0.00000580
+DEC Clustering   134: ACC= 0.7148, NMI= 0.6520, ARI= 0.6104
+Clustering Iteration:134, Total loss:0.00007569, ZINB loss:0.00004125, Cluster loss:0.00003428, CL loss:0.00000016
+DEC Clustering   135: ACC= 0.7171, NMI= 0.6536, ARI= 0.6131
+Clustering Iteration:135, Total loss:0.00008358, ZINB loss:0.00004147, Cluster loss:0.00003575, ML loss:0.00000636
+DEC Clustering   136: ACC= 0.7186, NMI= 0.6541, ARI= 0.6147
+Clustering Iteration:136, Total loss:0.00007553, ZINB loss:0.00004117, Cluster loss:0.00003421, CL loss:0.00000015
+DEC Clustering   137: ACC= 0.7159, NMI= 0.6526, ARI= 0.6111
+Clustering Iteration:137, Total loss:0.00008068, ZINB loss:0.00004158, Cluster loss:0.00003237, ML loss:0.00000673
+DEC Clustering   138: ACC= 0.7138, NMI= 0.6517, ARI= 0.6093
+Clustering Iteration:138, Total loss:0.00007544, ZINB loss:0.00004117, Cluster loss:0.00003412, CL loss:0.00000015
+DEC Clustering   139: ACC= 0.7162, NMI= 0.6527, ARI= 0.6115
+Clustering Iteration:139, Total loss:0.00008421, ZINB loss:0.00004153, Cluster loss:0.00003583, ML loss:0.00000685
+DEC Clustering   140: ACC= 0.7150, NMI= 0.6516, ARI= 0.6108
+Clustering Iteration:140, Total loss:0.00007605, ZINB loss:0.00004111, Cluster loss:0.00003479, CL loss:0.00000016
+DEC Clustering   141: ACC= 0.7136, NMI= 0.6518, ARI= 0.6093
+Clustering Iteration:141, Total loss:0.00007957, ZINB loss:0.00004133, Cluster loss:0.00003273, ML loss:0.00000551
+DEC Clustering   142: ACC= 0.7140, NMI= 0.6525, ARI= 0.6096
+Clustering Iteration:142, Total loss:0.00007466, ZINB loss:0.00004110, Cluster loss:0.00003341, CL loss:0.00000016
+DEC Clustering   143: ACC= 0.7167, NMI= 0.6531, ARI= 0.6117
+Clustering Iteration:143, Total loss:0.00008171, ZINB loss:0.00004135, Cluster loss:0.00003517, ML loss:0.00000519
+DEC Clustering   144: ACC= 0.7167, NMI= 0.6526, ARI= 0.6112
+Clustering Iteration:144, Total loss:0.00007543, ZINB loss:0.00004106, Cluster loss:0.00003421, CL loss:0.00000016
+DEC Clustering   145: ACC= 0.7145, NMI= 0.6528, ARI= 0.6102
+Clustering Iteration:145, Total loss:0.00007847, ZINB loss:0.00004116, Cluster loss:0.00003214, ML loss:0.00000517
+DEC Clustering   146: ACC= 0.7150, NMI= 0.6525, ARI= 0.6105
+Clustering Iteration:146, Total loss:0.00007415, ZINB loss:0.00004104, Cluster loss:0.00003295, CL loss:0.00000016
+DEC Clustering   147: ACC= 0.7174, NMI= 0.6529, ARI= 0.6119
+Clustering Iteration:147, Total loss:0.00008213, ZINB loss:0.00004118, Cluster loss:0.00003492, ML loss:0.00000602
+DEC Clustering   148: ACC= 0.7162, NMI= 0.6523, ARI= 0.6112
+Clustering Iteration:148, Total loss:0.00007519, ZINB loss:0.00004106, Cluster loss:0.00003398, CL loss:0.00000015
+DEC Clustering   149: ACC= 0.7138, NMI= 0.6523, ARI= 0.6094
+Clustering Iteration:149, Total loss:0.00007947, ZINB loss:0.00004117, Cluster loss:0.00003189, ML loss:0.00000641
+DEC Clustering   150: ACC= 0.7140, NMI= 0.6520, ARI= 0.6095
+Clustering Iteration:150, Total loss:0.00007456, ZINB loss:0.00004104, Cluster loss:0.00003335, CL loss:0.00000016
+DEC Clustering   151: ACC= 0.7200, NMI= 0.6536, ARI= 0.6144
+Clustering Iteration:151, Total loss:0.00008513, ZINB loss:0.00004106, Cluster loss:0.00003573, ML loss:0.00000834
+DEC Clustering   152: ACC= 0.7202, NMI= 0.6542, ARI= 0.6146
+Clustering Iteration:152, Total loss:0.00007511, ZINB loss:0.00004101, Cluster loss:0.00003394, CL loss:0.00000015
+DEC Clustering   153: ACC= 0.7155, NMI= 0.6524, ARI= 0.6102
+Clustering Iteration:153, Total loss:0.00007865, ZINB loss:0.00004118, Cluster loss:0.00003116, ML loss:0.00000632
+DEC Clustering   154: ACC= 0.7140, NMI= 0.6518, ARI= 0.6088
+Clustering Iteration:154, Total loss:0.00007364, ZINB loss:0.00004098, Cluster loss:0.00003250, CL loss:0.00000016
+DEC Clustering   155: ACC= 0.7193, NMI= 0.6532, ARI= 0.6128
+Clustering Iteration:155, Total loss:0.00008219, ZINB loss:0.00004118, Cluster loss:0.00003428, ML loss:0.00000673
+DEC Clustering   156: ACC= 0.7186, NMI= 0.6530, ARI= 0.6118
+Clustering Iteration:156, Total loss:0.00007464, ZINB loss:0.00004102, Cluster loss:0.00003346, CL loss:0.00000016
+DEC Clustering   157: ACC= 0.7159, NMI= 0.6519, ARI= 0.6102
+Clustering Iteration:157, Total loss:0.00007863, ZINB loss:0.00004102, Cluster loss:0.00003156, ML loss:0.00000606
+DEC Clustering   158: ACC= 0.7152, NMI= 0.6521, ARI= 0.6095
+Clustering Iteration:158, Total loss:0.00007299, ZINB loss:0.00004093, Cluster loss:0.00003190, CL loss:0.00000016
+DEC Clustering   159: ACC= 0.7183, NMI= 0.6534, ARI= 0.6128
+Clustering Iteration:159, Total loss:0.00008005, ZINB loss:0.00004099, Cluster loss:0.00003301, ML loss:0.00000606
+DEC Clustering   160: ACC= 0.7181, NMI= 0.6532, ARI= 0.6119
+Clustering Iteration:160, Total loss:0.00007407, ZINB loss:0.00004095, Cluster loss:0.00003296, CL loss:0.00000016
+DEC Clustering   161: ACC= 0.7155, NMI= 0.6517, ARI= 0.6089
+Clustering Iteration:161, Total loss:0.00007899, ZINB loss:0.00004111, Cluster loss:0.00003210, ML loss:0.00000578
+DEC Clustering   162: ACC= 0.7155, NMI= 0.6519, ARI= 0.6092
+Clustering Iteration:162, Total loss:0.00007325, ZINB loss:0.00004094, Cluster loss:0.00003216, CL loss:0.00000015
+DEC Clustering   163: ACC= 0.7174, NMI= 0.6525, ARI= 0.6116
+Clustering Iteration:163, Total loss:0.00007975, ZINB loss:0.00004105, Cluster loss:0.00003303, ML loss:0.00000566
+DEC Clustering   164: ACC= 0.7171, NMI= 0.6530, ARI= 0.6107
+Clustering Iteration:164, Total loss:0.00007389, ZINB loss:0.00004098, Cluster loss:0.00003275, CL loss:0.00000016
+DEC Clustering   165: ACC= 0.7169, NMI= 0.6524, ARI= 0.6098
+Clustering Iteration:165, Total loss:0.00007791, ZINB loss:0.00004104, Cluster loss:0.00003139, ML loss:0.00000548
+DEC Clustering   166: ACC= 0.7178, NMI= 0.6538, ARI= 0.6115
+Clustering Iteration:166, Total loss:0.00007220, ZINB loss:0.00004091, Cluster loss:0.00003113, CL loss:0.00000016
+DEC Clustering   167: ACC= 0.7176, NMI= 0.6530, ARI= 0.6114
+Clustering Iteration:167, Total loss:0.00007854, ZINB loss:0.00004111, Cluster loss:0.00003194, ML loss:0.00000548
+DEC Clustering   168: ACC= 0.7157, NMI= 0.6518, ARI= 0.6089
+Clustering Iteration:168, Total loss:0.00007387, ZINB loss:0.00004095, Cluster loss:0.00003276, CL loss:0.00000016
+DEC Clustering   169: ACC= 0.7155, NMI= 0.6514, ARI= 0.6086
+Clustering Iteration:169, Total loss:0.00007896, ZINB loss:0.00004112, Cluster loss:0.00003203, ML loss:0.00000580
+DEC Clustering   170: ACC= 0.7155, NMI= 0.6515, ARI= 0.6086
+Clustering Iteration:170, Total loss:0.00007313, ZINB loss:0.00004088, Cluster loss:0.00003209, CL loss:0.00000015
+DEC Clustering   171: ACC= 0.7152, NMI= 0.6509, ARI= 0.6093
+Clustering Iteration:171, Total loss:0.00007927, ZINB loss:0.00004103, Cluster loss:0.00003222, ML loss:0.00000602
+DEC Clustering   172: ACC= 0.7145, NMI= 0.6499, ARI= 0.6072
+Clustering Iteration:172, Total loss:0.00007329, ZINB loss:0.00004095, Cluster loss:0.00003219, CL loss:0.00000016
+DEC Clustering   173: ACC= 0.7148, NMI= 0.6504, ARI= 0.6065
+Clustering Iteration:173, Total loss:0.00007908, ZINB loss:0.00004113, Cluster loss:0.00003181, ML loss:0.00000614
+DEC Clustering   174: ACC= 0.7167, NMI= 0.6523, ARI= 0.6094
+Clustering Iteration:174, Total loss:0.00007260, ZINB loss:0.00004089, Cluster loss:0.00003156, CL loss:0.00000016
+DEC Clustering   175: ACC= 0.7162, NMI= 0.6505, ARI= 0.6085
+Clustering Iteration:175, Total loss:0.00007969, ZINB loss:0.00004139, Cluster loss:0.00003212, ML loss:0.00000618
+DEC Clustering   176: ACC= 0.7162, NMI= 0.6522, ARI= 0.6088
+Clustering Iteration:176, Total loss:0.00007348, ZINB loss:0.00004096, Cluster loss:0.00003235, CL loss:0.00000017
+DEC Clustering   177: ACC= 0.7138, NMI= 0.6496, ARI= 0.6049
+Clustering Iteration:177, Total loss:0.00007923, ZINB loss:0.00004124, Cluster loss:0.00003118, ML loss:0.00000680
+DEC Clustering   178: ACC= 0.7164, NMI= 0.6523, ARI= 0.6091
+Clustering Iteration:178, Total loss:0.00007222, ZINB loss:0.00004101, Cluster loss:0.00003105, CL loss:0.00000016
+DEC Clustering   179: ACC= 0.7186, NMI= 0.6537, ARI= 0.6124
+Clustering Iteration:179, Total loss:0.00008027, ZINB loss:0.00004115, Cluster loss:0.00003164, ML loss:0.00000747
+DEC Clustering   180: ACC= 0.7171, NMI= 0.6515, ARI= 0.6091
+Clustering Iteration:180, Total loss:0.00007262, ZINB loss:0.00004099, Cluster loss:0.00003147, CL loss:0.00000016
+DEC Clustering   181: ACC= 0.7140, NMI= 0.6515, ARI= 0.6067
+Clustering Iteration:181, Total loss:0.00007852, ZINB loss:0.00004122, Cluster loss:0.00003043, ML loss:0.00000688
+DEC Clustering   182: ACC= 0.7148, NMI= 0.6508, ARI= 0.6070
+Clustering Iteration:182, Total loss:0.00007157, ZINB loss:0.00004091, Cluster loss:0.00003050, CL loss:0.00000017
+DEC Clustering   183: ACC= 0.7202, NMI= 0.6543, ARI= 0.6139
+Clustering Iteration:183, Total loss:0.00008007, ZINB loss:0.00004114, Cluster loss:0.00003141, ML loss:0.00000752
+DEC Clustering   184: ACC= 0.7181, NMI= 0.6524, ARI= 0.6099
+Clustering Iteration:184, Total loss:0.00007231, ZINB loss:0.00004084, Cluster loss:0.00003132, CL loss:0.00000016
+DEC Clustering   185: ACC= 0.7129, NMI= 0.6498, ARI= 0.6045
+Clustering Iteration:185, Total loss:0.00007829, ZINB loss:0.00004123, Cluster loss:0.00003006, ML loss:0.00000701
+DEC Clustering   186: ACC= 0.7148, NMI= 0.6514, ARI= 0.6068
+Clustering Iteration:186, Total loss:0.00007086, ZINB loss:0.00004078, Cluster loss:0.00002992, CL loss:0.00000016
+DEC Clustering   187: ACC= 0.7214, NMI= 0.6531, ARI= 0.6130
+Clustering Iteration:187, Total loss:0.00008003, ZINB loss:0.00004131, Cluster loss:0.00003095, ML loss:0.00000778
+DEC Clustering   188: ACC= 0.7200, NMI= 0.6528, ARI= 0.6117
+Clustering Iteration:188, Total loss:0.00007160, ZINB loss:0.00004079, Cluster loss:0.00003065, CL loss:0.00000016
+DEC Clustering   189: ACC= 0.7136, NMI= 0.6497, ARI= 0.6043
+Clustering Iteration:189, Total loss:0.00007729, ZINB loss:0.00004112, Cluster loss:0.00002926, ML loss:0.00000691
+DEC Clustering   190: ACC= 0.7136, NMI= 0.6504, ARI= 0.6051
+Clustering Iteration:190, Total loss:0.00007054, ZINB loss:0.00004076, Cluster loss:0.00002964, CL loss:0.00000015
+DEC Clustering   191: ACC= 0.7178, NMI= 0.6525, ARI= 0.6097
+Clustering Iteration:191, Total loss:0.00007816, ZINB loss:0.00004091, Cluster loss:0.00003091, ML loss:0.00000633
+DEC Clustering   192: ACC= 0.7171, NMI= 0.6519, ARI= 0.6088
+Clustering Iteration:192, Total loss:0.00007154, ZINB loss:0.00004070, Cluster loss:0.00003069, CL loss:0.00000015
+DEC Clustering   193: ACC= 0.7136, NMI= 0.6513, ARI= 0.6053
+Clustering Iteration:193, Total loss:0.00007608, ZINB loss:0.00004090, Cluster loss:0.00002966, ML loss:0.00000551
+DEC Clustering   194: ACC= 0.7140, NMI= 0.6514, ARI= 0.6056
+delta_label  0.0009476427386875149 < tol  0.001
+Reach tolerance threshold. Stopping training.
+Time used is:49.05103278160095
+Final Clustering: ACC= 0.7140, NMI= 0.6514, ARI= 0.6056, kNN_ACC= 0.9476, I_score= 0.8355, Loss = 0.00007608, Epoch = 194
+Namespace(FS_file='realdata/sample_151507_featureSelection_Index2000.csv', cl_file='../example_constraints/sample_151507_clFromMarks_test.txt', clustering_iters=400, concat=True, data_file='../data/sample_151507_anno.h5', decodeLayer=[128], device='cuda', encodeHead=3, encodeLayer=[128], final_labels='pred.csv', final_latent_file='latent.csv', gamma=0.01, knn=20, lr=0.001, ml_file='../example_constraints/sample_151507_mlFromMarks_test.txt', n_cl=4000, n_clusters=-1, n_ml=4000, run='4', save_dir='out_151507', select_genes=2000, sigma=0.1, train_iter=200, verbose=True, weight_cl=1.0, weight_ml=0.5, z_dim=32)
+***Data prepocessing***
+Size of after filtering (4221, 2000)
+Size of after filtering (4221, 2000)
+***Building graph***
+***Building constraints***
+Read ML file
+Read CL file
+DSSC(
+  (encoder): GATEncoder(
+    (layers): ModuleList(
+      (0): GATConv(
+        (fc): Linear(in_features=2000, out_features=384, bias=False)
+        (feat_drop): Dropout(p=0.0, inplace=False)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (leaky_relu): LeakyReLU(negative_slope=0.2)
+      )
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ELU(alpha=1.0)
+    )
+    (enc_mu): GATConv(
+      (fc): Linear(in_features=128, out_features=96, bias=False)
+      (feat_drop): Dropout(p=0, inplace=False)
+      (attn_drop): Dropout(p=0, inplace=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+  )
+  (decoder): Sequential(
+    (0): Linear(in_features=32, out_features=128, bias=True)
+    (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ELU(alpha=1.0)
+  )
+  (_dec_mean): Sequential(
+    (0): Linear(in_features=128, out_features=2000, bias=True)
+    (1): MeanAct()
+  )
+  (_dec_disp): Sequential(
+    (0): Linear(in_features=128, out_features=2000, bias=True)
+    (1): DispAct()
+  )
+  (_dec_pi): Sequential(
+    (0): Linear(in_features=128, out_features=2000, bias=True)
+    (1): Sigmoid()
+  )
+  (nb_loss): NBLoss()
+  (zinb_loss): ZINBLoss()
+)
+Training
+Iteration:1, ZINB loss:0.00024383
+Iteration:2, ZINB loss:0.00024165
+Iteration:3, ZINB loss:0.00024049
+Iteration:4, ZINB loss:0.00023969
+Iteration:5, ZINB loss:0.00023856
+Iteration:6, ZINB loss:0.00023708
+Iteration:7, ZINB loss:0.00023530
+Iteration:8, ZINB loss:0.00023287
+Iteration:9, ZINB loss:0.00022953
+Iteration:10, ZINB loss:0.00022622
+Iteration:11, ZINB loss:0.00022193
+Iteration:12, ZINB loss:0.00021728
+Iteration:13, ZINB loss:0.00021301
+Iteration:14, ZINB loss:0.00020879
+Iteration:15, ZINB loss:0.00020482
+Iteration:16, ZINB loss:0.00020115
+Iteration:17, ZINB loss:0.00019833
+Iteration:18, ZINB loss:0.00019585
+Iteration:19, ZINB loss:0.00019334
+Iteration:20, ZINB loss:0.00019024
+Iteration:21, ZINB loss:0.00018748
+Iteration:22, ZINB loss:0.00018427
+Iteration:23, ZINB loss:0.00018174
+Iteration:24, ZINB loss:0.00017896
+Iteration:25, ZINB loss:0.00017707
+Iteration:26, ZINB loss:0.00017404
+Iteration:27, ZINB loss:0.00017041
+Iteration:28, ZINB loss:0.00016743
+Iteration:29, ZINB loss:0.00016550
+Iteration:30, ZINB loss:0.00016322
+Iteration:31, ZINB loss:0.00015906
+Iteration:32, ZINB loss:0.00015555
+Iteration:33, ZINB loss:0.00015272
+Iteration:34, ZINB loss:0.00015080
+Iteration:35, ZINB loss:0.00014819
+Iteration:36, ZINB loss:0.00014539
+Iteration:37, ZINB loss:0.00014217
+Iteration:38, ZINB loss:0.00013884
+Iteration:39, ZINB loss:0.00013611
+Iteration:40, ZINB loss:0.00013485
+Iteration:41, ZINB loss:0.00013259
+Iteration:42, ZINB loss:0.00012848
+Iteration:43, ZINB loss:0.00012661
+Iteration:44, ZINB loss:0.00012653
+Iteration:45, ZINB loss:0.00012566
+Iteration:46, ZINB loss:0.00012287
+Iteration:47, ZINB loss:0.00011969
+Iteration:48, ZINB loss:0.00011867
+Iteration:49, ZINB loss:0.00011666
+Iteration:50, ZINB loss:0.00011465
+Iteration:51, ZINB loss:0.00011274
+Iteration:52, ZINB loss:0.00011110
+Iteration:53, ZINB loss:0.00010915
+Iteration:54, ZINB loss:0.00010739
+Iteration:55, ZINB loss:0.00010651
+Iteration:56, ZINB loss:0.00010309
+Iteration:57, ZINB loss:0.00010276
+Iteration:58, ZINB loss:0.00010099
+Iteration:59, ZINB loss:0.00009897
+Iteration:60, ZINB loss:0.00009925
+Iteration:61, ZINB loss:0.00009941
+Iteration:62, ZINB loss:0.00009655
+Iteration:63, ZINB loss:0.00009424
+Iteration:64, ZINB loss:0.00009295
+Iteration:65, ZINB loss:0.00009329
+Iteration:66, ZINB loss:0.00009195
+Iteration:67, ZINB loss:0.00008982
+Iteration:68, ZINB loss:0.00008905
+Iteration:69, ZINB loss:0.00008937
+Iteration:70, ZINB loss:0.00008935
+Iteration:71, ZINB loss:0.00008825
+Iteration:72, ZINB loss:0.00008665
+Iteration:73, ZINB loss:0.00008657
+Iteration:74, ZINB loss:0.00008593
+Iteration:75, ZINB loss:0.00008519
+Iteration:76, ZINB loss:0.00008369
+Iteration:77, ZINB loss:0.00008364
+Iteration:78, ZINB loss:0.00008329
+Iteration:79, ZINB loss:0.00008373
+Iteration:80, ZINB loss:0.00008288
+Iteration:81, ZINB loss:0.00008267
+Iteration:82, ZINB loss:0.00008215
+Iteration:83, ZINB loss:0.00008178
+Iteration:84, ZINB loss:0.00008119
+Iteration:85, ZINB loss:0.00008120
+Iteration:86, ZINB loss:0.00008063
+Iteration:87, ZINB loss:0.00007992
+Iteration:88, ZINB loss:0.00007944
+Iteration:89, ZINB loss:0.00007858
+Iteration:90, ZINB loss:0.00007764
+Iteration:91, ZINB loss:0.00007730
+Iteration:92, ZINB loss:0.00007727
+Iteration:93, ZINB loss:0.00007689
+Iteration:94, ZINB loss:0.00007651
+Iteration:95, ZINB loss:0.00007619
+Iteration:96, ZINB loss:0.00007602
+Iteration:97, ZINB loss:0.00007601
+Iteration:98, ZINB loss:0.00007575
+Iteration:99, ZINB loss:0.00007528
+Iteration:100, ZINB loss:0.00007465
+Iteration:101, ZINB loss:0.00007471
+Iteration:102, ZINB loss:0.00007514
+Iteration:103, ZINB loss:0.00007584
+Iteration:104, ZINB loss:0.00007550
+Iteration:105, ZINB loss:0.00007457
+Iteration:106, ZINB loss:0.00007371
+Iteration:107, ZINB loss:0.00007355
+Iteration:108, ZINB loss:0.00007307
+Iteration:109, ZINB loss:0.00007267
+Iteration:110, ZINB loss:0.00007242
+Iteration:111, ZINB loss:0.00007252
+Iteration:112, ZINB loss:0.00007202
+Iteration:113, ZINB loss:0.00007152
+Iteration:114, ZINB loss:0.00007196
+Iteration:115, ZINB loss:0.00007197
+Iteration:116, ZINB loss:0.00007225
+Iteration:117, ZINB loss:0.00007187
+Iteration:118, ZINB loss:0.00007141
+Iteration:119, ZINB loss:0.00007097
+Iteration:120, ZINB loss:0.00007125
+Iteration:121, ZINB loss:0.00007169
+Iteration:122, ZINB loss:0.00007114
+Iteration:123, ZINB loss:0.00007046
+Iteration:124, ZINB loss:0.00006959
+Iteration:125, ZINB loss:0.00006960
+Iteration:126, ZINB loss:0.00006984
+Iteration:127, ZINB loss:0.00006979
+Iteration:128, ZINB loss:0.00006927
+Iteration:129, ZINB loss:0.00006927
+Iteration:130, ZINB loss:0.00006895
+Iteration:131, ZINB loss:0.00006881
+Iteration:132, ZINB loss:0.00006841
+Iteration:133, ZINB loss:0.00006815
+Iteration:134, ZINB loss:0.00006804
+Iteration:135, ZINB loss:0.00006795
+Iteration:136, ZINB loss:0.00006769
+Iteration:137, ZINB loss:0.00006751
+Iteration:138, ZINB loss:0.00006713
+Iteration:139, ZINB loss:0.00006719
+Iteration:140, ZINB loss:0.00006707
+Iteration:141, ZINB loss:0.00006750
+Iteration:142, ZINB loss:0.00006724
+Iteration:143, ZINB loss:0.00006658
+Iteration:144, ZINB loss:0.00006617
+Iteration:145, ZINB loss:0.00006635
+Iteration:146, ZINB loss:0.00006635
+Iteration:147, ZINB loss:0.00006641
+Iteration:148, ZINB loss:0.00006564
+Iteration:149, ZINB loss:0.00006514
+Iteration:150, ZINB loss:0.00006493
+Iteration:151, ZINB loss:0.00006528
+Iteration:152, ZINB loss:0.00006513
+Iteration:153, ZINB loss:0.00006438
+Iteration:154, ZINB loss:0.00006416
+Iteration:155, ZINB loss:0.00006384
+Iteration:156, ZINB loss:0.00006405
+Iteration:157, ZINB loss:0.00006471
+Iteration:158, ZINB loss:0.00006450
+Iteration:159, ZINB loss:0.00006404
+Iteration:160, ZINB loss:0.00006383
+Iteration:161, ZINB loss:0.00006341
+Iteration:162, ZINB loss:0.00006319
+Iteration:163, ZINB loss:0.00006318
+Iteration:164, ZINB loss:0.00006274
+Iteration:165, ZINB loss:0.00006244
+Iteration:166, ZINB loss:0.00006245
+Iteration:167, ZINB loss:0.00006232
+Iteration:168, ZINB loss:0.00006270
+Iteration:169, ZINB loss:0.00006229
+Iteration:170, ZINB loss:0.00006183
+Iteration:171, ZINB loss:0.00006169
+Iteration:172, ZINB loss:0.00006184
+Iteration:173, ZINB loss:0.00006233
+Iteration:174, ZINB loss:0.00006179
+Iteration:175, ZINB loss:0.00006168
+Iteration:176, ZINB loss:0.00006122
+Iteration:177, ZINB loss:0.00006111
+Iteration:178, ZINB loss:0.00006076
+Iteration:179, ZINB loss:0.00006097
+Iteration:180, ZINB loss:0.00006081
+Iteration:181, ZINB loss:0.00006060
+Iteration:182, ZINB loss:0.00006055
+Iteration:183, ZINB loss:0.00006012
+Iteration:184, ZINB loss:0.00005994
+Iteration:185, ZINB loss:0.00005976
+Iteration:186, ZINB loss:0.00005968
+Iteration:187, ZINB loss:0.00006004
+Iteration:188, ZINB loss:0.00006007
+Iteration:189, ZINB loss:0.00005960
+Iteration:190, ZINB loss:0.00005916
+Iteration:191, ZINB loss:0.00005883
+Iteration:192, ZINB loss:0.00005899
+Iteration:193, ZINB loss:0.00005843
+Iteration:194, ZINB loss:0.00005756
+Iteration:195, ZINB loss:0.00005709
+Iteration:196, ZINB loss:0.00005760
+Iteration:197, ZINB loss:0.00005700
+Iteration:198, ZINB loss:0.00005709
+Iteration:199, ZINB loss:0.00005707
+Iteration:200, ZINB loss:0.00005727
+Pret-raining time: 17 seconds.
+Initializing cluster centers with kmeans
+Initializing kmeans: ACC= 0.6861, NMI= 0.6297, ARI= 0.5693
+Initializing kmeans KNN ACC= 0.9611
+Constraints summary: ML=4000
+Constraints summary: CL=4000
+DEC Clustering   1: ACC= 0.6861, NMI= 0.6297, ARI= 0.5693
+Clustering Iteration:1, Total loss:0.00028653, ZINB loss:0.00005632, Cluster loss:0.00007742, ML loss:0.00015279
+DEC Clustering   2: ACC= 0.6641, NMI= 0.6276, ARI= 0.5694
+Clustering Iteration:2, Total loss:0.00013085, ZINB loss:0.00005284, Cluster loss:0.00005949, CL loss:0.00001852
+DEC Clustering   3: ACC= 0.6652, NMI= 0.6255, ARI= 0.5657
+Clustering Iteration:3, Total loss:0.00020791, ZINB loss:0.00005423, Cluster loss:0.00004825, ML loss:0.00010542
+DEC Clustering   4: ACC= 0.6738, NMI= 0.6274, ARI= 0.5678
+Clustering Iteration:4, Total loss:0.00010702, ZINB loss:0.00005250, Cluster loss:0.00004523, CL loss:0.00000929
+DEC Clustering   5: ACC= 0.6816, NMI= 0.6333, ARI= 0.5766
+Clustering Iteration:5, Total loss:0.00017749, ZINB loss:0.00005203, Cluster loss:0.00004763, ML loss:0.00007783
+DEC Clustering   6: ACC= 0.6899, NMI= 0.6356, ARI= 0.5814
+Clustering Iteration:6, Total loss:0.00010890, ZINB loss:0.00005182, Cluster loss:0.00004861, CL loss:0.00000847
+DEC Clustering   7: ACC= 0.6901, NMI= 0.6356, ARI= 0.5809
+Clustering Iteration:7, Total loss:0.00015707, ZINB loss:0.00005178, Cluster loss:0.00004842, ML loss:0.00005687
+DEC Clustering   8: ACC= 0.6863, NMI= 0.6354, ARI= 0.5768
+Clustering Iteration:8, Total loss:0.00010530, ZINB loss:0.00005096, Cluster loss:0.00004869, CL loss:0.00000565
+DEC Clustering   9: ACC= 0.6818, NMI= 0.6366, ARI= 0.5739
+Clustering Iteration:9, Total loss:0.00014284, ZINB loss:0.00005122, Cluster loss:0.00004899, ML loss:0.00004262
+DEC Clustering   10: ACC= 0.6759, NMI= 0.6361, ARI= 0.5718
+Clustering Iteration:10, Total loss:0.00010385, ZINB loss:0.00005062, Cluster loss:0.00004896, CL loss:0.00000427
+DEC Clustering   11: ACC= 0.6726, NMI= 0.6370, ARI= 0.5718
+Clustering Iteration:11, Total loss:0.00013508, ZINB loss:0.00005022, Cluster loss:0.00004912, ML loss:0.00003573
+DEC Clustering   12: ACC= 0.6719, NMI= 0.6390, ARI= 0.5741
+Clustering Iteration:12, Total loss:0.00010292, ZINB loss:0.00005009, Cluster loss:0.00004906, CL loss:0.00000377
+DEC Clustering   13: ACC= 0.6707, NMI= 0.6384, ARI= 0.5735
+Clustering Iteration:13, Total loss:0.00012211, ZINB loss:0.00004980, Cluster loss:0.00004883, ML loss:0.00002349
+DEC Clustering   14: ACC= 0.6712, NMI= 0.6379, ARI= 0.5725
+Clustering Iteration:14, Total loss:0.00010096, ZINB loss:0.00004955, Cluster loss:0.00004846, CL loss:0.00000296
+DEC Clustering   15: ACC= 0.6709, NMI= 0.6376, ARI= 0.5712
+Clustering Iteration:15, Total loss:0.00011853, ZINB loss:0.00004934, Cluster loss:0.00004839, ML loss:0.00002080
+DEC Clustering   16: ACC= 0.6728, NMI= 0.6387, ARI= 0.5724
+Clustering Iteration:16, Total loss:0.00009995, ZINB loss:0.00004913, Cluster loss:0.00004838, CL loss:0.00000244
+DEC Clustering   17: ACC= 0.6716, NMI= 0.6396, ARI= 0.5727
+Clustering Iteration:17, Total loss:0.00011380, ZINB loss:0.00004896, Cluster loss:0.00004799, ML loss:0.00001685
+DEC Clustering   18: ACC= 0.6700, NMI= 0.6406, ARI= 0.5720
+Clustering Iteration:18, Total loss:0.00009858, ZINB loss:0.00004872, Cluster loss:0.00004783, CL loss:0.00000204
+DEC Clustering   19: ACC= 0.6657, NMI= 0.6405, ARI= 0.5701
+Clustering Iteration:19, Total loss:0.00010887, ZINB loss:0.00004861, Cluster loss:0.00004790, ML loss:0.00001236
+DEC Clustering   20: ACC= 0.6650, NMI= 0.6406, ARI= 0.5693
+Clustering Iteration:20, Total loss:0.00009822, ZINB loss:0.00004842, Cluster loss:0.00004802, CL loss:0.00000179
+DEC Clustering   21: ACC= 0.6662, NMI= 0.6417, ARI= 0.5699
+Clustering Iteration:21, Total loss:0.00010813, ZINB loss:0.00004814, Cluster loss:0.00004837, ML loss:0.00001162
+DEC Clustering   22: ACC= 0.6669, NMI= 0.6423, ARI= 0.5707
+Clustering Iteration:22, Total loss:0.00009771, ZINB loss:0.00004802, Cluster loss:0.00004807, CL loss:0.00000163
+DEC Clustering   23: ACC= 0.6657, NMI= 0.6429, ARI= 0.5713
+Clustering Iteration:23, Total loss:0.00010537, ZINB loss:0.00004779, Cluster loss:0.00004776, ML loss:0.00000982
+DEC Clustering   24: ACC= 0.6655, NMI= 0.6432, ARI= 0.5715
+delta_label  0.0009476427386875149 < tol  0.001
+Reach tolerance threshold. Stopping training.
+Time used is:21.60099697113037
+Final Clustering: ACC= 0.6655, NMI= 0.6432, ARI= 0.5715, kNN_ACC= 0.9685, I_score= 0.8480, Loss = 0.00010537, Epoch = 24
+Namespace(FS_file='realdata/sample_151507_featureSelection_Index2000.csv', cl_file='../example_constraints/sample_151507_clFromMarks_test.txt', clustering_iters=400, concat=True, data_file='../data/sample_151507_anno.h5', decodeLayer=[128], device='cuda', encodeHead=3, encodeLayer=[128], final_labels='pred.csv', final_latent_file='latent.csv', gamma=0.01, knn=20, lr=0.001, ml_file='../example_constraints/sample_151507_mlFromMarks_test.txt', n_cl=4000, n_clusters=-1, n_ml=4000, run='5', save_dir='out_151507', select_genes=2000, sigma=0.1, train_iter=200, verbose=True, weight_cl=1.0, weight_ml=0.5, z_dim=32)
+***Data prepocessing***
+Size of after filtering (4221, 2000)
+Size of after filtering (4221, 2000)
+***Building graph***
+***Building constraints***
+Read ML file
+Read CL file
+DSSC(
+  (encoder): GATEncoder(
+    (layers): ModuleList(
+      (0): GATConv(
+        (fc): Linear(in_features=2000, out_features=384, bias=False)
+        (feat_drop): Dropout(p=0.0, inplace=False)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (leaky_relu): LeakyReLU(negative_slope=0.2)
+      )
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ELU(alpha=1.0)
+    )
+    (enc_mu): GATConv(
+      (fc): Linear(in_features=128, out_features=96, bias=False)
+      (feat_drop): Dropout(p=0, inplace=False)
+      (attn_drop): Dropout(p=0, inplace=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+    )
+  )
+  (decoder): Sequential(
+    (0): Linear(in_features=32, out_features=128, bias=True)
+    (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ELU(alpha=1.0)
+  )
+  (_dec_mean): Sequential(
+    (0): Linear(in_features=128, out_features=2000, bias=True)
+    (1): MeanAct()
+  )
+  (_dec_disp): Sequential(
+    (0): Linear(in_features=128, out_features=2000, bias=True)
+    (1): DispAct()
+  )
+  (_dec_pi): Sequential(
+    (0): Linear(in_features=128, out_features=2000, bias=True)
+    (1): Sigmoid()
+  )
+  (nb_loss): NBLoss()
+  (zinb_loss): ZINBLoss()
+)
+Training
+Iteration:1, ZINB loss:0.00024376
+Iteration:2, ZINB loss:0.00024191
+Iteration:3, ZINB loss:0.00024105
+Iteration:4, ZINB loss:0.00023996
+Iteration:5, ZINB loss:0.00023793
+Iteration:6, ZINB loss:0.00023527
+Iteration:7, ZINB loss:0.00023211
+Iteration:8, ZINB loss:0.00022766
+Iteration:9, ZINB loss:0.00022238
+Iteration:10, ZINB loss:0.00021603
+Iteration:11, ZINB loss:0.00021030
+Iteration:12, ZINB loss:0.00020495
+Iteration:13, ZINB loss:0.00020046
+Iteration:14, ZINB loss:0.00019717
+Iteration:15, ZINB loss:0.00019475
+Iteration:16, ZINB loss:0.00019269
+Iteration:17, ZINB loss:0.00019062
+Iteration:18, ZINB loss:0.00018761
+Iteration:19, ZINB loss:0.00018493
+Iteration:20, ZINB loss:0.00018325
+Iteration:21, ZINB loss:0.00018194
+Iteration:22, ZINB loss:0.00018078
+Iteration:23, ZINB loss:0.00017862
+Iteration:24, ZINB loss:0.00017577
+Iteration:25, ZINB loss:0.00017313
+Iteration:26, ZINB loss:0.00017146
+Iteration:27, ZINB loss:0.00017064
+Iteration:28, ZINB loss:0.00016934
+Iteration:29, ZINB loss:0.00016577
+Iteration:30, ZINB loss:0.00016121
+Iteration:31, ZINB loss:0.00015732
+Iteration:32, ZINB loss:0.00015537
+Iteration:33, ZINB loss:0.00015150
+Iteration:34, ZINB loss:0.00014853
+Iteration:35, ZINB loss:0.00014405
+Iteration:36, ZINB loss:0.00014359
+Iteration:37, ZINB loss:0.00014209
+Iteration:38, ZINB loss:0.00014073
+Iteration:39, ZINB loss:0.00013809
+Iteration:40, ZINB loss:0.00013588
+Iteration:41, ZINB loss:0.00013314
+Iteration:42, ZINB loss:0.00013088
+Iteration:43, ZINB loss:0.00012927
+Iteration:44, ZINB loss:0.00012731
+Iteration:45, ZINB loss:0.00012460
+Iteration:46, ZINB loss:0.00012184
+Iteration:47, ZINB loss:0.00012010
+Iteration:48, ZINB loss:0.00011957
+Iteration:49, ZINB loss:0.00011550
+Iteration:50, ZINB loss:0.00011230
+Iteration:51, ZINB loss:0.00011333
+Iteration:52, ZINB loss:0.00011242
+Iteration:53, ZINB loss:0.00010880
+Iteration:54, ZINB loss:0.00010835
+Iteration:55, ZINB loss:0.00010588
+Iteration:56, ZINB loss:0.00010464
+Iteration:57, ZINB loss:0.00010369
+Iteration:58, ZINB loss:0.00010291
+Iteration:59, ZINB loss:0.00009927
+Iteration:60, ZINB loss:0.00009804
+Iteration:61, ZINB loss:0.00009931
+Iteration:62, ZINB loss:0.00009866
+Iteration:63, ZINB loss:0.00009611
+Iteration:64, ZINB loss:0.00009521
+Iteration:65, ZINB loss:0.00009465
+Iteration:66, ZINB loss:0.00009438
+Iteration:67, ZINB loss:0.00009306
+Iteration:68, ZINB loss:0.00009103
+Iteration:69, ZINB loss:0.00008958
+Iteration:70, ZINB loss:0.00008851
+Iteration:71, ZINB loss:0.00008786
+Iteration:72, ZINB loss:0.00008873
+Iteration:73, ZINB loss:0.00008777
+Iteration:74, ZINB loss:0.00008624
+Iteration:75, ZINB loss:0.00008568
+Iteration:76, ZINB loss:0.00008624
+Iteration:77, ZINB loss:0.00008555
+Iteration:78, ZINB loss:0.00008430
+Iteration:79, ZINB loss:0.00008196
+Iteration:80, ZINB loss:0.00008111
+Iteration:81, ZINB loss:0.00008140
+Iteration:82, ZINB loss:0.00008150
+Iteration:83, ZINB loss:0.00008016
+Iteration:84, ZINB loss:0.00007919
+Iteration:85, ZINB loss:0.00007927
+Iteration:86, ZINB loss:0.00007951
+Iteration:87, ZINB loss:0.00007896
+Iteration:88, ZINB loss:0.00007828
+Iteration:89, ZINB loss:0.00007834
+Iteration:90, ZINB loss:0.00007870
+Iteration:91, ZINB loss:0.00007839
+Iteration:92, ZINB loss:0.00007674
+Iteration:93, ZINB loss:0.00007725
+Iteration:94, ZINB loss:0.00007643
+Iteration:95, ZINB loss:0.00007645
+Iteration:96, ZINB loss:0.00007572
+Iteration:97, ZINB loss:0.00007488
+Iteration:98, ZINB loss:0.00007416
+Iteration:99, ZINB loss:0.00007383
+Iteration:100, ZINB loss:0.00007374
+Iteration:101, ZINB loss:0.00007395
+Iteration:102, ZINB loss:0.00007332
+Iteration:103, ZINB loss:0.00007301
+Iteration:104, ZINB loss:0.00007266
+Iteration:105, ZINB loss:0.00007283
+Iteration:106, ZINB loss:0.00007319
+Iteration:107, ZINB loss:0.00007266
+Iteration:108, ZINB loss:0.00007195
+Iteration:109, ZINB loss:0.00007161
+Iteration:110, ZINB loss:0.00007164
+Iteration:111, ZINB loss:0.00007182
+Iteration:112, ZINB loss:0.00007194
+Iteration:113, ZINB loss:0.00007156
+Iteration:114, ZINB loss:0.00007117
+Iteration:115, ZINB loss:0.00007061
+Iteration:116, ZINB loss:0.00007076
+Iteration:117, ZINB loss:0.00007102
+Iteration:118, ZINB loss:0.00007099
+Iteration:119, ZINB loss:0.00007069
+Iteration:120, ZINB loss:0.00007001
+Iteration:121, ZINB loss:0.00006987
+Iteration:122, ZINB loss:0.00006976
+Iteration:123, ZINB loss:0.00006974
+Iteration:124, ZINB loss:0.00006926
+Iteration:125, ZINB loss:0.00006890
+Iteration:126, ZINB loss:0.00006818
+Iteration:127, ZINB loss:0.00006817
+Iteration:128, ZINB loss:0.00006842
+Iteration:129, ZINB loss:0.00006806
+Iteration:130, ZINB loss:0.00006793
+Iteration:131, ZINB loss:0.00006800
+Iteration:132, ZINB loss:0.00006744
+Iteration:133, ZINB loss:0.00006776
+Iteration:134, ZINB loss:0.00006732
+Iteration:135, ZINB loss:0.00006667
+Iteration:136, ZINB loss:0.00006629
+Iteration:137, ZINB loss:0.00006594
+Iteration:138, ZINB loss:0.00006608
+Iteration:139, ZINB loss:0.00006596
+Iteration:140, ZINB loss:0.00006633
+Iteration:141, ZINB loss:0.00006578
+Iteration:142, ZINB loss:0.00006567
+Iteration:143, ZINB loss:0.00006580
+Iteration:144, ZINB loss:0.00006578
+Iteration:145, ZINB loss:0.00006534
+Iteration:146, ZINB loss:0.00006539
+Iteration:147, ZINB loss:0.00006508
+Iteration:148, ZINB loss:0.00006473
+Iteration:149, ZINB loss:0.00006388
+Iteration:150, ZINB loss:0.00006411
+Iteration:151, ZINB loss:0.00006452
+Iteration:152, ZINB loss:0.00006426
+Iteration:153, ZINB loss:0.00006369
+Iteration:154, ZINB loss:0.00006283
+Iteration:155, ZINB loss:0.00006261
+Iteration:156, ZINB loss:0.00006305
+Iteration:157, ZINB loss:0.00006353
+Iteration:158, ZINB loss:0.00006316
+Iteration:159, ZINB loss:0.00006264
+Iteration:160, ZINB loss:0.00006249
+Iteration:161, ZINB loss:0.00006262
+Iteration:162, ZINB loss:0.00006261
+Iteration:163, ZINB loss:0.00006261
+Iteration:164, ZINB loss:0.00006232
+Iteration:165, ZINB loss:0.00006169
+Iteration:166, ZINB loss:0.00006136
+Iteration:167, ZINB loss:0.00006124
+Iteration:168, ZINB loss:0.00006095
+Iteration:169, ZINB loss:0.00006025
+Iteration:170, ZINB loss:0.00006006
+Iteration:171, ZINB loss:0.00006010
+Iteration:172, ZINB loss:0.00006029
+Iteration:173, ZINB loss:0.00005998
+Iteration:174, ZINB loss:0.00005965
+Iteration:175, ZINB loss:0.00005935
+Iteration:176, ZINB loss:0.00005906
+Iteration:177, ZINB loss:0.00005865
+Iteration:178, ZINB loss:0.00005865
+Iteration:179, ZINB loss:0.00005819
+Iteration:180, ZINB loss:0.00005812
+Iteration:181, ZINB loss:0.00005834
+Iteration:182, ZINB loss:0.00005867
+Iteration:183, ZINB loss:0.00005830
+Iteration:184, ZINB loss:0.00005845
+Iteration:185, ZINB loss:0.00005823
+Iteration:186, ZINB loss:0.00005787
+Iteration:187, ZINB loss:0.00005755
+Iteration:188, ZINB loss:0.00005778
+Iteration:189, ZINB loss:0.00005775
+Iteration:190, ZINB loss:0.00005764
+Iteration:191, ZINB loss:0.00005760
+Iteration:192, ZINB loss:0.00005731
+Iteration:193, ZINB loss:0.00005676
+Iteration:194, ZINB loss:0.00005647
+Iteration:195, ZINB loss:0.00005630
+Iteration:196, ZINB loss:0.00005611
+Iteration:197, ZINB loss:0.00005571
+Iteration:198, ZINB loss:0.00005581
+Iteration:199, ZINB loss:0.00005539
+Iteration:200, ZINB loss:0.00005578
+Pret-raining time: 16 seconds.
+Initializing cluster centers with kmeans
+Initializing kmeans: ACC= 0.6809, NMI= 0.6366, ARI= 0.5602
+Initializing kmeans KNN ACC= 0.9656
+Constraints summary: ML=4000
+Constraints summary: CL=4000
+DEC Clustering   1: ACC= 0.6809, NMI= 0.6366, ARI= 0.5602
+Clustering Iteration:1, Total loss:0.00032866, ZINB loss:0.00005459, Cluster loss:0.00009947, ML loss:0.00017460
+DEC Clustering   2: ACC= 0.6804, NMI= 0.6366, ARI= 0.5670
+Clustering Iteration:2, Total loss:0.00013620, ZINB loss:0.00005258, Cluster loss:0.00006906, CL loss:0.00001455
+DEC Clustering   3: ACC= 0.6816, NMI= 0.6388, ARI= 0.5679
+Clustering Iteration:3, Total loss:0.00024377, ZINB loss:0.00005323, Cluster loss:0.00005729, ML loss:0.00013325
+DEC Clustering   4: ACC= 0.6856, NMI= 0.6388, ARI= 0.5681
+Clustering Iteration:4, Total loss:0.00012198, ZINB loss:0.00005172, Cluster loss:0.00005995, CL loss:0.00001031
+DEC Clustering   5: ACC= 0.6911, NMI= 0.6420, ARI= 0.5700
+Clustering Iteration:5, Total loss:0.00023034, ZINB loss:0.00005176, Cluster loss:0.00006307, ML loss:0.00011551
+DEC Clustering   6: ACC= 0.6915, NMI= 0.6424, ARI= 0.5711
+Clustering Iteration:6, Total loss:0.00012205, ZINB loss:0.00005134, Cluster loss:0.00006314, CL loss:0.00000757
+DEC Clustering   7: ACC= 0.6956, NMI= 0.6453, ARI= 0.5741
+Clustering Iteration:7, Total loss:0.00020075, ZINB loss:0.00005107, Cluster loss:0.00006362, ML loss:0.00008606
+DEC Clustering   8: ACC= 0.6949, NMI= 0.6442, ARI= 0.5732
+Clustering Iteration:8, Total loss:0.00012217, ZINB loss:0.00005078, Cluster loss:0.00006512, CL loss:0.00000627
+DEC Clustering   9: ACC= 0.6953, NMI= 0.6444, ARI= 0.5732
+Clustering Iteration:9, Total loss:0.00017710, ZINB loss:0.00005079, Cluster loss:0.00006527, ML loss:0.00006104
+DEC Clustering   10: ACC= 0.6944, NMI= 0.6457, ARI= 0.5740
+Clustering Iteration:10, Total loss:0.00011746, ZINB loss:0.00005031, Cluster loss:0.00006273, CL loss:0.00000443
+DEC Clustering   11: ACC= 0.6946, NMI= 0.6469, ARI= 0.5756
+Clustering Iteration:11, Total loss:0.00016629, ZINB loss:0.00005030, Cluster loss:0.00005950, ML loss:0.00005649
+DEC Clustering   12: ACC= 0.6963, NMI= 0.6479, ARI= 0.5765
+Clustering Iteration:12, Total loss:0.00011181, ZINB loss:0.00005001, Cluster loss:0.00005815, CL loss:0.00000365
+DEC Clustering   13: ACC= 0.6989, NMI= 0.6494, ARI= 0.5776
+Clustering Iteration:13, Total loss:0.00016745, ZINB loss:0.00004968, Cluster loss:0.00005827, ML loss:0.00005950
+DEC Clustering   14: ACC= 0.6998, NMI= 0.6504, ARI= 0.5782
+Clustering Iteration:14, Total loss:0.00011110, ZINB loss:0.00004960, Cluster loss:0.00005811, CL loss:0.00000339
+DEC Clustering   15: ACC= 0.7001, NMI= 0.6506, ARI= 0.5783
+Clustering Iteration:15, Total loss:0.00015724, ZINB loss:0.00004949, Cluster loss:0.00005774, ML loss:0.00005000
+DEC Clustering   16: ACC= 0.7003, NMI= 0.6518, ARI= 0.5784
+Clustering Iteration:16, Total loss:0.00010982, ZINB loss:0.00004922, Cluster loss:0.00005741, CL loss:0.00000320
+DEC Clustering   17: ACC= 0.7017, NMI= 0.6551, ARI= 0.5798
+Clustering Iteration:17, Total loss:0.00015155, ZINB loss:0.00004914, Cluster loss:0.00005677, ML loss:0.00004565
+DEC Clustering   18: ACC= 0.6939, NMI= 0.6582, ARI= 0.5834
+Clustering Iteration:18, Total loss:0.00010868, ZINB loss:0.00004896, Cluster loss:0.00005636, CL loss:0.00000336
+DEC Clustering   19: ACC= 0.6994, NMI= 0.6621, ARI= 0.5881
+Clustering Iteration:19, Total loss:0.00014420, ZINB loss:0.00004872, Cluster loss:0.00005633, ML loss:0.00003915
+DEC Clustering   20: ACC= 0.6994, NMI= 0.6659, ARI= 0.5905
+Clustering Iteration:20, Total loss:0.00010722, ZINB loss:0.00004858, Cluster loss:0.00005574, CL loss:0.00000290
+DEC Clustering   21: ACC= 0.7005, NMI= 0.6707, ARI= 0.5925
+Clustering Iteration:21, Total loss:0.00013893, ZINB loss:0.00004845, Cluster loss:0.00005478, ML loss:0.00003570
+DEC Clustering   22: ACC= 0.7110, NMI= 0.6769, ARI= 0.5985
+Clustering Iteration:22, Total loss:0.00010543, ZINB loss:0.00004830, Cluster loss:0.00005421, CL loss:0.00000292
+DEC Clustering   23: ACC= 0.7216, NMI= 0.6809, ARI= 0.6049
+Clustering Iteration:23, Total loss:0.00013629, ZINB loss:0.00004831, Cluster loss:0.00005430, ML loss:0.00003368
+DEC Clustering   24: ACC= 0.7240, NMI= 0.6819, ARI= 0.6048
+Clustering Iteration:24, Total loss:0.00010430, ZINB loss:0.00004811, Cluster loss:0.00005399, CL loss:0.00000221
+DEC Clustering   25: ACC= 0.7223, NMI= 0.6797, ARI= 0.6010
+Clustering Iteration:25, Total loss:0.00012768, ZINB loss:0.00004798, Cluster loss:0.00005355, ML loss:0.00002615
+DEC Clustering   26: ACC= 0.7223, NMI= 0.6794, ARI= 0.5995
+Clustering Iteration:26, Total loss:0.00010295, ZINB loss:0.00004774, Cluster loss:0.00005337, CL loss:0.00000184
+DEC Clustering   27: ACC= 0.7226, NMI= 0.6791, ARI= 0.5996
+Clustering Iteration:27, Total loss:0.00012540, ZINB loss:0.00004777, Cluster loss:0.00005357, ML loss:0.00002405
+DEC Clustering   28: ACC= 0.7223, NMI= 0.6780, ARI= 0.5992
+Clustering Iteration:28, Total loss:0.00010238, ZINB loss:0.00004749, Cluster loss:0.00005319, CL loss:0.00000170
+DEC Clustering   29: ACC= 0.7221, NMI= 0.6773, ARI= 0.5983
+Clustering Iteration:29, Total loss:0.00011856, ZINB loss:0.00004744, Cluster loss:0.00005260, ML loss:0.00001852
+DEC Clustering   30: ACC= 0.7216, NMI= 0.6771, ARI= 0.5977
+Clustering Iteration:30, Total loss:0.00010102, ZINB loss:0.00004716, Cluster loss:0.00005231, CL loss:0.00000154
+DEC Clustering   31: ACC= 0.7221, NMI= 0.6785, ARI= 0.5983
+Clustering Iteration:31, Total loss:0.00011735, ZINB loss:0.00004723, Cluster loss:0.00005232, ML loss:0.00001780
+DEC Clustering   32: ACC= 0.7228, NMI= 0.6798, ARI= 0.5993
+Clustering Iteration:32, Total loss:0.00010077, ZINB loss:0.00004684, Cluster loss:0.00005254, CL loss:0.00000139
+DEC Clustering   33: ACC= 0.7240, NMI= 0.6801, ARI= 0.6009
+Clustering Iteration:33, Total loss:0.00011721, ZINB loss:0.00004698, Cluster loss:0.00005282, ML loss:0.00001741
+DEC Clustering   34: ACC= 0.7235, NMI= 0.6800, ARI= 0.6002
+delta_label  0.0009476427386875149 < tol  0.001
+Reach tolerance threshold. Stopping training.
+Time used is:23.058565616607666
+Final Clustering: ACC= 0.7235, NMI= 0.6800, ARI= 0.6002, kNN_ACC= 0.9671, I_score= 0.8742, Loss = 0.00011721, Epoch = 34
+Namespace(FS_file='realdata/sample_151507_featureSelection_Index2000.csv', cl_file='../example_constraints/sample_osmFish_clFromMarks_test.txt', clustering_iters=400, concat=True, data_file='../data/osmFISH_cortex.h5', decodeLayer=[16], device='cuda', encodeHead=3, encodeLayer=[16], final_labels='pred.csv', final_latent_file='latent.csv', gamma=0.01, knn=20, lr=0.001, ml_file='../example_constraints/sample_osmFish_mlFromMarks_test.txt', n_cl=4000, n_clusters=-1, n_ml=4000, run='1', save_dir='out_osmFISH', select_genes=30, sigma=0.1, train_iter=200, verbose=True, weight_cl=1.0, weight_ml=0.5, z_dim=8)
+Namespace(FS_file='realdata/sample_151507_featureSelection_Index2000.csv', cl_file='../example_constraints/sample_osmFish_clFromMarks_test.txt', clustering_iters=400, concat=True, data_file='../data/osmFISH_cortex.h5', decodeLayer=[16], device='cuda', encodeHead=3, encodeLayer=[16], final_labels='pred.csv', final_latent_file='latent.csv', gamma=0.01, knn=20, lr=0.001, ml_file='../example_constraints/sample_osmFish_mlFromMarks_test.txt', n_cl=4000, n_clusters=-1, n_ml=4000, run='2', save_dir='out_osmFISH', select_genes=30, sigma=0.1, train_iter=200, verbose=True, weight_cl=1.0, weight_ml=0.5, z_dim=8)
+Namespace(FS_file='realdata/sample_151507_featureSelection_Index2000.csv', cl_file='../example_constraints/sample_osmFish_clFromMarks_test.txt', clustering_iters=400, concat=True, data_file='../data/osmFISH_cortex.h5', decodeLayer=[16], device='cuda', encodeHead=3, encodeLayer=[16], final_labels='pred.csv', final_latent_file='latent.csv', gamma=0.01, knn=20, lr=0.001, ml_file='../example_constraints/sample_osmFish_mlFromMarks_test.txt', n_cl=4000, n_clusters=-1, n_ml=4000, run='3', save_dir='out_osmFISH', select_genes=30, sigma=0.1, train_iter=200, verbose=True, weight_cl=1.0, weight_ml=0.5, z_dim=8)
+Namespace(FS_file='realdata/sample_151507_featureSelection_Index2000.csv', cl_file='../example_constraints/sample_osmFish_clFromMarks_test.txt', clustering_iters=400, concat=True, data_file='../data/osmFISH_cortex.h5', decodeLayer=[16], device='cuda', encodeHead=3, encodeLayer=[16], final_labels='pred.csv', final_latent_file='latent.csv', gamma=0.01, knn=20, lr=0.001, ml_file='../example_constraints/sample_osmFish_mlFromMarks_test.txt', n_cl=4000, n_clusters=-1, n_ml=4000, run='4', save_dir='out_osmFISH', select_genes=30, sigma=0.1, train_iter=200, verbose=True, weight_cl=1.0, weight_ml=0.5, z_dim=8)
+Namespace(FS_file='realdata/sample_151507_featureSelection_Index2000.csv', cl_file='../example_constraints/sample_osmFish_clFromMarks_test.txt', clustering_iters=400, concat=True, data_file='../data/osmFISH_cortex.h5', decodeLayer=[16], device='cuda', encodeHead=3, encodeLayer=[16], final_labels='pred.csv', final_latent_file='latent.csv', gamma=0.01, knn=20, lr=0.001, ml_file='../example_constraints/sample_osmFish_mlFromMarks_test.txt', n_cl=4000, n_clusters=-1, n_ml=4000, run='5', save_dir='out_osmFISH', select_genes=30, sigma=0.1, train_iter=200, verbose=True, weight_cl=1.0, weight_ml=0.5, z_dim=8)

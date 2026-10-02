@@ -3,9 +3,6 @@
 #SBATCH --mem=20G
 #SBATCH -J dssctest
 
-module purge
-conda activate /home/x/xl456/miniconda3_1/envs/torch_py38
-
 f=../data/sample_151507_anno.h5
 for i in {1..5}
  do
