@@ -6,7 +6,7 @@ A model-based constrained deep learning clustering approach for spatial-resolved
 ```bash
 conda env create -f .env/dssc_4090.yml
 ```
-Note that due to differences in GPU and CUDA core versions, the dependency versions used here differ from those in the original repository. Please refer to `.test/test_env.ipynb` for details on environment setup and troubleshooting.
+**Note that due to differences in GPU and CUDA core versions, the dependency versions used here differ from those in the original repository. Please refer to `.test/test_env.ipynb` for details on environment setup and troubleshooting.**
 
 All experiments of DSSC in this study are conducted on Nvidia 4090 (24GB) GPU.
 
