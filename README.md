@@ -42,6 +42,7 @@ chmod +x run.sh
 export HDF5_USE_FILE_LOCKING=FALSE # If the project is located on a network drive or shared drive that does not support POSIX locks, explicitly set the environment variable.
 ./run.sh
 ```
+Note: An error occurred during execution, preventing the proper processing of `out_osmFISH` (see `.logs/warn_err_all.log` for details). Investigation traced the issue to the `pos = pos.T` operation (originally on line 56, now line 57) in `run_DSSC.py`; this has now been fixed.
 
 # Cite this work  
 Lin, X., Gao, L., Whitener, N., Ahmed, A., & Wei, Z. (2022). A model-based constrained deep learning clustering approach for spatially resolved single-cell data. Genome Research, 32(10), 1906-1917.

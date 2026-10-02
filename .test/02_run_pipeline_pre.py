@@ -1,3 +1,4 @@
+# 实际运行 DSSC 前，检查输入数据
 # %%
 # import scanpy as sc
 import h5py
@@ -38,3 +39,4 @@ for k in sample_151507_anno.keys():
 同时 expression representation 本身通过 denoising autoencoder/ZINB 等进行建模。
 '''
 # %%
+# 接下来运行 DSSC 流程，步骤见 README
