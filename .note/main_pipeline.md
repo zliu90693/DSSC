@@ -4,4 +4,4 @@
     - 在运行过程中[报错](../.logs/warn_err_all.log)，无法处理 out_osmFISH 数据集，检查后发现可能与原 repo 中 [run_DSSC.py](../src/run_DSSC.py) 原 56 行（现 57 行）的转置操作相关
     - 具体原因如下：原 run_DSSC.py:56 无条件执行 pos = pos.T。该转置对 151507 是正确的（其 Pos 是 (2, 4226)），但对 osmFISH 是错误的，osmFISH 的 Pos 本来就是 (4839, 2)，转置后变成 (2, 4839)，再用 f（索引最大到 4838）去取 axis 0（只有 2 行）返回了 index 2 out of bounds。这是 osmFISH 数据跑不通的直接原因
     - 现已修复，方法是在 run_DSSC.py:56 行处添加一判别条件
-- 
+- 以输入数据 sample_151507_anno.h5 为例，检查模型中各重要节点，探究模型作用机制，见 pseudo_dubug 部分
