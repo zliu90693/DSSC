@@ -20,6 +20,7 @@ All experiments of DSSC in this study are conducted on Nvidia 4090 (24GB) GPU.
 ```bash
 conda env create -f .env/dssc_R.yml
 ```
+Note that for this experiment, the conda-forge channel no longer provides version 1.5 of r-cccd, and the newer version (1.6) cannot be downloaded with r-base=4.1. Upgrading r-base to ensure compatibility with r-cccd 1.6 would cause conflicts with other dependencies specified in the original repository (r-ggplot2=3.3.6 and r-seurat=4.2.0); therefore, the versions of several dependencies have been adjusted (see [dssc_r_try.yml](.env/dssc_r_try.yml) and [dssc_R.yml](.env/dssc_R.yml)).
 
 # Run DSSC 
 1) Build constraints (See make_links_from_Markers.R)
