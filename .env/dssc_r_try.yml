@@ -1,0 +1,11 @@
+name: dssc-r
+channels:
+  - conda-forge
+  - defaults
+  - bioconda
+dependencies:
+  - r-base=4
+  - r-seurat=4
+  - r-cccd
+  - bioconductor-rhdf5
+  - r-ggplot2

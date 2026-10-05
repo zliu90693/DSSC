@@ -17,15 +17,9 @@ All experiments of DSSC in this study are conducted on Nvidia 4090 (24GB) GPU.
 (4) "Genes" - feature names (Use to build constraints)  
 
 # Dependencies in R
-R 4.1.0  
-
-Seurat 4.2.0  
-
-cccd 1.5  
-
-rhdf5 2.38.1  
-
-ggplot2 3.3.6  
+```bash
+conda env create -f .env/dssc_R.yml
+```
 
 # Run DSSC 
 1) Build constraints (See make_links_from_Markers.R)
