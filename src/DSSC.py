@@ -261,7 +261,7 @@ class DSSC(nn.Module):
         optim_adam = optim.Adam(filter(lambda p: p.requires_grad, self.parameters()), lr=lr)
         for epoch in range(num_epochs):
             self.eval()
-            if epoch%update_interval == 0:
+            if epoch%update_interval == 0: # 永远为真
                 # update the targe distribution p
                 Zdata = self.encodeBatch(X, A_n).to(self.device)
                 q = self.soft_assign(Zdata)
