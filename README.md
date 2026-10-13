@@ -24,11 +24,6 @@ Note that for this experiment, the conda-forge channel no longer provides versio
 
 # Run DSSC 
 1) Build constraints (See make_links_from_Markers.R)
-
-```bash
-
-```
-
 2) Run DSSC (See run_DSSC.sh, then run.sh)  
 
 ```bash
