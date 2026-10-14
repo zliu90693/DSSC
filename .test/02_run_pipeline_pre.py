@@ -39,4 +39,28 @@ for k in sample_151507_anno.keys():
 同时 expression representation 本身通过 denoising autoencoder/ZINB 等进行建模。
 '''
 # %%
-# 接下来运行 DSSC 流程，步骤见 README
+# 20261014，下载了新 spatialLIBD 数据集后的测试：
+# repo 中附带的旧数据
+sample_151507_anno = h5py.File("../data/sample_151507_anno.h5")
+print(sample_151507_anno.keys()) # ['Del', 'Gene', 'Loc', 'Pos', 'X', 'Y']
+# %%
+print(sample_151507_anno['Del'].shape) # (161,)
+print(sample_151507_anno['Gene'].shape) # (24402,)
+print(sample_151507_anno['Loc'].shape) # (2, 4226)
+print(sample_151507_anno['Pos'].shape) # (2, 4226)
+print(sample_151507_anno['X'].shape) # (4226, 24402)
+print(sample_151507_anno['Y'].shape) # (4226,)
+# %%
+print(sample_151507_anno['Pos'][:5])
+# %%
+# 在 .subprojects/02_replicate/get_other_data.ipynb 中下载的新数据
+sample_151507_anno_new = h5py.File("../data/spatialLIBD/sample_151507_anno.h5")
+print(sample_151507_anno_new.keys()) # ['Gene', 'Pos', 'X', 'Y']
+# %%
+print(sample_151507_anno_new['Gene'].shape) # (33538,)
+print(sample_151507_anno_new['Pos'].shape) # (2, 4226)
+print(sample_151507_anno_new['X'].shape) # (4226, 33538)
+print(sample_151507_anno_new['Y'].shape) # (4226,)
+# %%
+print(sample_151507_anno_new['Pos'][:5])
+# %%
