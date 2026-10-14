@@ -12,6 +12,7 @@ import torch
 from preprocess import concat_data, preprocessing_rna, norm_adj 
 from utils import *
 from scipy import stats, spatial
+import random
 
 if __name__ == "__main__":
 
@@ -46,8 +47,14 @@ if __name__ == "__main__":
     parser.add_argument('--ml_file', default=-1, help='the file of must-link')
     parser.add_argument('--cl_file', default=-1, help='the file of cannot-link')
     parser.add_argument('--run', default=1)
+    parser.add_argument('--seed', default=42, type=int, help='random seed')
 
     args = parser.parse_args()
+    random.seed(args.seed)
+    np.random.seed(args.seed)
+    torch.manual_seed(args.seed)
+    torch.cuda.manual_seed_all(args.seed)
+
     print(args)
     ###read data
     data_mat = h5py.File(args.data_file)
@@ -163,8 +170,14 @@ if __name__ == "__main__":
     print('Final Clustering: ACC= %.4f, NMI= %.4f, ARI= %.4f, kNN_ACC= %.4f, I_score= %.4f, Loss = %.8f, Epoch = %.i' % (acc, nmi, ari, ka, Iscore, final_loss, epoch))
     
     ###output predicted labels and embedding
+    # if args.final_latent_file != -1:
+    #      final_latent = model.encodeBatch(torch.tensor(adata.X, dtype=torch.float32), A_n).data.cpu().numpy()
+    #      np.savetxt(args.save_dir + "/" + args.final_latent_file + "_" + str(args.run), final_latent, delimiter=",")   
+    # if args.final_labels != -1:
+    #      np.savetxt(args.save_dir + "/" + args.final_labels + "_" + str(args.run), y_pred, delimiter=",")
+    tag = "{}".format(args.seed)
     if args.final_latent_file != -1:
-         final_latent = model.encodeBatch(torch.tensor(adata.X, dtype=torch.float32), A_n).data.cpu().numpy()
-         np.savetxt(args.save_dir + "/" + args.final_latent_file + "_" + str(args.run), final_latent, delimiter=",")   
+        final_latent = model.encodeBatch(torch.tensor(adata.X, dtype=torch.float32), A_n).data.cpu().numpy()
+        np.savetxt(args.save_dir + "/" + args.final_latent_file + "_" + tag, final_latent, delimiter=",")
     if args.final_labels != -1:
-         np.savetxt(args.save_dir + "/" + args.final_labels + "_" + str(args.run), y_pred, delimiter=",")
+        np.savetxt(args.save_dir + "/" + args.final_labels + "_" + tag, y_pred, delimiter=",")
