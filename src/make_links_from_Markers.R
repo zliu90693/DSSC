@@ -36,8 +36,8 @@ layers = c("Layer1","Layer5","WM","Layer1")
 #whether to get high (1) or low (2) expressed cells
 att = c(1,1,1,1)
 
-#Marker genes are from the paper of spatialLIBD
-#such as PCP4 (Layer5), MOBP (WM), AQP4 (Layer1), FABP4 (Layer1), CARTPT(Layer3), ENC1(WN), KRT17(Layer6),...
+#!Marker genes are from the paper of spatialLIBD
+#!such as PCP4 (Layer5), MOBP (WM), AQP4 (Layer1), FABP4 (Layer1), CARTPT(Layer3), ENC1(WN), KRT17(Layer6),...
 #This is a flexible approach, more marker genes can be added according to the prior knowledge.
 #the spatial dependency can be tested by using the function below, it is not suggested to use a gene with low spatial dependency.
 #It is also suggested to check the distribution of gene before using as markers (see the codes at bottom).
