@@ -108,10 +108,14 @@ if __name__ == "__main__":
     #############################################################################################
     print("***Building graph***")
     ###knn
-    A = kneighbors_graph(pos_, args.knn, mode="connectivity", metric="euclidean", include_self=True, n_jobs=-1)
-    A = A.toarray()    
-    A = sparse.csr_matrix(A)
-    A_n = norm_adj(A)
+    #! --------------------------------- K = 0 ---------------------------------
+    if args.knn == 0:
+        A = sparse.identity(pos_.shape[0], format="csr")
+        A_n = A
+    else:
+        A = kneighbors_graph(pos_, args.knn, mode="connectivity", metric="euclidean", include_self=True, n_jobs=-1)
+        A_n = norm_adj(sparse.csr_matrix(A.toarray()))
+    #! -------------------------------------------------------------------------
     
     ###Get kneighbors_graph from spatial dist (this is just for evaluation)
     k0 = 20 #we now use a k=20 graph to evaluate
