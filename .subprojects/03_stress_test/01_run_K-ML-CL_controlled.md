@@ -51,3 +51,66 @@ do
         --no_ml
 done
 ```
+
+```bash
+# K = 20, ML not use，CL not use
+# seed: 500
+f="../data/sample_151507_anno.h5"
+for i in {1..5}
+do
+    python -u run_DSSC.py --n_clusters -1 --data_file $f --save_dir out_151507 \
+        --final_labels pred.csv --final_latent_file latent.csv --run $i --seed $((500+i)) \
+        --ml_file "../example_constraints/sample_151507_mlFromMarks_test.txt" --cl_file "../example_constraints/sample_151507_clFromMarks_test.txt" \
+        --no_cl --no_ml
+done
+```
+
+```bash
+# K = 0, ML use，CL use
+# seed: 600
+f="../data/sample_151507_anno.h5"
+for i in {1..5}
+do
+    python -u run_DSSC.py --n_clusters -1 --data_file $f --save_dir out_151507 \
+        --final_labels pred.csv --final_latent_file latent.csv --run $i --seed $((600+i)) \
+        --ml_file "../example_constraints/sample_151507_mlFromMarks_test.txt" --cl_file "../example_constraints/sample_151507_clFromMarks_test.txt" \
+        --knn 0
+done
+```
+
+```bash
+# K = 0, ML use，CL not use
+# seed: 700
+f="../data/sample_151507_anno.h5"
+for i in {1..5}
+do
+    python -u run_DSSC.py --n_clusters -1 --data_file $f --save_dir out_151507 \
+        --final_labels pred.csv --final_latent_file latent.csv --run $i --seed $((700+i)) \
+        --ml_file "../example_constraints/sample_151507_mlFromMarks_test.txt" --cl_file "../example_constraints/sample_151507_clFromMarks_test.txt" \
+        --knn 0 --no_cl
+done
+```
+
+```bash
+# K = 0, ML not use，CL use
+# seed: 800
+f="../data/sample_151507_anno.h5"
+for i in {1..5}
+do
+    python -u run_DSSC.py --n_clusters -1 --data_file $f --save_dir out_151507 \
+        --final_labels pred.csv --final_latent_file latent.csv --run $i --seed $((800+i)) \
+        --ml_file "../example_constraints/sample_151507_mlFromMarks_test.txt" --cl_file "../example_constraints/sample_151507_clFromMarks_test.txt" \
+        --knn 0 --no_ml
+done
+```
+
+```bash
+f="../data/sample_151507_anno.h5"
+for i in {1..5}
+do
+    python -u run_DSSC.py --n_clusters -1 --data_file $f --save_dir out_151507 \
+        --final_labels pred.csv --final_latent_file latent.csv --run $i --seed $((900+i)) \
+        --ml_file "../example_constraints/sample_151507_mlFromMarks_test.txt" --cl_file "../example_constraints/sample_151507_clFromMarks_test.txt" \
+        --knn 0 --no_ml --no_cl
+done
+```

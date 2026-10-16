@@ -73,3 +73,31 @@ def plot_metrics_bar(csv_path, title, metrics, ylim=(0, 1)):
 
 def summarize_runs(df):
     return df.drop(columns='seed').agg(['mean', 'std']).T
+
+def plot_metrics_grouped(metric_files, metrics, ylim=(0, 1),
+                         colors=None, figsize=(14, 5), savepath=None):
+    names = list(metric_files.keys())
+    n = len(names)
+    means = np.zeros((n, len(metrics)))
+    stds = np.zeros((n, len(metrics)))
+    for i, path in enumerate(metric_files.values()):
+        df = pd.read_csv(path)
+        means[i] = df[metrics].mean().values
+        stds[i] = df[metrics].std().values
+
+    x = np.arange(len(metrics))
+    width = 0.8 / n
+    fig, ax = plt.subplots(figsize=figsize)
+    colors = colors or plt.get_cmap('tab10').colors
+    for i, name in enumerate(names):
+        ax.bar(x + (i - (n - 1) / 2) * width, means[i], width,
+               yerr=stds[i], capsize=3, color=colors[i % len(colors)], label=name)
+    ax.set_xticks(x)
+    ax.set_xticklabels(metrics)
+    ax.set_ylabel('score')
+    ax.set_ylim(*ylim)
+    ax.legend(bbox_to_anchor=(1.02, 1), loc='upper left', fontsize=8)
+    fig.tight_layout()
+    if savepath:
+        fig.savefig(savepath, dpi=150, bbox_inches='tight')
+    return fig, ax
