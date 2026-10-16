@@ -63,3 +63,25 @@ print(sample_151507_anno_new['Y'].shape) # (4226,)
 # Del 在 DSSC 中从未使用过，spot 的筛选只靠 Y == "NA"（run_DSSC.py:65）和预处理阈值，与 Del 无关，因此新数据可用
 # 相较于旧数据，新数据的形状发生了一定变化 (4226, 33538)
 # %%
+y = np.array(sample_151507_anno_new['Y'])
+f = np.where(y.astype(np.str) != "NA")[0]
+f.shape # 4221
+# %%
+y.shape # 4226
+# %%
+#! ↑ 经验证，在新数据集中也可以通过 NA 正常过滤数据
+# %%
+sample_151671_anno_new = h5py.File("../data/spatialLIBD/sample_151671_anno.h5", 'r')
+print(sample_151671_anno_new['Y'].shape) # (4226,)
+# %%
+y = np.array(sample_151671_anno_new['Y'])
+f = np.where(y.astype(np.str) != "NA")[0]
+f.shape # 4093,
+# %%
+#? 比较旧版数据和新版数据的 Y 是否完全相等，避免因为次序不同导致新版无法使用旧版 constraint：
+sample_151507_anno = h5py.File("../data/sample_151507_anno.h5", 'r')
+sample_151507_anno_new = h5py.File("../data/spatialLIBD/sample_151507_anno.h5", 'r')
+old_y = sample_151507_anno['Y']
+new_y = sample_151507_anno_new['Y']
+list(old_y) == list(new_y) # True
+# %%
