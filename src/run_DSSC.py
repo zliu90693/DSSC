@@ -51,6 +51,7 @@ if __name__ == "__main__":
     #! ml & cl switch
     parser.add_argument('--no_ml', action='store_true', help='disable must-link constraints') # 注意 Python 的 type=bool 陷阱：--use_ml False 会被解析成 True，所以用 store_true 的否定式(action='store_true' 的默认值永远是 False)
     parser.add_argument('--no_cl', action='store_true', help='disable cannot-link constraints')
+    # ↑ 布尔开关，关闭哪个调哪个，关 ML 追加 --no_ml，不用加 --no_ml True，都不关闭就都不追加
     #! +
 
     args = parser.parse_args()
