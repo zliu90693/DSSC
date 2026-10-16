@@ -48,13 +48,20 @@ if __name__ == "__main__":
     parser.add_argument('--cl_file', default=-1, help='the file of cannot-link')
     parser.add_argument('--run', default=1)
     parser.add_argument('--seed', default=42, type=int, help='random seed')
+    #! ml & cl switch
+    parser.add_argument('--no_ml', action='store_true', help='disable must-link constraints') # 注意 Python 的 type=bool 陷阱：--use_ml False 会被解析成 True，所以用 store_true 的否定式(action='store_true' 的默认值永远是 False)
+    parser.add_argument('--no_cl', action='store_true', help='disable cannot-link constraints')
+    #! +
 
     args = parser.parse_args()
     random.seed(args.seed)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
     torch.cuda.manual_seed_all(args.seed)
-
+    #! ml & cl switch
+    use_ml = not args.no_ml
+    use_cl = not args.no_cl
+    #! +
     print(args)
     ###read data
     data_mat = h5py.File(args.data_file)
@@ -115,7 +122,7 @@ if __name__ == "__main__":
     else:
         A = kneighbors_graph(pos_, args.knn, mode="connectivity", metric="euclidean", include_self=True, n_jobs=-1)
         A_n = norm_adj(sparse.csr_matrix(A.toarray()))
-    #! -------------------------------------------------------------------------
+    #! +
     
     ###Get kneighbors_graph from spatial dist (this is just for evaluation)
     k0 = 20 #we now use a k=20 graph to evaluate
@@ -130,22 +137,27 @@ if __name__ == "__main__":
 
     ###############################################################################################################
     print("***Building constraints***")
-    ###read ml 
+    #! ml & cl switch
     print("Read ML file")
-    anchors_ml = np.loadtxt(args.ml_file)
-    anchors_ml = anchors_ml.astype(np.int)
-    #index -1 since here we build constraints from R
-    ml_ind1 = anchors_ml[:,0] - 1
-    ml_ind2 = anchors_ml[:,1] - 1 
+    if use_ml:
+        anchors_ml = np.loadtxt(args.ml_file).astype(np.int)
+        #index -1 since here we build constraints from R
+        ml_ind1 = anchors_ml[:,0] - 1 #? 这里直接作用的对象竟然是 ml_ind1？！
+        ml_ind2 = anchors_ml[:,1] - 1 
+    else:
+        ml_ind1 = np.array([], dtype=np.int); ml_ind2 = np.array([], dtype=np.int)
     
     ###read cl
     print("Read CL file")
-    anchors_cl = np.loadtxt(args.cl_file)
-    anchors_cl = anchors_cl.astype(np.int)
-    #index -1 since here we build constraints from R
-    cl_ind1 = anchors_cl[:,0] - 1
-    cl_ind2 = anchors_cl[:,1] - 1
-    
+    if use_cl:
+        anchors_cl = np.loadtxt(args.cl_file).astype(np.int)
+        #index -1 since here we build constraints from R
+        cl_ind1 = anchors_cl[:,0] - 1
+        cl_ind2 = anchors_cl[:,1] - 1
+    else:
+        cl_ind1 = np.array([], dtype=np.int); cl_ind2 = np.array([], dtype=np.int)
+    #! +
+
     ###build model
     model = DSSC(input_dim=adata.n_vars, encodeLayer=args.encodeLayer, decodeLayer=args.decodeLayer, encodeHead=args.encodeHead, 
             encodeConcat=args.concat, gamma=args.gamma, activation="elu", z_dim=args.z_dim, sigma = args.sigma, device=args.device).to(args.device)
@@ -160,8 +172,12 @@ if __name__ == "__main__":
     
     ###clustering stage
     y_pred, final_loss, epoch = model.fit(X=adata.X, X_raw = count_X, X_sf=adata.obs.size_factors, A = A, A_n = A_n,
-            n_clusters = n_clusters, num_epochs=args.clustering_iters, y=y, n_ml = args.n_ml, n_cl = args.n_cl,
-            ml_ind1=ml_ind1, ml_ind2=ml_ind2, cl_ind1=cl_ind1, cl_ind2=cl_ind2, ml_p=args.weight_ml, cl_p=args.weight_cl,
+            n_clusters = n_clusters, num_epochs=args.clustering_iters, y=y, 
+            n_ml = (args.n_ml if use_ml else 0), n_cl = (args.n_cl if use_cl else 0), #! +
+            use_ml=use_ml, use_cl=use_cl, #! +
+            ml_ind1=ml_ind1, ml_ind2=ml_ind2, 
+            cl_ind1=cl_ind1, cl_ind2=cl_ind2, 
+            ml_p=args.weight_ml, cl_p=args.weight_cl,
             p_=p_, lr = args.lr, update_interval=1, tol=0.001)
 
     t1 = time()

@@ -201,8 +201,11 @@ class DSSC(nn.Module):
         q = (q.t() / torch.sum(q, dim=1)).t()
         return q
 
-    def fit(self, X, X_raw, X_sf, A, A_n, n_clusters,
-            p_, n_ml=0, n_cl=0, ml_ind1=np.array([]), ml_ind2=np.array([]), cl_ind1=np.array([]), cl_ind2=np.array([]),
+    def fit(self, X, X_raw, X_sf, A, A_n, n_clusters, p_, 
+            n_ml=0, n_cl=0, 
+            use_ml=True, use_cl=True, #! +
+            ml_ind1=np.array([]), ml_ind2=np.array([]), 
+            cl_ind1=np.array([]), cl_ind2=np.array([]),
             ml_p=1., cl_p=1., y=None, lr=0.001, batch_size=256, num_epochs=1, update_interval=1, tol=1e-3):
         '''X: tensor data'''
         
@@ -233,19 +236,43 @@ class DSSC(nn.Module):
             print('Initializing kmeans KNN ACC= %.4f' % knn_ACC(p_, self.y_pred))
        
         #build ml
-        ml_pool1 = ml_ind1 
-        ml_pool2 = ml_ind2 
-        cl_pool1 = cl_ind1 
-        cl_pool2 = cl_ind2 
-        inds = np.random.choice(ml_pool1.shape[0], n_ml, replace=False)
-        ml_ind1 = ml_pool1[inds]
-        ml_ind2 = ml_pool2[inds]
+        #! ml & cl switch
+        # 给池构建与首次采样加保护，否则这将是空索引导致 nan 的根源
+        if use_ml and ml_ind1.shape[0] > 0:
+            ml_pool1, ml_pool2 = ml_ind1, ml_ind2
+            k = min(n_ml, ml_pool1.shape[0]) # n_ml，采样数（4k），ml_pool1.shape[0] 池子总大小，26203
+            #? ↑这一步的目的是什么？
+            #* 一个采样上限钳制。np.random.choice(N, k, replace=False) 要求 k <= N，否则报错
+            inds = np.random.choice(ml_pool1.shape[0], k, replace=False) # “从 ml_pool1.shape[0] 中抽取 k 个”，但潜在要求是 ml_pool1.shape[0] 必须大于等于 k，因此需要前文的钳制
+            ml_ind1, ml_ind2 = ml_pool1[inds], ml_pool2[inds]
+        else:
+            ml_pool1 = ml_pool2 = np.array([], dtype=int)
+            ml_ind1  = ml_ind2  = np.array([], dtype=int)
         print("Constraints summary: ML=%.0f" % (len(ml_ind1)))
-        #build cl
-        inds = np.random.choice(cl_pool1.shape[0], n_cl, replace=False)
-        cl_ind1 = cl_pool1[inds]
-        cl_ind2 = cl_pool2[inds]
+
+        if use_cl and cl_ind1.shape[0] > 0:
+            cl_pool1, cl_pool2 = cl_ind1, cl_ind2
+            k = min(n_cl, cl_pool1.shape[0])
+            inds = np.random.choice(cl_pool1.shape[0], k, replace=False)
+            cl_ind1, cl_ind2 = cl_pool1[inds], cl_pool2[inds]
+        else:
+            cl_pool1 = cl_pool2 = np.array([], dtype=int)
+            cl_ind1 = cl_ind2 = np.array([], dtype=int)
         print("Constraints summary: CL=%.0f" % (len(cl_ind1)))
+        #! +
+        # ml_pool1 = ml_ind1 
+        # ml_pool2 = ml_ind2 
+        # cl_pool1 = cl_ind1 
+        # cl_pool2 = cl_ind2 
+        # inds = np.random.choice(ml_pool1.shape[0], n_ml, replace=False)
+        # ml_ind1 = ml_pool1[inds]
+        # ml_ind2 = ml_pool2[inds]
+        # print("Constraints summary: ML=%.0f" % (len(ml_ind1)))
+        #build cl
+        # inds = np.random.choice(cl_pool1.shape[0], n_cl, replace=False)
+        # cl_ind1 = cl_pool1[inds]
+        # cl_ind2 = cl_pool2[inds]
+        # print("Constraints summary: CL=%.0f" % (len(cl_ind1)))
         
         num = X.shape[0]
         num_batch = int(math.ceil(1.0*X.shape[0]/batch_size))
@@ -282,14 +309,17 @@ class DSSC(nn.Module):
                     break
                     
             #update links
-            if epoch%update_ml == 0:
+            # if epoch%update_ml == 0:
+            if use_ml and ml_pool1.shape[0] > 0:
             #update ml            
-               inds = np.random.choice(ml_pool1.shape[0], n_ml, replace=False)
+               inds = np.random.choice(ml_pool1.shape[0], min(n_ml, ml_pool1.shape[0]), replace=False)
+               # 当 n_ml > pool_size 时 replace=False 会直接抛 ValueError: Cannot take a larger sample than population。目前手上的约束文件都 >4000，暂时不触发，但只要换个池子小一点的数据集就会崩。
                ml_ind1 = ml_pool1[inds]
                ml_ind2 = ml_pool2[inds]   
-            if epoch%update_cl == 0:
+            # if epoch%update_cl == 0:
+            if use_cl and cl_pool1.shape[0] > 0:
             #update cl
-               inds = np.random.choice(cl_pool1.shape[0], n_cl, replace=False)
+               inds = np.random.choice(cl_pool1.shape[0], min(n_cl, cl_pool1.shape[0]), replace=False)
                cl_ind1 = cl_pool1[inds]
                cl_ind2 = cl_pool2[inds]
                     
@@ -307,34 +337,50 @@ class DSSC(nn.Module):
             total_loss = loss_zinb.data/num + loss_cluster.data/num            
                       
             #update links
-            if epoch%2==0:
-              _, qbatch, mean_tensor, disp_tensor, pi_tensor = self.aeForward2(G_v, X_v)
-              loss_zinb = self.zinb_loss(x=X_raw_v, mean=mean_tensor, disp=disp_tensor, pi=pi_tensor, scale_factor=X_sf_v)
-              ml_q1 = qbatch[ml_ind1]
-              ml_q2 = qbatch[ml_ind2]
-              ml_loss = self.pairwise_loss(ml_q1, ml_q2, "ML")
-              loss = ml_p * ml_loss + loss_zinb
-              optim_adam.zero_grad()
-              loss.backward()
-              torch.nn.utils.clip_grad_norm_(self.mu, 1)
-              optim_adam.step()
-              total_loss = loss_zinb.data/num + loss_cluster.data/num + ml_loss.data/ml_num
-              print('Clustering Iteration:{}, Total loss:{:.8f}, ZINB loss:{:.8f}, Cluster loss:{:.8f}, ML loss:{:.8f}'.format(epoch+1, 
-                      total_loss, loss_zinb.data/num, loss_cluster.data/num, ml_loss.data/ml_num))
+            #! ml & cl switch
+            do_ml = use_ml and (not use_cl or epoch % 2 == 0)
+            do_cl = use_cl and (not use_ml or epoch % 2 == 1)
+            if do_ml or do_cl:
+                _, qbatch, mean_tensor, disp_tensor, pi_tensor = self.aeForward2(G_v, X_v)
+                loss_zinb = self.zinb_loss(x=X_raw_v, mean=mean_tensor, disp=disp_tensor,
+                                        pi=pi_tensor, scale_factor=X_sf_v)
+                loss = loss_zinb
+                if do_ml:
+                    loss = loss + ml_p * self.pairwise_loss(qbatch[ml_ind1], qbatch[ml_ind2], "ML")
+                if do_cl:
+                    loss = loss + cl_p * self.pairwise_loss(qbatch[cl_ind1], qbatch[cl_ind2], "CL")
+                optim_adam.zero_grad()
+                loss.backward()
+                torch.nn.utils.clip_grad_norm_(self.mu, 1)
+                optim_adam.step()
+            # if epoch%2==0:
+            #   _, qbatch, mean_tensor, disp_tensor, pi_tensor = self.aeForward2(G_v, X_v)
+            #   loss_zinb = self.zinb_loss(x=X_raw_v, mean=mean_tensor, disp=disp_tensor, pi=pi_tensor, scale_factor=X_sf_v)
+            #   ml_q1 = qbatch[ml_ind1]
+            #   ml_q2 = qbatch[ml_ind2]
+            #   ml_loss = self.pairwise_loss(ml_q1, ml_q2, "ML")
+            #   loss = ml_p * ml_loss + loss_zinb
+            #   optim_adam.zero_grad()
+            #   loss.backward()
+            #   torch.nn.utils.clip_grad_norm_(self.mu, 1)
+            #   optim_adam.step()
+            #   total_loss = loss_zinb.data/num + loss_cluster.data/num + ml_loss.data/ml_num
+            #   print('Clustering Iteration:{}, Total loss:{:.8f}, ZINB loss:{:.8f}, Cluster loss:{:.8f}, ML loss:{:.8f}'.format(epoch+1, 
+            #           total_loss, loss_zinb.data/num, loss_cluster.data/num, ml_loss.data/ml_num))
 
-            else:
-              _, qbatch, mean_tensor, disp_tensor, pi_tensor = self.aeForward2(G_v, X_v)
-              loss_zinb = self.zinb_loss(x=X_raw_v, mean=mean_tensor, disp=disp_tensor, pi=pi_tensor, scale_factor=X_sf_v)
-              cl_q1 = qbatch[cl_ind1]
-              cl_q2 = qbatch[cl_ind2]
-              cl_loss = self.pairwise_loss(cl_q1, cl_q2, "CL")
-              loss = cl_p * cl_loss + loss_zinb
-              optim_adam.zero_grad()
-              loss.backward()
-              torch.nn.utils.clip_grad_norm_(self.mu, 1)
-              optim_adam.step()
-              total_loss = loss_zinb.data/num + loss_cluster.data/num + cl_loss.data/cl_num
-              print('Clustering Iteration:{}, Total loss:{:.8f}, ZINB loss:{:.8f}, Cluster loss:{:.8f}, CL loss:{:.8f}'.format(epoch+1, 
-                      total_loss, loss_zinb.data/num, loss_cluster.data/num, cl_loss.data/cl_num))
+            # else:
+            #   _, qbatch, mean_tensor, disp_tensor, pi_tensor = self.aeForward2(G_v, X_v)
+            #   loss_zinb = self.zinb_loss(x=X_raw_v, mean=mean_tensor, disp=disp_tensor, pi=pi_tensor, scale_factor=X_sf_v)
+            #   cl_q1 = qbatch[cl_ind1]
+            #   cl_q2 = qbatch[cl_ind2]
+            #   cl_loss = self.pairwise_loss(cl_q1, cl_q2, "CL")
+            #   loss = cl_p * cl_loss + loss_zinb
+            #   optim_adam.zero_grad()
+            #   loss.backward()
+            #   torch.nn.utils.clip_grad_norm_(self.mu, 1)
+            #   optim_adam.step()
+            #   total_loss = loss_zinb.data/num + loss_cluster.data/num + cl_loss.data/cl_num
+            #   print('Clustering Iteration:{}, Total loss:{:.8f}, ZINB loss:{:.8f}, Cluster loss:{:.8f}, CL loss:{:.8f}'.format(epoch+1, 
+            #           total_loss, loss_zinb.data/num, loss_cluster.data/num, cl_loss.data/cl_num))
 
         return self.y_pred, total_loss, epoch+1
