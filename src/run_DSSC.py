@@ -143,10 +143,11 @@ if __name__ == "__main__":
     if use_ml:
         anchors_ml = np.loadtxt(args.ml_file).astype(np.int)
         #index -1 since here we build constraints from R
-        ml_ind1 = anchors_ml[:,0] - 1 #? 这里直接作用的对象竟然是 ml_ind1？！
+        ml_ind1 = anchors_ml[:,0] - 1
         ml_ind2 = anchors_ml[:,1] - 1 
     else:
-        ml_ind1 = np.array([], dtype=np.int); ml_ind2 = np.array([], dtype=np.int)
+        ml_ind1 = np.array([], dtype=np.int)
+        ml_ind2 = np.array([], dtype=np.int)
     
     ###read cl
     print("Read CL file")
@@ -156,7 +157,8 @@ if __name__ == "__main__":
         cl_ind1 = anchors_cl[:,0] - 1
         cl_ind2 = anchors_cl[:,1] - 1
     else:
-        cl_ind1 = np.array([], dtype=np.int); cl_ind2 = np.array([], dtype=np.int)
+        cl_ind1 = np.array([], dtype=np.int)
+        cl_ind2 = np.array([], dtype=np.int)
     #! +
 
     ###build model
