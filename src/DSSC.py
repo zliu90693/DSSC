@@ -339,20 +339,19 @@ class DSSC(nn.Module):
             #update links
             #! ml & cl switch
             #! 只有当 ML 和 CL 同时开启时才交替，否则单独那个每轮都跑
-            do_ml = use_ml and (not use_cl or epoch % 2 == 0)
             '''
             外层 use_ml: ML 关闭时直接短路为 False, 永不执行。
             内层 (not use_cl or epoch % 2 == 0)：决定"何时"执行：
             - use_cl == False(只有 ML 开): not use_cl = True, 或短路, 整个内层恒为 True → ML 每轮都跑。
             - use_cl == True(ML/CL 都开): not use_cl = False, 只能靠 epoch % 2 == 0 → ML 只在偶数轮跑(把奇数轮让给 CL)
             '''
+            do_ml = use_ml and (not use_cl or epoch % 2 == 0)
             do_cl = use_cl and (not use_ml or epoch % 2 == 1)
-            # if do_ml or do_cl: #? 我不确定
+            # if do_ml or do_cl: 
             _, qbatch, mean_tensor, disp_tensor, pi_tensor = self.aeForward2(G_v, X_v)
             loss_zinb = self.zinb_loss(x=X_raw_v, mean=mean_tensor, disp=disp_tensor,
                                     pi=pi_tensor, scale_factor=X_sf_v)
             loss = loss_zinb 
-            #? 暂定为：即使不用 constraint，也要在第二轮反传一个 zinb loss。但这个方案我不确定可不可行
             if do_ml:
                 loss = loss + ml_p * self.pairwise_loss(qbatch[ml_ind1], qbatch[ml_ind2], "ML")
                 # ml_p，对应 args.weight_ml，默认 0.5
