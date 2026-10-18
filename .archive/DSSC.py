@@ -305,7 +305,7 @@ class DSSC(nn.Module):
             torch.nn.utils.clip_grad_norm_(self.mu, 1)
             optim_adam.step()
             total_loss = loss_zinb.data/num + loss_cluster.data/num            
-                      
+            
             #update links
             if epoch%2==0:
               _, qbatch, mean_tensor, disp_tensor, pi_tensor = self.aeForward2(G_v, X_v)

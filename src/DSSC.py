@@ -241,8 +241,7 @@ class DSSC(nn.Module):
         if use_ml and ml_ind1.shape[0] > 0:
             ml_pool1, ml_pool2 = ml_ind1, ml_ind2
             k = min(n_ml, ml_pool1.shape[0]) # n_ml，采样数（4k），ml_pool1.shape[0] 池子总大小，26203
-            #? ↑这一步的目的是什么？
-            #* 一个采样上限钳制。np.random.choice(N, k, replace=False) 要求 k <= N，否则报错
+            #↑ 一个采样上限钳制。np.random.choice(N, k, replace=False) 要求 k <= N，否则报错
             inds = np.random.choice(ml_pool1.shape[0], k, replace=False) # “从 ml_pool1.shape[0] 中抽取 k 个”，但潜在要求是 ml_pool1.shape[0] 必须大于等于 k，因此需要前文的钳制
             ml_ind1, ml_ind2 = ml_pool1[inds], ml_pool2[inds]
         else:
@@ -337,27 +336,39 @@ class DSSC(nn.Module):
             total_loss = loss_zinb.data/num + loss_cluster.data/num            
                       
             #update links
+            #! ↓ 这个注释掉的方案即为：仅用一个 constraint 时，每轮 epoch 均使用该 constraint
+            # do_ml = use_ml and (not use_cl or epoch % 2 == 0)
+            # do_cl = use_cl and (not use_ml or epoch % 2 == 1)
+            # # if do_ml or do_cl: 
+            # _, qbatch, mean_tensor, disp_tensor, pi_tensor = self.aeForward2(G_v, X_v)
+            # loss_zinb = self.zinb_loss(x=X_raw_v, mean=mean_tensor, disp=disp_tensor,
+            #                         pi=pi_tensor, scale_factor=X_sf_v)
+            # loss = loss_zinb 
+            # if do_ml:
+            #     loss = loss + ml_p * self.pairwise_loss(qbatch[ml_ind1], qbatch[ml_ind2], "ML")
+            #     # ml_p，对应 args.weight_ml，默认 0.5
+            # if do_cl:
+            #     loss = loss + cl_p * self.pairwise_loss(qbatch[cl_ind1], qbatch[cl_ind2], "CL")
+            #     # cl_p，对应 args.weight_cl，默认 1
+            # optim_adam.zero_grad()
+            # loss.backward()
+            # torch.nn.utils.clip_grad_norm_(self.mu, 1)
+            # optim_adam.step()
             #! ml & cl switch
-            #! 只有当 ML 和 CL 同时开启时才交替，否则单独那个每轮都跑
-            '''
-            外层 use_ml: ML 关闭时直接短路为 False, 永不执行。
-            内层 (not use_cl or epoch % 2 == 0)：决定"何时"执行：
-            - use_cl == False(只有 ML 开): not use_cl = True, 或短路, 整个内层恒为 True → ML 每轮都跑。
-            - use_cl == True(ML/CL 都开): not use_cl = False, 只能靠 epoch % 2 == 0 → ML 只在偶数轮跑(把奇数轮让给 CL)
-            '''
-            do_ml = use_ml and (not use_cl or epoch % 2 == 0)
-            do_cl = use_cl and (not use_ml or epoch % 2 == 1)
-            # if do_ml or do_cl: 
+            #! 当 ML 和 CL 同时开启时，交替；
+            #! 仅用一个（如ML）时，偶数 epoch 反传 ML loss + zinb loss，奇数 epoch 反传 zinb loss，CL 同理
+            #! 都不用时，任一 epoch 均仅反传 zinb loss
+            do_ml = use_ml and (epoch % 2 == 0)
+            do_cl = use_cl and (epoch % 2 == 1)
+            # step2 始终执行；无约束的槽位自动退化为 ZINB-only
             _, qbatch, mean_tensor, disp_tensor, pi_tensor = self.aeForward2(G_v, X_v)
             loss_zinb = self.zinb_loss(x=X_raw_v, mean=mean_tensor, disp=disp_tensor,
-                                    pi=pi_tensor, scale_factor=X_sf_v)
-            loss = loss_zinb 
+                                       pi=pi_tensor, scale_factor=X_sf_v)
+            loss = loss_zinb
             if do_ml:
                 loss = loss + ml_p * self.pairwise_loss(qbatch[ml_ind1], qbatch[ml_ind2], "ML")
-                # ml_p，对应 args.weight_ml，默认 0.5
             if do_cl:
                 loss = loss + cl_p * self.pairwise_loss(qbatch[cl_ind1], qbatch[cl_ind2], "CL")
-                # cl_p，对应 args.weight_cl，默认 1
             optim_adam.zero_grad()
             loss.backward()
             torch.nn.utils.clip_grad_norm_(self.mu, 1)
