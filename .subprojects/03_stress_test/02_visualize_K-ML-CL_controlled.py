@@ -48,7 +48,6 @@ for sample in SAMPLES:
             print('!! missing dir: %s (skip)' % save_dir)
             continue
         df = evaluate_dataset(h5_path, save_dir, seeds=SEEDS)
-        print('=== %s ===' % name)
         display(df.set_index('seed'))
         print('mean +/- std')
         display(summarize_runs(df))

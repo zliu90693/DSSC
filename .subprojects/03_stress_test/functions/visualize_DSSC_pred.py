@@ -33,7 +33,7 @@ def build_spatial_neighbor_graphs(pos, k0=20):
     return A0, p_
 
 def evaluate_prediction(y_true, y_pred, p_, A0):
-    acc, nmi, ari = eval_cluster(y_true, y_pred)
+    acc, nmi, ari = eval_cluster(y_true, y_pred) # 在这里调用原文的函数计算 ACC / NMI / ARI
     return {
         'ACC': acc,
         'NMI': nmi,
@@ -50,7 +50,7 @@ def evaluate_dataset(h5_path, save_dir, seeds=range(1001, 1006), pred_prefix='pr
     for s in seeds:
         y_pred = np.loadtxt(os.path.join(save_dir, pred_prefix + str(s))).astype(int)
         assert len(y_pred) == len(y_true), 'seed %s length %d != %d' % (s, len(y_pred), len(y_true))
-        rows.append(dict(seed=s, **evaluate_prediction(y_true, y_pred, p_, A0)))
+        rows.append(dict(seed=s, **evaluate_prediction(y_true, y_pred, p_, A0))) # evaluate_prediction
     return pd.DataFrame(rows)
 
 

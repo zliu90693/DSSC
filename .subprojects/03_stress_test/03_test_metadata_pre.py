@@ -1,5 +1,6 @@
 # %%
 import pandas as pd
+import h5py
 # %%
 # donor: Br5292; Br5595; Br8100
 # pair: 1, 2; 1, 2; 1, 2
@@ -73,7 +74,7 @@ long_df = long_df.sort_values(
 
 # %%
 # 保存基础长表
-out_path = os.path.join("./metadata", 'long_table.csv')
+out_path = os.path.join("./metadata", 'long_table_base.csv')
 long_df.to_csv(out_path, index=False)
 print(long_df.shape)
 # print(long_df.head())
@@ -88,4 +89,12 @@ print(long_df.shape)
 # assert set(long_df['seed']) == set(range(200, 210)), 'unexpected seeds'
 # assert long_df[METRICS].notna().all().all(), 'missing metric values'
 # print('all checks passed')
+# %%
+# 以 long_df 为基础，加入可能导致异质性的技术协变量
+long_df = pd.read_csv("./metadata/long_table_base.csv")
+# %%
+SAMPLES = ['151507', '151508', '151509', '151510', 
+           '151669', '151670', '151671', '151672',
+           '151673', '151674', '151675', '151676']
+SAMPLES_ADATA = [h5py.File(f"../../data/spatialLIBD/sample_{sample}_anno.h5", 'r') for sample in SAMPLES]
 # %%
