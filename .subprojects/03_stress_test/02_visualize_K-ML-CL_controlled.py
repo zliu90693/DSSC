@@ -3,7 +3,7 @@ from functions.visualize_DSSC_pred import *
 import os
 
 # %%
-# 12 个样本；每个样本 8 个组合（见 COND_SUBDIR），输出目录 ../../src/out_<sample>/<子目录>
+# 12 个样本；每个样本 8 个组合，输出目录 ../../src/out_*/子目录
 SAMPLES = ['151507', '151508', '151509', '151510',
            '151669', '151670', '151671', '151672',
            '151673', '151674', '151675', '151676']
@@ -22,10 +22,9 @@ COND_SUBDIR = {
     'CL-ML':   'K0_ML1_CL1',
     'CL':      'K0_ML0_CL1',
     'ML':      'K0_ML1_CL0',
-    '':        'K0_ML0_CL0',   # 空标签 -> 文件名 metrics__<sample>.csv
+    'None':        'K0_ML0_CL0'
 }
 
-# 在纯 python 下运行时的 display 兜底（notebook 里 display 已内置）
 try:
     display
 except NameError:
@@ -40,7 +39,6 @@ for sample in SAMPLES:
     os.makedirs(meta_dir, exist_ok=True)
     os.makedirs(fig_dir, exist_ok=True)
 
-    print('############ sample %s ############' % sample)
     metric_files = {}
     for cond, sub in COND_SUBDIR.items():
         name = '%s_%s' % (cond, sample)
@@ -64,3 +62,4 @@ for sample in SAMPLES:
             savepath=os.path.join(fig_dir, 'metrics_K-ML-CL_controlled_all8_new_data.png'))
         plt.show()
         plt.close(fig)
+# %%
