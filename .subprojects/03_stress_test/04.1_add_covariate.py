@@ -83,4 +83,5 @@ merged = long_df.merge(sample_covariates, on='sample', how='left')
 print(merged.shape)
 print(merged['sample'].equals(long_df['sample']))
 # %%
-# merged.to_csv
+merged.to_csv("./metadata/merged.csv", index=False)
+# %%
