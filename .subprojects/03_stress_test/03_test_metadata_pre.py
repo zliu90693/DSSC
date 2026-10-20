@@ -1,6 +1,7 @@
 # %%
 import pandas as pd
 import h5py
+import numpy as np
 # %%
 # donor: Br5292; Br5595; Br8100
 # pair: 1, 2; 1, 2; 1, 2
@@ -89,12 +90,4 @@ print(long_df.shape)
 # assert set(long_df['seed']) == set(range(200, 210)), 'unexpected seeds'
 # assert long_df[METRICS].notna().all().all(), 'missing metric values'
 # print('all checks passed')
-# %%
-# 以 long_df 为基础，加入可能导致异质性的技术协变量
-long_df = pd.read_csv("./metadata/long_table_base.csv")
-# %%
-SAMPLES = ['151507', '151508', '151509', '151510', 
-           '151669', '151670', '151671', '151672',
-           '151673', '151674', '151675', '151676']
-SAMPLES_ADATA = [h5py.File(f"../../data/spatialLIBD/sample_{sample}_anno.h5", 'r') for sample in SAMPLES]
 # %%
